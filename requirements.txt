@@ -1,0 +1,19 @@
+# Python 3.9
+
+chromadb==0.3.29
+highway-env==1.8.2
+hnswlib==0.8.0
+
+numpy
+scipy
+pandas
+matplotlib
+PyYAML
+tqdm
+
+openai
+tiktoken
+
+torch
+torchaudio
+torchvision

@@ -1,7 +1,6 @@
 # RESPOND
 
-Official implementation of **RESPOND**:  
-**Risk-Enhanced Structured Pattern for LLM-Driven Online Node-level Decision-making**
+**RESPOND: Risk-Enhanced Structured Pattern for LLM-Driven Online Node-level Decision-making**
 
 ---
 
@@ -25,14 +24,90 @@ providing a principled interface between classical risk modeling and modern LLM 
 
 ---
 
+## 🔥 Quick Start (RESPOND)
+
+The commands below allow you to **run RESPOND out of the box** with the default configuration
+and provided structured risk-pattern memory. 
+**Note:** It is strongly recommended to use GPU & CUDA to achieve higher efficiency in underlying DRF computations. For PyTorch installation, please follow the official instructions if you need a specific CUDA version.
+
+```bash
+git clone https://github.com/gisgrid/RESPOND.git
+cd RESPOND
+
+pip install -r requirements.txt
+
+cp configs/respond.example.yaml configs/respond.yaml
+# then edit configs/respond.yaml to set your OPENAI_API_KEY
+python run_RESPOND.py --config configs/respond.yaml
+```
+
+This will:
+
+- Load the default structured risk-pattern memory from `data/default_memory/`
+- Run RESPOND in the `highway-env` closed-loop simulation
+- Perform online decision-making using the Risk-Enhanced Structured Pattern framework
+
+### Configuration Options
+
+RESPOND behavior is controlled by `configs/respond.yaml`.
+
+The configuration file contains **four predefined options**, corresponding to the major
+experimental settings reported in the paper (e.g., different memory usage and decision policies).
+Users can switch between options directly in the YAML file without modifying code.
+
+Please refer to the inline comments in `respond.yaml` for details on each option.
+
+---
+
+## ▶️ Quick Start (DiLu Baseline)
+
+For reference and comparison, we include the original **DiLu** implementation as a baseline.
+
+To run DiLu:
+
+```bash
+cp third_party/dilu/config.yaml .
+python third_party/dilu/run_dilu.py
+```
+
+⚠️ **Important Notes**
+
+- The DiLu codebase assumes that `config.yaml` is located at the repository root.
+  Please copy `third_party/dilu/config.yaml` to the root directory before execution.
+- The default DiLu configuration uses an older model setting:
+  ```yaml
+  OPENAI_CHAT_MODEL: 'gpt-4-1106-preview'
+  ```
+  For fair comparison with RESPOND, we recommend updating this field in the DiLu
+  `config.yaml` to match RESPOND:
+  ```yaml
+  OPENAI_CHAT_MODEL: 'gpt-4o-mini'
+  ```
+
+---
+
 ## Paper
 
 **RESPOND: Risk-Enhanced Structured Pattern for LLM-Driven Online Node-level Decision-making**  
 Dan Chen, *et al.*
 
-📄 *Paper link*: (to be added)
+📄 *Paper link*: https://arxiv.org/abs/2512.20179
 
 If you find this work useful, please consider citing our paper.
+
+---
+
+## Citation
+
+If you find this work useful, please consider citing our paper:
+
+```bibtex
+@article{respond2025,
+  title   = {RESPOND: Risk-Enhanced Structured Pattern for LLM-Driven Online Node-level Decision-making},
+  author  = {Chen, Dan},
+  year    = {2025}
+}
+```
 
 ---
 
@@ -51,6 +126,7 @@ The final release will include:
 - Experiment scripts corresponding to all sections of the paper
 
 ---
+
 
 ## Framework Overview
 
@@ -111,28 +187,12 @@ We sincerely thank the DiLu authors for their open-source contribution.
 
 ---
 
-## Experiments
-
-The final release will include experiment scripts corresponding to the following sections
-of the paper:
-
-- Closed-loop simulation in `highway-env`
-- Reflection efficiency and one-crash-to-generalize analysis
-- Personalized driving under low-risk conditions
-- Real-world validation on the highD dataset
-- Ablation studies and discussions
-
-Each experiment directory will contain runnable scripts and configuration files
-to facilitate reproducibility.
-
----
-
 ## License
 
 This project is released under the **Apache License 2.0**.
 
 It includes code adapted from the DiLu project, which is also licensed under
-the Apache License 2.0.
+the Apache License 2.0. See `third_party/dilu/LICENSE` for details.
 
 ---
 

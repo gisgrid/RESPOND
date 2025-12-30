@@ -1,0 +1,35 @@
+
+############ Large language Model config ############
+OPENAI_API_TYPE: 'openai' 
+OPENAI_KEY: 'sk-xxxxxx' # replace with your OpenAI API key
+OPENAI_CHAT_MODEL: 'gpt-4o-mini'
+OPENAI_REFLECTION_MODEL: 'gpt-4o' # use gpt-4o for reflection.
+OPENAI_BASE_URL: 'https://api.openai-proxy.org/v1'
+
+############### run_RESPOND options ############
+respond_demo_option: 'option1'
+# option1: RESPOND L1+L2
+# option2: RESPOND L1 only
+# option3: no memory, zero-shot with risk values in scene description
+# option4: RESPOND L1+L2 use sporty L2 memory
+
+############### enhanced settings to support risk pattern ############
+risk_memory_refection: False # enabled Risk Memory Reflection
+risk_pattern_memory_mode: True # True or False
+sporty_teaching_mode: False # True or False
+episodes_num: 1 # run episodes , default 3
+risk_mem_path: 'data/default_memory/risk_mem'
+risk_mem_level2_path: 'data/default_memory/level2_risk_pattern.db' 
+result_folder: 'results'
+
+############ Highway-env config ############
+simulation_duration: 30 # step , default 30    
+vehicle_count: 15
+other_vehicle_type: "highway_env.vehicle.behavior.IDMVehicle" #other types are: "highway_env.vehicle.behavior.DefensiveVehicle" or "highway_env.vehicle.behavior.AggressiveVehicle"
+vehicles_density: 2.0   # default 2.0, 2.5 and 3.0 for higher difficulties
+lanes_count: 4  # default 4, 4~6 lanes
+
+############### Legacy Setting, keep from Subtree DiLu Repo ############
+few_shot_num: 0 # 0 for zero-shot               
+memory_path: 'third_party/dilu/memories/20_mem' 
+reflection_module: False # True or False
