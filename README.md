@@ -51,9 +51,39 @@ This will:
 
 RESPOND behavior is controlled by `configs/respond.yaml`.
 
-The configuration file contains **four predefined options**, corresponding to the major
-experimental settings reported in the paper (e.g., different memory usage and decision policies).
-Users can switch between options directly in the YAML file without modifying code.
+The configuration file contains **four predefined runtime options**, corresponding to the
+major experimental settings evaluated in the paper.  
+Users can switch between options by changing a single field in the YAML file,
+**without modifying any code**.
+
+```yaml
+############### run_RESPOND options ############
+respond_demo_option: 'option1'
+```
+
+The available options are:
+
+
+- **option1: RESPOND (L1 + L2 memory)**  
+  Uses the full RESPOND framework with **dual-layer memory lookup**.  
+  Exact risk-pattern matches (L1) enable fast action reuse in high-risk scenarios,  
+  while sub-pattern memory (L2) supports abstract level driving strategies reuse.
+
+- **option2: RESPOND (L1 memory only)**  
+  Uses **exact risk-pattern memory (L1)** without sub-pattern abstraction.  
+  This setting evaluates the contribution of L1 exact pattern reuse.
+
+- **option3: No memory (zero-shot with risk encoding)**  
+  Disables all memory lookup.  
+  The LLM operates in a **pure zero-shot manner**, reasoning only from the current  
+  scene description augmented with quantified risk values.
+
+- **option4: RESPOND (L1 + sporty L2 memory)**  
+  Uses full dual-layer memory with a **preloaded “Sporty” L2 sub-pattern memory**.  
+  This option demonstrates how RESPOND enables **personalized driving styles**
+  through sub-pattern abstraction.
+
+
 
 Please refer to the inline comments in `respond.yaml` for details on each option.
 
