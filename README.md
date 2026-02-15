@@ -89,6 +89,81 @@ Please refer to the inline comments in `respond.yaml` for details on each option
 
 ---
 
+## 🌍 Quick Start (HighD Real-World Trajectory Evaluation)
+
+This section describes how to reproduce RESPOND's evaluation on the
+**HighD real-world trajectory dataset**. For a complete pipeline
+example, please refer to the script:
+
+``` bash
+run_highD_experiment.sh
+```
+
+### Basic Experiment: Dangerous Turn Scenarios
+
+For a quick evaluation under safety-critical scenarios, you may directly
+use the pre-filtered dataset provided in:
+
+    data/highD/dangerous_turns_ttc_4.0_cont_0.04.csv
+
+This file contains hazardous turning scenarios selected based on TTC
+constraints.
+
+Run the following commands:
+
+``` bash
+python -m respond.highd.llm_decision     --preprocessing_dir=${preprocessing_dir}     --filename=dangerous_turns_ttc_4.0_cont_0.04.csv     --output_file=llm_dec_ttc_4.0.csv
+
+python -m respond.highd.respond_highd_exp_report     --preprocessing_dir=${preprocessing_dir}     --filename=llm_dec_ttc_4.0.csv     --output_file=RESPOND_highD_experiment_report_ttc_4.0.csv
+```
+
+After execution, open:
+
+    data/highD/experiment_report.html
+
+and select:
+
+    RESPOND_highD_experiment_report_ttc_4.0.csv
+
+to visualize the experiment results.
+
+------------------------------------------------------------------------
+
+### Visualization (Images & Animation)
+
+To generate corresponding vehicle-frame visualizations, run:
+
+``` bash
+python respond/highd/draw_car_frame.py
+```
+
+⚠️ Image and animation generation requires access to the original HighD
+dataset. Please download the dataset from the official source:
+
+HighD paper: https://arxiv.org/pdf/1810.05642
+
+------------------------------------------------------------------------
+
+### Processing HighD From Scratch (Optional)
+
+If you wish to preprocess the original HighD raw data yourself, first
+download the dataset, then run:
+
+``` bash
+python -m respond.highd.preprocessing_highD     --data_path=<path_to_highD_data>     --output_directory=../preprocessed_highD
+
+python -m respond.highd.filter_dangerous_turns     --preprocessing_dir=${preprocessing_dir}
+```
+
+These commands will:
+
+-   Convert raw trajectory data into structured preprocessing format
+-   Extract sustained safety-critical turning scenarios
+-   Generate files compatible with RESPOND evaluation
+
+
+---
+
 ## ▶️ Quick Start (DiLu Baseline)
 
 For reference and comparison, we include the original **DiLu** implementation as a baseline.
