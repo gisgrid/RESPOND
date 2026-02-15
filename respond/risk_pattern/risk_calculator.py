@@ -125,7 +125,7 @@ def riskValueCal(
 
         mask_other = risk_field1 >= threshold
         other_area = np.sum(mask_other) 
-        print( f"speed_ego < 5, means ego car is stationary, speed_ego: {speed_ego}, other_area: {other_area}")
+        #print( f"speed_ego < 5, means ego car is stationary, speed_ego: {speed_ego}, other_area: {other_area}")
         
         return 0.0, other_area, 0.0    
 
@@ -137,7 +137,7 @@ def riskValueCal(
 
         mask_ego = risk_field >= threshold
         ego_area = np.sum(mask_ego)
-        print( f"speed1 < 1, means other car is stationary, speed1: {speed1}, ego_area: {ego_area}")
+        #print( f"speed1 < 1, means other car is stationary, speed1: {speed1}, ego_area: {ego_area}")
 
         return ego_area, 0.0, 0.0   
     
@@ -314,7 +314,6 @@ def update_ego_pos_risk_road_crashed(env_scenario, ego_vehicle, front_vehicle, b
 
 def calculate_ego_pos_risk(env_scenario, ego_vehicle, front_vehicle, behind_vehicle):
 
-
     v_ego = ego_vehicle.speed  
     x_ego = ego_vehicle.position[0]  
 
@@ -323,7 +322,6 @@ def calculate_ego_pos_risk(env_scenario, ego_vehicle, front_vehicle, behind_vehi
 
     risk_ego_f = 0.0  
     risk_ego_b = 0.0  
-
 
     if front_vehicle is not None:
         v_f = front_vehicle['speed']    
@@ -346,7 +344,7 @@ def calculate_ego_pos_risk(env_scenario, ego_vehicle, front_vehicle, behind_vehi
 
         if distance_to_front >= SAFE_DISTANCE_THRESHOLD:
             risk_ego_f = 0
-        elif s_rf > 2 * distance_to_front or distance_to_front < RISK_WARNING_DISTANCE:  # 风险警示距离
+        elif s_rf > 2 * distance_to_front or distance_to_front < RISK_WARNING_DISTANCE:  # static risk warning distance
             risk_ego_f = 1
         else:
             risk_ego_f = 0.34 # just keep it simple. the number 0.34 refer to edge definition
@@ -603,6 +601,319 @@ def adjust_risk_with_heading(
         print(f"[red]Adjusted risks based on heading: {which_car_risk_is_adjusted}[/red]")
     return risks
 
+def highD_vehicle_info_normalizer(
+    other_vehicle: Dict[str, Union[float, float, float, float, int, float]]
+) -> Dict[str, Union[float, float, float, float, int, float]]:
+    """
+    Simplify and normalize the vehicle information from highD dataset to reuse risk calculation functions in highway-env.
+    Args:
+        vehicle: A dictionary containing vehicle information.
+    """
+    if other_vehicle is None:
+        return None
+
+    if other_vehicle["speed"] < 0:
+        other_vehicle["speed"] = - other_vehicle["speed"]
+        other_vehicle["x"] = 1000 - other_vehicle["x"]
+    
+    return other_vehicle
+
+def getSurroundingRiskPattern4highD(
+    ego: Dict[str, Union[float, float, float]],
+    front: Dict[str, Union[float, float, float]],
+    behind: Dict[str, Union[float, float, float]],
+    left_front: Dict[str, Union[float, float, float]],
+    left_behind: Dict[str, Union[float, float, float]],
+    right_front: Dict[str, Union[float, float, float]],
+    right_behind: Dict[str, Union[float, float, float]],
+    ego_left_lane_num: int,
+    ego_right_lane_num: int
+) -> Tuple[np.ndarray, np.ndarray]:
+    """
+    Simplify and normalize the vehicle information from highD dataset to reuse risk calculation functions in highway-env.
+    Calculate the surrounding risk pattern and risk values for the ego vehicle and its surroundings.
+
+    Args:
+        ego: Information about the ego vehicle.
+        front: Information about the front vehicle.
+        behind: Information about the behind vehicle.
+        left_front: Information about the left front vehicle.
+        left_behind: Information about the left behind vehicle.
+        right_front: Information about the right front vehicle.
+        right_behind: Information about the right behind vehicle.
+
+    Returns:
+        A tuple containing the risk pattern matrix and the risk values vector.
+    """
+    # Construct ego_info based on the input ego dictionary
+    ego_info = {
+        'carId': ego['id'],
+        'x': ego['x'],
+        'shift_y': 8,   # Assign a dummy value for shift_y for simplification
+        'speed': ego['xVelocity'],
+        'heading': 0.01,  # Assign a dummy value for heading
+        'laneId': 1,     # Assign a dummy value for laneId, the laneId associated with y=8
+        'dis': 50.0      # Assign a dummy value for distance
+    }
+    if ego_info['speed'] < 0:   # do ego normalization
+        ego_info['speed'] = - ego_info['speed']
+        ego_info['x'] = 1000 - ego_info['x']
+
+    if front['id'] is None or front['id'] == 0:
+        front_vehicle = None
+    else:
+        # Construct front_vehicle based on the input front dictionary
+        front_vehicle = {
+            'carId': front['id'],
+            'x': front['x'],
+            'shift_y': 8,   # Assign a dummy value for shift_y for simplification
+            'speed': front['xVelocity'],
+            'heading': 0.01,  # Assign a dummy value for heading
+            'laneId': 1,     # Assign a dummy value for laneId
+            'dis': 50.0      # Assign a dummy value for distance
+        }
+    front_vehicle = highD_vehicle_info_normalizer(front_vehicle)
+
+    if behind["id"] is None or behind['id'] == 0:
+        behind_vehicle = None
+    else:
+        # Construct behind_vehicle based on the input behind dictionary
+        behind_vehicle = {
+            'carId': behind['id'],
+            'x': behind['x'],
+            'shift_y': 8,   # Assign a dummy value for shift_y for simplification
+            'speed': behind['xVelocity'],
+            'heading': 0.01,  # Assign a constant value for heading
+            'laneId': 1,     # Assign a constant value for laneId
+            'dis': 50.0      # Assign a constant value for distance
+        }
+    behind_vehicle = highD_vehicle_info_normalizer(behind_vehicle)
+
+    if left_front["id"] is None or left_front['id'] == 0:
+        left_front_vehicle = None
+    else:
+        # Construct left_front_vehicle based on the input left_front dictionary
+        left_front_vehicle = {
+            'carId': left_front['id'],
+            'x': left_front['x'],
+            'shift_y': 4,   # Assign a constant value for shift_y for left lane
+            'speed': left_front['xVelocity'],
+            'heading': 0.01,  # Assign a constant value for heading
+            'laneId': 0,     # Assign a constant value for laneId
+            'dis': 50.0      # Assign a constant value for distance
+        }
+    left_front_vehicle = highD_vehicle_info_normalizer(left_front_vehicle)
+
+    if left_behind["id"] is None or left_behind['id'] == 0:
+        left_behind_vehicle = None
+    else:
+        # Construct left_behind_vehicle based on the input left_behind dictionary
+        left_behind_vehicle = {
+            'carId': left_behind['id'],
+            'x': left_behind['x'],
+            'shift_y': 4,   # Assign a constant value for shift_y for left lane
+            'speed': left_behind['xVelocity'],
+            'heading': 0.01,  # Assign a constant value for heading
+            'laneId': 0,     # Assign a constant value for laneId
+            'dis': 50.0      # Assign a constant value for distance
+        }
+    left_behind_vehicle = highD_vehicle_info_normalizer(left_behind_vehicle)
+
+    if right_front["id"] is None or right_front['id'] == 0:
+        right_front_vehicle = None
+    else:
+        # Construct right_front_vehicle based on the input right_front dictionary
+        right_front_vehicle = {
+            'carId': right_front['id'],
+            'x': right_front['x'],
+            'shift_y': 12,   # Assign a constant value for shift_y for right lane
+            'speed': right_front['xVelocity'],
+            'heading': 0.01,  # Assign a constant value for heading
+            'laneId': 2,     # Assign a constant value for laneId
+            'dis': 50.0      # Assign a constant value for distance
+        }
+    right_front_vehicle = highD_vehicle_info_normalizer(right_front_vehicle)
+
+    if right_behind["id"] is None or right_behind['id'] == 0:
+        right_behind_vehicle = None
+    else:
+    # Construct right_behind_vehicle based on the input right_behind dictionary
+        right_behind_vehicle = {
+            'carId': right_behind['id'],
+            'x': right_behind['x'],
+            'shift_y': 12,   # Assign a constant value for shift_y for right lane
+            'speed': right_behind['xVelocity'],
+            'heading': 0.01,  # Assign a constant value for heading
+            'laneId': 2,     # Assign a constant value for laneId
+            'dis': 50.0      # Assign a constant value for distance
+        }
+    right_behind_vehicle = highD_vehicle_info_normalizer(right_behind_vehicle)
+
+    decisionFrame = 66  # Dummy value for decisionFrame
+
+    risks = {
+        "Front": calculate_risk(decisionFrame, ego_info, "Front", front_vehicle),
+        "Behind": calculate_risk(decisionFrame, ego_info, "Behind", behind_vehicle),
+        "Left Front": calculate_risk(decisionFrame, ego_info, "Left Front", left_front_vehicle),
+        "Left Behind": calculate_risk(decisionFrame, ego_info, "Left Behind", left_behind_vehicle),
+        "Right Front": calculate_risk(decisionFrame, ego_info, "Right Front", right_front_vehicle),
+        "Right Behind": calculate_risk(decisionFrame, ego_info, "Right Behind", right_behind_vehicle),
+    }
+
+    front_risk = 0
+    behind_risk = 0
+    left_front_risk = 0
+    left_behind_risk = 0
+    right_front_risk = 0
+    right_behind_risk = 0
+    
+    left_risk = 0
+    right_risk = 0
+
+    for position, risk in risks.items():
+        if risk and all(value is not None for value in risk):
+            ego_area, other_area, lap_area = risk
+            if position == "Front" and other_area >= 0:
+                
+                if other_area > 0:
+                    front_risk = lap_area / other_area
+                else: 
+                    front_risk = riskCal4StationarySituation(
+                        ego_info, position, front_vehicle)  
+            elif position == "Behind" and ego_area >= 0:
+                
+                if ego_area > 0:
+                    behind_risk = lap_area / ego_area
+                else: 
+                    behind_risk = riskCal4StationarySituation(
+                        ego_info, position, behind_vehicle)
+            elif position == "Left Front" and other_area >= 0:
+                if other_area > 0:
+                    left_front_risk = lap_area / other_area
+                else:
+                    left_front_risk = riskCal4StationarySituation(
+                        ego_info, position, left_front_vehicle)
+            elif position == "Left Behind" and ego_area >= 0:
+                if ego_area > 0:
+                    left_behind_risk = lap_area / ego_area
+                else: 
+                    left_behind_risk = riskCal4StationarySituation(
+                        ego_info, position, left_behind_vehicle)
+            elif position == "Right Front" and other_area >= 0:
+                if other_area > 0:
+                    right_front_risk = lap_area / other_area
+                else:
+                    right_front_risk = riskCal4StationarySituation(
+                        ego_info, position, right_front_vehicle)
+            elif position == "Right Behind" and ego_area >= 0:
+                if ego_area > 0:
+                    right_behind_risk = lap_area / ego_area
+                else: 
+                    right_behind_risk = riskCal4StationarySituation(
+                        ego_info, position, right_behind_vehicle)
+
+    left_risk = left_front_risk + left_behind_risk
+    if left_risk > 1:
+        left_risk = 1
+    right_risk = right_front_risk + right_behind_risk
+    if right_risk > 1:
+        right_risk = 1
+
+
+    if ego_left_lane_num == 0: 
+        left_risk = 1
+    if ego_right_lane_num == 0: 
+        right_risk = 1
+
+    class EnvEgo:
+        def __init__(self, speed, position, lane_index):
+            self.speed = speed
+            self.position = position
+            self.lane_index = lane_index
+
+    # Construct env_ego based on the ego_vehicle information
+    env_ego = EnvEgo(
+        speed=ego_info['speed'],
+        position=[ego_info['x'], ego_info['shift_y']],
+        lane_index=ego_info["laneId"]
+    )
+
+    ego_pos_risk = calculate_ego_pos_risk(None, env_ego, front_vehicle, behind_vehicle)
+    
+
+
+    ego_posL_risk = calculate_ego_pos_risk(None, env_ego, left_front_vehicle, left_behind_vehicle)
+    #print(f"ego_posL_risk: {ego_posL_risk}")
+    ego_posR_risk = calculate_ego_pos_risk(None, env_ego, right_front_vehicle, right_behind_vehicle)
+    #print(f"ego_posR_risk: {ego_posR_risk}")
+    ego_posLL_risk = 0.0 # default to 0.0 in highD for simplification, because highD don't have actual ego driving behavior
+    #print(f"ego_posLL_risk: {ego_posLL_risk}")
+    ego_posRR_risk = 0.0 # default to 0.0 in highD for simplification, because highD don't have actual ego driving behavior
+    #print(f"ego_posRR_risk: {ego_posRR_risk}")
+
+
+    risk_vec4 = np.array([
+        round(front_risk, 2),
+        round(behind_risk, 2),
+        round(left_risk, 2),
+        round(right_risk, 2)
+    ], dtype=np.float32)
+
+    # construct risk_pattern, values in 0-1
+    
+    risk_pattern = np.array([
+        [0.67, round(ego_posLL_risk, 2), 0.67],
+        [round(left_behind_risk, 2), round(ego_posL_risk, 2), round(left_front_risk, 2)],
+        [round(behind_risk, 2), round(ego_pos_risk, 2), round(front_risk, 2)],
+        [round(right_behind_risk, 2), round(ego_posR_risk, 2), round(right_front_risk, 2)],
+        [0.67, round(ego_posRR_risk, 2), 0.67]
+    ], dtype=np.float32)
+
+
+    if ego_left_lane_num == 0:  
+        #print("Ego is in the leftmost lane.")
+        risk_pattern[0, 0] = 1.00
+        risk_pattern[0, 1] = 1.00
+        risk_pattern[0, 2] = 1.00
+        risk_pattern[1, 0] = 1.00
+        risk_pattern[1, 1] = 1.00
+        risk_pattern[1, 2] = 1.00
+
+
+    if ego_left_lane_num == 1:  
+        #print("Ego is in the left 2nd lane.")
+        risk_pattern[0, 0] = 1.00
+        risk_pattern[0, 1] = 1.00
+        risk_pattern[0, 2] = 1.00
+
+
+    if ego_right_lane_num == 0:  
+        #print("Ego is in the rightmost lane.")
+        risk_pattern[4, 0] = 1.00
+        risk_pattern[4, 1] = 1.00
+        risk_pattern[4, 2] = 1.00
+        risk_pattern[3, 0] = 1.00
+        risk_pattern[3, 1] = 1.00
+        risk_pattern[3, 2] = 1.00
+    
+
+    if ego_right_lane_num == 1:
+        #print("Ego is in the right 2nd lane.")
+        risk_pattern[4, 0] = 1.00
+        risk_pattern[4, 1] = 1.00
+        risk_pattern[4, 2] = 1.00
+
+    # (optional) quantise to 4 bins
+    edges = np.array([0.34, 0.67, 1.00], dtype=np.float32) #
+    # edges = np.array([0.25, 0.50, 0.75], dtype=np.float32) # 
+    quantised = np.digitize(risk_pattern, edges).astype(np.float32)   # 0,1,2,3
+    risk_pattern_vec = quantised.flatten()          # shape (15,)
+    # print(f"original risk_pattern:\n {risk_pattern}")
+    # print(f"quantised: \n{quantised}")
+    # print(f"risk_pattern_vec: {risk_pattern_vec}")
+
+    return risk_vec4, risk_pattern_vec
+
 
 def getSurroundingRiskPattern(
     env_scenario,  
@@ -685,9 +996,9 @@ def getSurroundingRiskPattern(
                 if ego_area > 0:
                     left_behind_risk = lap_area / ego_area
                 else: # ego_area <= 0 
-                    print("Warning: Left Behind vehicle is stationary", left_behind_vehicle)
-                    print("ego_area <= 0, ego area = " + str(ego_area))
-                    print("postion: ", position)
+                    #print("Warning: Left Behind vehicle is stationary", left_behind_vehicle)
+                    #print("ego_area <= 0, ego area = " + str(ego_area))
+                    #print("postion: ", position)
                     left_behind_risk = riskCal4StationarySituation(
                         ego_info, position, left_behind_vehicle)
             elif position == "Right Front" and other_area >= 0:
@@ -705,13 +1016,12 @@ def getSurroundingRiskPattern(
                 if ego_area > 0:
                     right_behind_risk = lap_area / ego_area
                 else: 
-                    print("Warning: Right Behind vehicle is stationary", right_behind_vehicle)
-                    print("ego_area <= 0, ego area = " + str(ego_area))
-                    print("postion: ", position)
+                    #print("Warning: Right Behind vehicle is stationary", right_behind_vehicle)
+                    #print("ego_area <= 0, ego area = " + str(ego_area))
+                    #print("postion: ", position)
                     right_behind_risk = riskCal4StationarySituation(
                         ego_info, position, right_behind_vehicle)
  
-
     vehicles = {
         "Front": front_vehicle,
         "Behind": behind_vehicle,
@@ -760,7 +1070,7 @@ def getSurroundingRiskPattern(
 
 
     ego_pos_risk, crash_prompt, abnormalLeftRisk, abnormalRightRisk = update_ego_pos_risk_road_crashed(env_scenario, env_scenario.ego, front_vehicle, behind_vehicle, ego_pos_risk)
-    print(f"After update_ego_pos_risk_road_crashed: outside, ego_pos_risk: {ego_pos_risk} \n")
+    # print(f"After update_ego_pos_risk_road_crashed: outside, ego_pos_risk: {ego_pos_risk} \n")
 
     prompt = ""   # set the return prompt
     prompt_left_risk = left_risk
