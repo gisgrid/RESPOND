@@ -1,0 +1,1638 @@
+iRecord,id,dec,frame_start,frame_end,frame_count,dec_frame,cont_end,lane_id,lane_change_frame,llm_frame,affectedId,affected_ttc,affected_dhw,y_dist,dist,x,y,xVelocity,yVelocity,xAcceleration,yAcceleration,numLaneChanges,precedingId,followingId,leftPrecedingId,leftFollowingId,rightPrecedingId,rightFollowingId,precedingRisk,followingRisk,leftPrecedingRisk,leftFollowingRisk,rightPrecedingRisk,rightFollowingRisk,avg_x_speed,surrounding_count,preceding_x,preceding_y,preceding_xv,following_x,following_y,following_xv,leftPreceding_x,leftPreceding_y,leftPreceding_xv,leftFollowing_x,leftFollowing_y,leftFollowing_xv,rightPreceding_x,rightPreceding_y,rightPreceding_xv,rightFollowing_x,rightFollowing_y,rightFollowing_xv,rp00,rp01,rp02,rp10,rp11,rp12,rp20,rp21,rp22,rp30,rp31,rp32,rp40,rp41,rp42,result,llm_dec,response,prompt
+03,618,-1,17051,17313,262,17220,17293,2,17206,17205,623,3.996235884567127,31.849999999999994,0.0,31.849999999999994,168.27,11.57,-37.58,0.58,-0.05,-0.03,1,616,621,0,623,0,0,0.4432282737702756,0.0,0.0,0.2525385731240934,0.0,0.0,-38.24,3,146.98,9.53,-31.89,241.43,9.23,-36.61,,,,209.45,13.51,-46.22,,,,,,,3.0,3.0,3.0,0.0,0.0,0.0,0.0,1.0,1.0,3.0,3.0,3.0,3.0,3.0,3.0,0,-1,"The current scenario indicates that I am in the rightmost lane with a front risk value of 0.44 and a behind risk value of 0.00. The left risk value is 0.25, which is relatively low, while the right risk value is very high at 1.00. 
+
+Since the behind risk is low, I can consider my options. The front risk is acceptable at 0.44, which is below the threshold of 0.75. The left lane has a lower risk value compared to the right lane, which is at maximum risk. However, I should also consider the overall traffic situation and my speed relative to nearby vehicles.
+
+The average forward speed of nearby vehicles is 38.24 m/s, and I am currently at 37.58 m/s. To align my speed closer to the average, I could either accelerate or remain idle. However, since the front risk is not too high, I can afford to maintain my current speed while considering the left lane as a potential option.
+
+Given that the left risk is low and the right risk is very high, it would be safer to consider turning left to avoid the high-risk area on the right. However, I should also keep in mind that I have not performed any previous actions, so turning left is a viable option.
+
+Therefore, I will choose to turn left to change lanes to the left of the current lane, as it presents a lower risk compared to the right lane.
+
+Response to user:#### 0","Above messages are some examples of how you make a decision successfully in the past. Those scenarios are similar to the current scenario. You should refer to those examples to make a decision for the current scenario. 
+
+Here is the current scenario:
+#### Driving scenario description:
+You are driving on a road with 2 lanes, and you are currently driving in the rightmost lane. Your current position is `(168.27, 11.57)`, speed is 37.58 m/s, acceleration is 0.06 m/s^2, and lane position is 246.33 m.
+There are other vehicles driving around you, and below is their basic information:
+- Vehicle `616` is driving on the same lane as you and is ahead of you. - Vehicle `621` is driving on the same lane as you and is behind of you. - Vehicle `623` is driving on the lane to your left and is behind of you. 
+The driving Risk Values around you are provided as below:
+(Overall Left Risk Value, 0.25), (Overall Right Risk Value, 1.00), (Front Risk Value, 0.44), (Behind Risk Value, 0.00). The Risk Value is a float number from 0.00 to 1.00. The Value 0.00 means no risk, and 1.00 means the highest risk. You should consider your action and do reasoning, based on the scenario descriptions together with the Left, Right, Front, Behind Risk Values provided to you.
+#### Driving Intensions:
+Try to keep your front and behind risk value under certain level, for example, try to keep the Max of front risk, behind risk under 0.75, and then make your forward speed close to the current average foward speed of all nearby vehicles: 38.24
+#### Available actions:
+Your available actions are: 
+Turn-left - change lane to the left of the current lane Action_id: 0
+IDLE - remain in the current lane with current speed Action_id: 1
+Acceleration - accelerate the vehicle Action_id: 3
+Deceleration - decelerate the vehicle Action_id: 4
+
+
+You can stop reasoning once you have a valid action to take. 
+"
+05,846,-1,19437,19605,168,19541,19582,3,19525,19524,850,3.994413407821229,35.75,0.0,35.75,151.6,19.73,-30.77,0.89,-0.17,0.02,1,839,849,0,850,844,0,0.0,0.0,0.0,0.1442700778056178,0.899116444678887,0.0,-30.615,4,63.66,17.41,-24.98,206.72,17.45,-32.18,,,,198.46,21.25,-40.6,145.41,14.31,-24.7,,,,3.0,3.0,3.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,3.0,2.0,3.0,3.0,3.0,1,0,"The current scenario indicates that I am in the second lane from the left, with vehicles both ahead and behind me in the same lane. The front risk value is 0.00, indicating no risk of collision with the vehicle ahead, and the behind risk value is also 0.00, indicating no risk from the vehicle behind. 
+
+The left risk value is 0.14, which is relatively low, while the right risk value is quite high at 0.90. Given that the left risk is significantly lower than the right, it would be safer to consider a left turn if necessary. However, since both front and behind risks are at 0.00, I can safely remain in my current lane without any immediate concerns.
+
+The driving intention is to keep the front and behind risk values under 0.75, which is already satisfied since both are at 0.00. Additionally, my current speed of 30.78 m/s is slightly above the average speed of nearby vehicles (30.61 m/s). 
+
+Since there is no immediate need to change lanes or adjust speed drastically, the best action is to remain in the current lane and maintain my speed.
+
+Response to user:#### 1","Above messages are some examples of how you make a decision successfully in the past. Those scenarios are similar to the current scenario. You should refer to those examples to make a decision for the current scenario. 
+
+Here is the current scenario:
+#### Driving scenario description:
+You are driving on a road with 3 lanes, and you are currently driving in the second lane from the left. Your current position is `(151.60, 19.73)`, speed is 30.78 m/s, acceleration is 0.17 m/s^2, and lane position is 262.12 m.
+There are other vehicles driving around you, and below is their basic information:
+- Vehicle `839` is driving on the same lane as you and is ahead of you. - Vehicle `849` is driving on the same lane as you and is behind of you. - Vehicle `850` is driving on the lane to your left and is behind of you. - Vehicle `844` is driving on the lane to your left and is ahead of you. 
+The driving Risk Values around you are provided as below:
+(Overall Left Risk Value, 0.14), (Overall Right Risk Value, 0.90), (Front Risk Value, 0.00), (Behind Risk Value, 0.00). The Risk Value is a float number from 0.00 to 1.00. The Value 0.00 means no risk, and 1.00 means the highest risk. You should consider your action and do reasoning, based on the scenario descriptions together with the Left, Right, Front, Behind Risk Values provided to you.
+#### Driving Intensions:
+Try to keep your front and behind risk value under certain level, for example, try to keep the Max of front risk, behind risk under 0.75, and then make your forward speed close to the current average foward speed of all nearby vehicles: 30.61
+#### Available actions:
+Your available actions are: 
+Turn-left - change lane to the left of the current lane Action_id: 0
+IDLE - remain in the current lane with current speed Action_id: 1
+Turn-right - change lane to the right of the current lane Action_id: 2
+Acceleration - accelerate the vehicle Action_id: 3
+Deceleration - decelerate the vehicle Action_id: 4
+
+
+You can stop reasoning once you have a valid action to take. 
+"
+08,993,-1,16916,17108,192,17071,17107,7,17094,17093,994,3.990846681922199,17.439999999999998,0.0,17.439999999999998,380.21,22.29,37.93,-1.3,-0.36,-0.62,1,0,995,996,994,0,986,0.0,0.0,0.4771198734010286,0.624818673348279,0.0,0.0882236581827772,37.370000000000005,4,,,,281.28,24.37,35.07,403.7,19.78,48.18,361.31,20.62,41.9,,,,338.4,28.06,24.33,3.0,3.0,3.0,1.0,2.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,3.0,3.0,3.0,4,-2,"The current scenario indicates that I am in the second lane from the left, with a speed of 37.95 m/s. The front risk is 0.00, and the behind risk is also 0.00, which means there are no immediate risks in front or behind me. However, the left risk is 0.62, which is relatively high, indicating potential danger if I were to change lanes to the left. The right risk is very low at 0.09, suggesting that it is safer to move to the right.
+
+Given that my intention is to keep the front and behind risk values under 0.75, I am currently in a safe position with both risks at 0.00. The left lane has a higher risk, and since I have not performed any previous actions, I can consider my options carefully.
+
+The available actions are:
+1. Turn-left (high risk on the left)
+2. IDLE (remain in the current lane)
+3. Turn-right (low risk on the right)
+4. Acceleration (increase speed)
+5. Deceleration (reduce speed)
+
+Since the front and behind risks are already at 0.00, I can choose to either remain in my current lane (IDLE) or move to the right where the risk is lower. However, since my speed is already slightly above the average speed of nearby vehicles (37.95 m/s vs. 37.37 m/s), I should consider decelerating to match the average speed while maintaining safety.
+
+Decelerating will help me align my speed with the average of nearby vehicles while keeping my current lane, which has no risk. Therefore, the best action to take is to decelerate.
+
+Response to user:#### 4","Above messages are some examples of how you make a decision successfully in the past. Those scenarios are similar to the current scenario. You should refer to those examples to make a decision for the current scenario. 
+
+Here is the current scenario:
+#### Driving scenario description:
+You are driving on a road with 3 lanes, and you are currently driving in the second lane from the left. Your current position is `(380.21, 22.29)`, speed is 37.95 m/s, acceleration is 0.72 m/s^2, and lane position is 380.86 m.
+There are other vehicles driving around you, and below is their basic information:
+- Vehicle `995` is driving on the same lane as you and is behind of you. - Vehicle `996` is driving on the lane to your left and is ahead of you. - Vehicle `994` is driving on the lane to your left and is behind of you. - Vehicle `986` is driving on the lane to your left and is behind of you. 
+The driving Risk Values around you are provided as below:
+(Overall Left Risk Value, 0.62), (Overall Right Risk Value, 0.09), (Front Risk Value, 0.00), (Behind Risk Value, 0.00). The Risk Value is a float number from 0.00 to 1.00. The Value 0.00 means no risk, and 1.00 means the highest risk. You should consider your action and do reasoning, based on the scenario descriptions together with the Left, Right, Front, Behind Risk Values provided to you.
+#### Driving Intensions:
+Try to keep your front and behind risk value under certain level, for example, try to keep the Max of front risk, behind risk under 0.75, and then make your forward speed close to the current average foward speed of all nearby vehicles: 37.37
+#### Available actions:
+Your available actions are: 
+Turn-left - change lane to the left of the current lane Action_id: 0
+IDLE - remain in the current lane with current speed Action_id: 1
+Turn-right - change lane to the right of the current lane Action_id: 2
+Acceleration - accelerate the vehicle Action_id: 3
+Deceleration - decelerate the vehicle Action_id: 4
+
+
+You can stop reasoning once you have a valid action to take. 
+"
+10,227,-1,3882,4067,185,4045,4066,2,4055,4054,238,3.6202057998129114,38.7,0.0,38.7,30.76,5.74,-25.12,0.79,0.05,0.16,1,0,229,0,237,0,0,0.0,0.0,0.0,0.9578003428722142,0.0,0.0,-32.045,2,,,,98.57,3.78,-23.75,,,,33.32,8.32,-40.34,,,,,,,2.0,0.0,2.0,2.0,3.0,0.0,0.0,0.0,0.0,3.0,3.0,3.0,3.0,3.0,3.0,3,2,"The current scenario indicates that I am in the rightmost lane with a front risk value of 0.00 and a behind risk value of 0.00, which are both safe. However, the left risk value is very high at 0.96, and the right risk value is at the maximum of 1.00. This suggests that changing lanes to the left or right would be very risky.
+
+Since the front and behind risks are low, I can safely remain in my current lane without any immediate danger. Additionally, my current speed of 25.13 m/s is below the average speed of nearby vehicles (32.05 m/s), indicating that I should consider accelerating to match the speed of surrounding traffic.
+
+Given that the left and right risks are too high to change lanes, and I have the option to accelerate, I will choose to accelerate to increase my speed while remaining in the current lane.
+
+Response to user:#### 3","Above messages are some examples of how you make a decision successfully in the past. Those scenarios are similar to the current scenario. You should refer to those examples to make a decision for the current scenario. 
+
+Here is the current scenario:
+#### Driving scenario description:
+You are driving on a road with 3 lanes, and you are currently driving in the rightmost lane. Your current position is `(30.76, 5.74)`, speed is 25.13 m/s, acceleration is 0.17 m/s^2, and lane position is 383.71 m.
+There are other vehicles driving around you, and below is their basic information:
+- Vehicle `229` is driving on the same lane as you and is behind of you. - Vehicle `237` is driving on the lane to your left and is behind of you. 
+The driving Risk Values around you are provided as below:
+(Overall Left Risk Value, 0.96), (Overall Right Risk Value, 1.00), (Front Risk Value, 0.00), (Behind Risk Value, 0.00). The Risk Value is a float number from 0.00 to 1.00. The Value 0.00 means no risk, and 1.00 means the highest risk. You should consider your action and do reasoning, based on the scenario descriptions together with the Left, Right, Front, Behind Risk Values provided to you.
+#### Driving Intensions:
+Try to keep your front and behind risk value under certain level, for example, try to keep the Max of front risk, behind risk under 0.75, and then make your forward speed close to the current average foward speed of all nearby vehicles: 32.05
+#### Available actions:
+Your available actions are: 
+Turn-left - change lane to the left of the current lane Action_id: 0
+IDLE - remain in the current lane with current speed Action_id: 1
+Acceleration - accelerate the vehicle Action_id: 3
+Deceleration - decelerate the vehicle Action_id: 4
+
+
+You can stop reasoning once you have a valid action to take. 
+"
+11,1699,-1,14517,14672,155,14560,14568,7,14534,14533,1702,3.936416184971096,20.429999999999996,0.0,20.429999999999996,42.48,23.87,30.68,-0.79,-0.15,-0.11,1,1698,1703,1694,1702,1692,0,0.0391665567717262,0.1895028352894632,0.2144270077805617,0.3753132005802453,0.5325069233812475,0.0,31.95,5,92.09,24.87,34.62,4.77,25.46,30.9,79.7,21.35,35.54,10.91,20.93,36.78,65.91,29.71,21.91,,,,3.0,3.0,3.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,1.0,3.0,3.0,3.0,3,2,"The current scenario indicates that I am in the second lane from the left, with a front risk value of 0.04, which is quite low, and a behind risk value of 0.19, which is also manageable. The left risk value is 0.38, and the right risk value is 0.53. 
+
+Given that the front risk is very low, I can maintain my current speed without worrying about a collision ahead. The behind risk is also under the threshold of 0.75, which means I am not in immediate danger from the vehicle behind me. 
+
+Considering the left lane has a risk value of 0.38, which is lower than the right lane's risk value of 0.53, I could consider moving left. However, since the front risk is low and the behind risk is manageable, it may be safer to remain in my current lane and maintain my speed.
+
+The average forward speed of nearby vehicles is 31.95 m/s, and I am currently at 30.69 m/s. To align my speed closer to the average, I should consider accelerating.
+
+Therefore, the best action in this scenario is to accelerate to match the average speed of nearby vehicles while keeping my current lane position.
+
+Response to user:#### 3","Above messages are some examples of how you make a decision successfully in the past. Those scenarios are similar to the current scenario. You should refer to those examples to make a decision for the current scenario. 
+
+Here is the current scenario:
+#### Driving scenario description:
+You are driving on a road with 3 lanes, and you are currently driving in the second lane from the left. Your current position is `(42.48, 23.87)`, speed is 30.69 m/s, acceleration is 0.19 m/s^2, and lane position is 48.73 m.
+There are other vehicles driving around you, and below is their basic information:
+- Vehicle `1698` is driving on the same lane as you and is ahead of you. - Vehicle `1703` is driving on the same lane as you and is behind of you. - Vehicle `1694` is driving on the lane to your left and is ahead of you. - Vehicle `1702` is driving on the lane to your left and is behind of you. - Vehicle `1692` is driving on the lane to your left and is ahead of you. 
+The driving Risk Values around you are provided as below:
+(Overall Left Risk Value, 0.38), (Overall Right Risk Value, 0.53), (Front Risk Value, 0.04), (Behind Risk Value, 0.19). The Risk Value is a float number from 0.00 to 1.00. The Value 0.00 means no risk, and 1.00 means the highest risk. You should consider your action and do reasoning, based on the scenario descriptions together with the Left, Right, Front, Behind Risk Values provided to you.
+#### Driving Intensions:
+Try to keep your front and behind risk value under certain level, for example, try to keep the Max of front risk, behind risk under 0.75, and then make your forward speed close to the current average foward speed of all nearby vehicles: 31.95
+#### Available actions:
+Your available actions are: 
+Turn-left - change lane to the left of the current lane Action_id: 0
+IDLE - remain in the current lane with current speed Action_id: 1
+Turn-right - change lane to the right of the current lane Action_id: 2
+Acceleration - accelerate the vehicle Action_id: 3
+Deceleration - decelerate the vehicle Action_id: 4
+
+
+You can stop reasoning once you have a valid action to take. 
+"
+12,1317,1,10631,10912,281,10790,10856,3,10758,10757,1322,3.974440894568704,12.440000000000056,0.0,12.440000000000056,325.54,10.95,-16.25,-0.55,-0.03,-0.05,1,1310,1328,1294,1297,1314,1322,0.3543452459448767,0.0,0.8474218646973494,0.420677831992615,0.5458261901622049,0.4676249505472768,-14.406666666666666,6,302.63,12.53,-15.42,397.68,12.53,-16.65,319.87,17.06,-9.84,336.13,16.95,-8.5,309.37,8.24,-16.51,347.45,9.56,-19.52,3.0,3.0,3.0,1.0,3.0,2.0,0.0,1.0,1.0,1.0,2.0,1.0,3.0,3.0,3.0,4,-2,"The current scenario indicates that I am in the second lane from the left, with vehicles both ahead and behind me in the same lane. The left lane has a high risk value of 0.85, which suggests that turning left is not a safe option. The right lane has a moderate risk value of 0.55, which is lower than the left but still presents some risk. The front risk value is 0.35, which is acceptable, and the behind risk value is 0.00, indicating no risk from the vehicle behind me.
+
+Given that the left lane is too risky to change into, and the right lane has a moderate risk, it would be prudent to remain in my current lane. Additionally, my speed is slightly above the average speed of nearby vehicles (14.41 m/s), so I should consider decelerating to align my speed more closely with the average.
+
+Since the front risk is manageable and the behind risk is zero, I can safely choose to decelerate to maintain a safe driving condition while also adjusting my speed to be more in line with the average of surrounding vehicles.
+
+Response to user:#### 4","Above messages are some examples of how you make a decision successfully in the past. Those scenarios are similar to the current scenario. You should refer to those examples to make a decision for the current scenario. 
+
+Here is the current scenario:
+#### Driving scenario description:
+You are driving on a road with 3 lanes, and you are currently driving in the second lane from the left. Your current position is `(325.54, 10.95)`, speed is 16.26 m/s, acceleration is 0.06 m/s^2, and lane position is 89.28 m.
+There are other vehicles driving around you, and below is their basic information:
+- Vehicle `1310` is driving on the same lane as you and is ahead of you. - Vehicle `1328` is driving on the same lane as you and is behind of you. - Vehicle `1294` is driving on the lane to your left and is ahead of you. - Vehicle `1297` is driving on the lane to your left and is behind of you. - Vehicle `1314` is driving on the lane to your left and is ahead of you. - Vehicle `1322` is driving on the lane to your left and is behind of you. 
+The driving Risk Values around you are provided as below:
+(Overall Left Risk Value, 0.85), (Overall Right Risk Value, 0.55), (Front Risk Value, 0.35), (Behind Risk Value, 0.00). The Risk Value is a float number from 0.00 to 1.00. The Value 0.00 means no risk, and 1.00 means the highest risk. You should consider your action and do reasoning, based on the scenario descriptions together with the Left, Right, Front, Behind Risk Values provided to you.
+#### Driving Intensions:
+Try to keep your front and behind risk value under certain level, for example, try to keep the Max of front risk, behind risk under 0.75, and then make your forward speed close to the current average foward speed of all nearby vehicles: 14.41
+#### Available actions:
+Your available actions are: 
+Turn-left - change lane to the left of the current lane Action_id: 0
+IDLE - remain in the current lane with current speed Action_id: 1
+Turn-right - change lane to the right of the current lane Action_id: 2
+Acceleration - accelerate the vehicle Action_id: 3
+Deceleration - decelerate the vehicle Action_id: 4
+
+
+You can stop reasoning once you have a valid action to take. 
+"
+12,2141,1,18062,18276,214,18221,18238,6,18180,18179,2143,3.834437086092696,5.789999999999964,0.0,5.789999999999964,301.4,28.0,28.03,0.79,-0.0,-0.11,1,2148,2155,0,0,2139,2143,0.3592245813002769,0.0,0.0,0.0,0.696558090465515,0.7428458393775551,28.765,4,324.54,25.78,28.39,213.72,25.56,30.52,,,,,,,314.5,30.16,27.45,290.09,29.63,28.7,3.0,3.0,3.0,3.0,3.0,3.0,0.0,1.0,1.0,2.0,3.0,2.0,2.0,0.0,2.0,1,0,"The current scenario indicates that I am in the leftmost lane with a front risk value of 0.36 and a behind risk value of 0.00. The left risk value is very high at 1.00, which suggests that turning left is not a safe option. The right risk value is also relatively high at 0.74, but it is lower than the left risk.
+
+Since the behind risk is 0.00, I have no immediate concern from the vehicle behind me. The front risk value of 0.36 is acceptable, as it is below the threshold of 0.75. 
+
+Given that my goal is to keep the front and behind risk values under 0.75 and to maintain a speed close to the average speed of nearby vehicles (28.77 m/s), I should consider my options carefully. 
+
+1. **IDLE (Action_id: 1)**: This would keep my current speed and position, which is reasonable since my front risk is acceptable and I have no risk from behind.
+2. **Turn-right (Action_id: 2)**: This would change my lane to the right, where the risk is 0.74. This is relatively high, and since I am already in a lane with an acceptable front risk, this may not be the best option.
+3. **Acceleration (Action_id: 3)**: This would increase my speed, which could help me match the average speed of nearby vehicles, but it may also increase the front risk if I get too close to the vehicle ahead.
+4. **Deceleration (Action_id: 4)**: This would reduce my speed, which could help maintain a safe distance from the vehicle ahead, but it may not help me reach the average speed of nearby vehicles.
+
+Considering the above options, remaining in my current lane (IDLE) seems to be the safest choice, as it keeps my front risk manageable and avoids the high risks associated with changing lanes. 
+
+Response to user:#### 1","Above messages are some examples of how you make a decision successfully in the past. Those scenarios are similar to the current scenario. You should refer to those examples to make a decision for the current scenario. 
+
+Here is the current scenario:
+#### Driving scenario description:
+You are driving on a road with 3 lanes, and you are currently driving in the leftmost lane. Your current position is `(301.40, 28.00)`, speed is 28.04 m/s, acceleration is 0.11 m/s^2, and lane position is 302.70 m.
+There are other vehicles driving around you, and below is their basic information:
+- Vehicle `2148` is driving on the same lane as you and is ahead of you. - Vehicle `2155` is driving on the same lane as you and is behind of you. - Vehicle `2139` is driving on the lane to your left and is ahead of you. - Vehicle `2143` is driving on the lane to your left and is behind of you. 
+The driving Risk Values around you are provided as below:
+(Overall Left Risk Value, 1.00), (Overall Right Risk Value, 0.74), (Front Risk Value, 0.36), (Behind Risk Value, 0.00). The Risk Value is a float number from 0.00 to 1.00. The Value 0.00 means no risk, and 1.00 means the highest risk. You should consider your action and do reasoning, based on the scenario descriptions together with the Left, Right, Front, Behind Risk Values provided to you.
+#### Driving Intensions:
+Try to keep your front and behind risk value under certain level, for example, try to keep the Max of front risk, behind risk under 0.75, and then make your forward speed close to the current average foward speed of all nearby vehicles: 28.77
+#### Available actions:
+Your available actions are: 
+IDLE - remain in the current lane with current speed Action_id: 1
+Turn-right - change lane to the right of the current lane Action_id: 2
+Acceleration - accelerate the vehicle Action_id: 3
+Deceleration - decelerate the vehicle Action_id: 4
+
+
+You can stop reasoning once you have a valid action to take. 
+"
+13,2179,-1,19808,19972,164,19922,19971,3,19913,19912,2189,3.990234374999998,20.429999999999996,0.0,20.429999999999996,66.07,20.2,-26.55,0.63,-0.11,0.0,1,2178,2181,2180,2189,2171,2175,0.4800210998285639,0.5160226823157061,0.1033891599630753,0.4477119873401028,0.9427667150204404,0.5013846762495054,-25.74,6,48.29,18.31,-24.91,84.04,18.81,-26.58,21.4,21.79,-28.26,92.66,22.19,-31.87,65.4,14.39,-21.66,84.36,13.78,-21.16,3.0,3.0,3.0,1.0,3.0,0.0,1.0,3.0,1.0,1.0,3.0,2.0,3.0,3.0,3.0,1,0,"The current scenario indicates that I am in the second lane from the left, with vehicles both ahead and behind me. The risk values suggest that the left side has a moderate risk (0.45), while the right side has a high risk (0.94). The front risk is also moderate (0.48), and the behind risk is slightly higher (0.52). 
+
+Given that the right risk is significantly high, it would be unwise to change lanes to the right. The left risk is manageable, but there are vehicles both ahead and behind in that lane, which could complicate a left turn. 
+
+The front and behind risks are both under the threshold of 0.75, which is acceptable. However, since the front risk is at 0.48, it indicates that I should maintain a safe distance from the vehicle ahead. The behind risk of 0.52 suggests that I should also be cautious about the vehicle behind me.
+
+Considering the available actions, remaining in the current lane (IDLE) would allow me to maintain my speed and avoid the higher risks associated with changing lanes. Additionally, my current speed of 26.56 m/s is slightly above the average speed of nearby vehicles (25.74 m/s), so I might consider decelerating to match the average speed while keeping the risks manageable.
+
+However, since the front risk is already moderate, I should prioritize maintaining my current position and speed to avoid any potential collisions. 
+
+Therefore, the best action is to remain in the current lane with my current speed.
+
+Response to user:#### 1","Above messages are some examples of how you make a decision successfully in the past. Those scenarios are similar to the current scenario. You should refer to those examples to make a decision for the current scenario. 
+
+Here is the current scenario:
+#### Driving scenario description:
+You are driving on a road with 3 lanes, and you are currently driving in the second lane from the left. Your current position is `(66.07, 20.20)`, speed is 26.56 m/s, acceleration is 0.11 m/s^2, and lane position is 345.91 m.
+There are other vehicles driving around you, and below is their basic information:
+- Vehicle `2178` is driving on the same lane as you and is ahead of you. - Vehicle `2181` is driving on the same lane as you and is behind of you. - Vehicle `2180` is driving on the lane to your left and is ahead of you. - Vehicle `2189` is driving on the lane to your left and is behind of you. - Vehicle `2171` is driving on the lane to your left and is ahead of you. - Vehicle `2175` is driving on the lane to your left and is behind of you. 
+The driving Risk Values around you are provided as below:
+(Overall Left Risk Value, 0.45), (Overall Right Risk Value, 0.94), (Front Risk Value, 0.48), (Behind Risk Value, 0.52). The Risk Value is a float number from 0.00 to 1.00. The Value 0.00 means no risk, and 1.00 means the highest risk. You should consider your action and do reasoning, based on the scenario descriptions together with the Left, Right, Front, Behind Risk Values provided to you.
+#### Driving Intensions:
+Try to keep your front and behind risk value under certain level, for example, try to keep the Max of front risk, behind risk under 0.75, and then make your forward speed close to the current average foward speed of all nearby vehicles: 25.74
+#### Available actions:
+Your available actions are: 
+Turn-left - change lane to the left of the current lane Action_id: 0
+IDLE - remain in the current lane with current speed Action_id: 1
+Turn-right - change lane to the right of the current lane Action_id: 2
+Acceleration - accelerate the vehicle Action_id: 3
+Deceleration - decelerate the vehicle Action_id: 4
+
+
+You can stop reasoning once you have a valid action to take. 
+"
+14,87,-1,916,1022,106,1013,1021,8,1008,1007,104,3.9941520467836167,27.319999999999936,0.0,27.319999999999936,386.1,31.58,23.71,-0.66,0.62,0.04,1,0,102,0,104,0,0,0.0,0.0,0.0,0.32216800738494,0.0,0.0,28.005000000000003,2,,,,273.17,33.82,25.17,,,,353.13,29.63,30.84,,,,,,,2.0,0.0,2.0,0.0,0.0,0.0,0.0,0.0,0.0,3.0,3.0,3.0,3.0,3.0,3.0,3,2,"The current scenario indicates that I am in the rightmost lane with a speed of 23.72 m/s. The front risk value is 0.00, which means there is no risk of colliding with the vehicle in front. The behind risk value is also 0.00, indicating no risk from the vehicle behind me. However, the overall right risk value is 1.00, which is very high, suggesting that turning right is not a safe option.
+
+The left risk value is 0.32, which is relatively low compared to the right risk. Since I am currently in the rightmost lane and the right risk is high, it would be safer to either remain in my current lane or consider turning left. However, since the front and behind risks are both at 0.00, I can safely choose to accelerate to match the average speed of nearby vehicles, which is 28.01 m/s.
+
+Given that my current speed is below the average speed and there are no risks in front or behind, accelerating is a reasonable action to take.
+
+Response to user:#### 3","Above messages are some examples of how you make a decision successfully in the past. Those scenarios are similar to the current scenario. You should refer to those examples to make a decision for the current scenario. 
+
+Here is the current scenario:
+#### Driving scenario description:
+You are driving on a road with 3 lanes, and you are currently driving in the rightmost lane. Your current position is `(386.10, 31.58)`, speed is 23.72 m/s, acceleration is 0.62 m/s^2, and lane position is 387.39 m.
+There are other vehicles driving around you, and below is their basic information:
+- Vehicle `102` is driving on the same lane as you and is behind of you. - Vehicle `104` is driving on the lane to your left and is behind of you. 
+The driving Risk Values around you are provided as below:
+(Overall Left Risk Value, 0.32), (Overall Right Risk Value, 1.00), (Front Risk Value, 0.00), (Behind Risk Value, 0.00). The Risk Value is a float number from 0.00 to 1.00. The Value 0.00 means no risk, and 1.00 means the highest risk. You should consider your action and do reasoning, based on the scenario descriptions together with the Left, Right, Front, Behind Risk Values provided to you.
+#### Driving Intensions:
+Try to keep your front and behind risk value under certain level, for example, try to keep the Max of front risk, behind risk under 0.75, and then make your forward speed close to the current average foward speed of all nearby vehicles: 28.01
+#### Available actions:
+Your available actions are: 
+Turn-left - change lane to the left of the current lane Action_id: 0
+IDLE - remain in the current lane with current speed Action_id: 1
+Acceleration - accelerate the vehicle Action_id: 3
+Deceleration - decelerate the vehicle Action_id: 4
+
+
+You can stop reasoning once you have a valid action to take. 
+"
+15,145,-1,2602,2877,275,2702,2706,6,2715,2706,147,3.142857142857143,7.040000000000006,0.0,7.040000000000006,119.19,23.45,24.58,-0.26,0.12,0.05,1,143,0,144,147,0,0,0.2179876038507187,0.0,0.0,0.7362521429513386,0.0,0.0,27.69666666666667,3,151.94,25.28,23.36,,,,187.86,21.25,33.39,107.47,21.37,26.34,,,,,,,3.0,3.0,3.0,2.0,0.0,0.0,0.0,3.0,0.0,3.0,3.0,3.0,3.0,3.0,3.0,3,2,"The current scenario indicates that I am in the rightmost lane with a front risk value of 0.22, which is acceptable, and a behind risk value of 0.00, indicating no risk from the vehicle behind. The left risk value is 0.74, which is relatively high, and the right risk value is at the maximum of 1.00, indicating a very high risk if I were to change lanes to the right.
+
+Given that the front risk is low and the behind risk is non-existent, it is safer to remain in my current lane rather than attempting to turn left, where the risk is already elevated. Additionally, my current speed of 24.58 m/s is below the average speed of nearby vehicles (27.70 m/s), suggesting that I should consider accelerating to match the flow of traffic.
+
+However, since the left risk is high, I should avoid changing lanes to the left. Therefore, the best course of action is to accelerate while remaining in my current lane to increase my speed closer to the average of nearby vehicles.
+
+Response to user:#### 3","Above messages are some examples of how you make a decision successfully in the past. Those scenarios are similar to the current scenario. You should refer to those examples to make a decision for the current scenario. 
+
+Here is the current scenario:
+#### Driving scenario description:
+You are driving on a road with 2 lanes, and you are currently driving in the rightmost lane. Your current position is `(119.19, 23.45)`, speed is 24.58 m/s, acceleration is 0.13 m/s^2, and lane position is 121.47 m.
+There are other vehicles driving around you, and below is their basic information:
+- Vehicle `143` is driving on the same lane as you and is ahead of you. - Vehicle `144` is driving on the lane to your left and is ahead of you. - Vehicle `147` is driving on the lane to your left and is behind of you. 
+The driving Risk Values around you are provided as below:
+(Overall Left Risk Value, 0.74), (Overall Right Risk Value, 1.00), (Front Risk Value, 0.22), (Behind Risk Value, 0.00). The Risk Value is a float number from 0.00 to 1.00. The Value 0.00 means no risk, and 1.00 means the highest risk. You should consider your action and do reasoning, based on the scenario descriptions together with the Left, Right, Front, Behind Risk Values provided to you.
+#### Driving Intensions:
+Try to keep your front and behind risk value under certain level, for example, try to keep the Max of front risk, behind risk under 0.75, and then make your forward speed close to the current average foward speed of all nearby vehicles: 27.70
+#### Available actions:
+Your available actions are: 
+Turn-left - change lane to the left of the current lane Action_id: 0
+IDLE - remain in the current lane with current speed Action_id: 1
+Acceleration - accelerate the vehicle Action_id: 3
+Deceleration - decelerate the vehicle Action_id: 4
+
+
+You can stop reasoning once you have a valid action to take. 
+"
+16,623,-1,14971,15228,257,15059,15227,2,15056,15055,630,3.742874109263659,63.03000000000003,0.0,63.03000000000003,241.76,10.57,-24.9,0.98,-0.14,-0.16,1,620,631,626,630,0,0,0.1672161413688513,0.0,0.1422919688777528,0.0,0.0,0.0,-31.9125,4,209.13,7.7,-22.26,375.85,8.05,-24.55,203.6,13.19,-38.83,316.79,13.21,-42.01,,,,,,,3.0,3.0,3.0,0.0,0.0,0.0,0.0,0.0,0.0,3.0,3.0,3.0,3.0,3.0,3.0,1,0,"The current scenario indicates that I am in the rightmost lane with a front risk value of 0.17 and a behind risk value of 0.00. The left risk value is 0.14, which is relatively low, while the right risk value is at the maximum of 1.00, indicating a high risk if I were to change lanes to the right.
+
+Since the behind risk is very low (0.00), I can consider my options without the immediate concern of being hit from behind. The front risk is also acceptable at 0.17, which is below the threshold of 0.75. 
+
+Given that the left risk is low (0.14), I could consider turning left to change lanes. However, since I am already in the rightmost lane and the right risk is extremely high, it would be safer to remain in my current lane rather than risk a lane change to the right.
+
+The best course of action is to maintain my current speed and position, as the risks in my current lane are manageable, and I can focus on adjusting my speed to align more closely with the average speed of nearby vehicles.
+
+Response to user:#### 1","Above messages are some examples of how you make a decision successfully in the past. Those scenarios are similar to the current scenario. You should refer to those examples to make a decision for the current scenario. 
+
+Here is the current scenario:
+#### Driving scenario description:
+You are driving on a road with 2 lanes, and you are currently driving in the rightmost lane. Your current position is `(241.76, 10.57)`, speed is 24.92 m/s, acceleration is 0.21 m/s^2, and lane position is 173.01 m.
+There are other vehicles driving around you, and below is their basic information:
+- Vehicle `620` is driving on the same lane as you and is ahead of you. - Vehicle `631` is driving on the same lane as you and is behind of you. - Vehicle `626` is driving on the lane to your left and is ahead of you. - Vehicle `630` is driving on the lane to your left and is behind of you. 
+The driving Risk Values around you are provided as below:
+(Overall Left Risk Value, 0.14), (Overall Right Risk Value, 1.00), (Front Risk Value, 0.17), (Behind Risk Value, 0.00). The Risk Value is a float number from 0.00 to 1.00. The Value 0.00 means no risk, and 1.00 means the highest risk. You should consider your action and do reasoning, based on the scenario descriptions together with the Left, Right, Front, Behind Risk Values provided to you.
+#### Driving Intensions:
+Try to keep your front and behind risk value under certain level, for example, try to keep the Max of front risk, behind risk under 0.75, and then make your forward speed close to the current average foward speed of all nearby vehicles: 31.91
+#### Available actions:
+Your available actions are: 
+Turn-left - change lane to the left of the current lane Action_id: 0
+IDLE - remain in the current lane with current speed Action_id: 1
+Acceleration - accelerate the vehicle Action_id: 3
+Deceleration - decelerate the vehicle Action_id: 4
+
+
+You can stop reasoning once you have a valid action to take. 
+"
+17,491,-1,11193,11358,165,11274,11345,6,11284,11283,495,2.5335820895522363,20.369999999999976,0.0,20.369999999999976,184.93,23.55,34.85,-0.71,0.87,0.18,2,489,497,492,495,0,0,0.5239351180271661,0.0,0.386786232361862,0.5652116576552816,0.0,0.0,35.4525,4,200.15,25.58,29.64,67.26,25.09,26.05,212.71,21.25,43.88,162.01,21.81,42.24,,,,,,,3.0,3.0,3.0,1.0,2.0,1.0,0.0,3.0,1.0,3.0,3.0,3.0,3.0,3.0,3.0,3,2,"The current scenario indicates that I am in the rightmost lane with a front risk value of 0.52 and a behind risk value of 0.00. The left risk value is 0.57, and the right risk value is 1.00, which is quite high. 
+
+Since the behind risk is very low (0.00), I can consider my options without worrying about being hit from behind. The front risk is also below the threshold of 0.75, which is acceptable. However, the left risk is moderate (0.57), and the right risk is very high (1.00), making it unsafe to change lanes to the right.
+
+Given that my current speed (34.86 m/s) is slightly below the average speed of nearby vehicles (35.45 m/s), I should consider accelerating to match the average speed while remaining in my current lane, as changing lanes to the left is not necessary and could introduce additional risk.
+
+Therefore, the best action is to accelerate to increase my speed closer to the average of nearby vehicles while maintaining my position in the rightmost lane.
+
+Response to user:#### 3","Above messages are some examples of how you make a decision successfully in the past. Those scenarios are similar to the current scenario. You should refer to those examples to make a decision for the current scenario. 
+
+Here is the current scenario:
+#### Driving scenario description:
+You are driving on a road with 2 lanes, and you are currently driving in the rightmost lane. Your current position is `(184.93, 23.55)`, speed is 34.86 m/s, acceleration is 0.89 m/s^2, and lane position is 186.42 m.
+There are other vehicles driving around you, and below is their basic information:
+- Vehicle `489` is driving on the same lane as you and is ahead of you. - Vehicle `497` is driving on the same lane as you and is behind of you. - Vehicle `492` is driving on the lane to your left and is ahead of you. - Vehicle `495` is driving on the lane to your left and is behind of you. 
+The driving Risk Values around you are provided as below:
+(Overall Left Risk Value, 0.57), (Overall Right Risk Value, 1.00), (Front Risk Value, 0.52), (Behind Risk Value, 0.00). The Risk Value is a float number from 0.00 to 1.00. The Value 0.00 means no risk, and 1.00 means the highest risk. You should consider your action and do reasoning, based on the scenario descriptions together with the Left, Right, Front, Behind Risk Values provided to you.
+#### Driving Intensions:
+Try to keep your front and behind risk value under certain level, for example, try to keep the Max of front risk, behind risk under 0.75, and then make your forward speed close to the current average foward speed of all nearby vehicles: 35.45
+#### Available actions:
+Your available actions are: 
+Turn-left - change lane to the left of the current lane Action_id: 0
+IDLE - remain in the current lane with current speed Action_id: 1
+Acceleration - accelerate the vehicle Action_id: 3
+Deceleration - decelerate the vehicle Action_id: 4
+
+
+You can stop reasoning once you have a valid action to take. 
+"
+19,846,-1,20190,20433,243,20393,20432,2,20380,20379,851,3.6236024844720487,29.169999999999995,0.0,29.169999999999995,45.61,11.16,-23.42,0.57,0.2,-0.11,1,0,848,847,851,0,0,0.0,0.0511670842674403,0.7142291968877753,0.2454173809837795,0.0,0.0,-28.15333333333333,3,,,,90.0,9.08,-26.04,29.6,13.01,-26.09,83.73,13.39,-32.33,,,,,,,3.0,3.0,3.0,0.0,1.0,2.0,0.0,0.0,0.0,3.0,3.0,3.0,3.0,3.0,3.0,3,2,"The current scenario indicates that I am in the rightmost lane with a high right risk value of 1.00, which suggests that moving to the right is not safe. The left risk value is 0.71, which is relatively high but still lower than the right risk. The front risk value is 0.00, indicating that there is no risk of colliding with the vehicle in front of me, and the behind risk value is very low at 0.05, meaning I am not at risk of being hit from behind.
+
+Given that the front risk is safe, I can maintain my current speed or consider accelerating to match the average speed of nearby vehicles, which is 28.15 m/s. However, since the left risk is relatively high, I should avoid changing lanes to the left unless necessary.
+
+Since my behind risk is low and my front risk is safe, I can choose to accelerate to increase my speed towards the average speed of nearby vehicles while remaining in my current lane. This will help me maintain a safe driving condition without introducing additional risks.
+
+Response to user:#### 3","Above messages are some examples of how you make a decision successfully in the past. Those scenarios are similar to the current scenario. You should refer to those examples to make a decision for the current scenario. 
+
+Here is the current scenario:
+#### Driving scenario description:
+You are driving on a road with 2 lanes, and you are currently driving in the rightmost lane. Your current position is `(45.61, 11.16)`, speed is 23.43 m/s, acceleration is 0.23 m/s^2, and lane position is 368.04 m.
+There are other vehicles driving around you, and below is their basic information:
+- Vehicle `848` is driving on the same lane as you and is behind of you. - Vehicle `847` is driving on the lane to your left and is ahead of you. - Vehicle `851` is driving on the lane to your left and is behind of you. 
+The driving Risk Values around you are provided as below:
+(Overall Left Risk Value, 0.71), (Overall Right Risk Value, 1.00), (Front Risk Value, 0.00), (Behind Risk Value, 0.05). The Risk Value is a float number from 0.00 to 1.00. The Value 0.00 means no risk, and 1.00 means the highest risk. You should consider your action and do reasoning, based on the scenario descriptions together with the Left, Right, Front, Behind Risk Values provided to you.
+#### Driving Intensions:
+Try to keep your front and behind risk value under certain level, for example, try to keep the Max of front risk, behind risk under 0.75, and then make your forward speed close to the current average foward speed of all nearby vehicles: 28.15
+#### Available actions:
+Your available actions are: 
+Turn-left - change lane to the left of the current lane Action_id: 0
+IDLE - remain in the current lane with current speed Action_id: 1
+Acceleration - accelerate the vehicle Action_id: 3
+Deceleration - decelerate the vehicle Action_id: 4
+
+
+You can stop reasoning once you have a valid action to take. 
+"
+21,976,-1,22751,22936,185,22897,22935,2,22877,22876,979,3.626527050610818,20.78,0.0,20.78,81.03,10.97,-33.23,0.9,-0.16,-0.1,1,969,982,977,979,0,0,0.0,0.0,0.5313200580245285,0.4106554134247659,0.0,0.0,-31.265,4,10.14,8.43,-23.92,238.7,8.69,-24.04,60.42,13.23,-37.57,111.23,13.44,-39.53,,,,,,,3.0,3.0,3.0,1.0,1.0,1.0,0.0,0.0,0.0,3.0,3.0,3.0,3.0,3.0,3.0,1,0,"The current scenario indicates that I am in the rightmost lane with a front risk value of 0.00 and a behind risk value of 0.00, which are both safe. The left risk value is 0.53, indicating a moderate risk if I were to turn left, while the right risk value is 1.00, indicating a high risk if I were to turn right. 
+
+Since the front and behind risks are both low, I can consider maintaining my current speed or adjusting it to align more closely with the average speed of nearby vehicles, which is 31.27 m/s. My current speed is 33.24 m/s, which is slightly above the average. 
+
+Given that the left risk is moderate and the right risk is high, it would be safer to remain in my current lane rather than changing lanes. Therefore, the best action is to remain in the current lane with my current speed.
+
+Response to user:#### 1","Above messages are some examples of how you make a decision successfully in the past. Those scenarios are similar to the current scenario. You should refer to those examples to make a decision for the current scenario. 
+
+Here is the current scenario:
+#### Driving scenario description:
+You are driving on a road with 2 lanes, and you are currently driving in the rightmost lane. Your current position is `(81.03, 10.97)`, speed is 33.24 m/s, acceleration is 0.19 m/s^2, and lane position is 333.23 m.
+There are other vehicles driving around you, and below is their basic information:
+- Vehicle `969` is driving on the same lane as you and is ahead of you. - Vehicle `982` is driving on the same lane as you and is behind of you. - Vehicle `977` is driving on the lane to your left and is ahead of you. - Vehicle `979` is driving on the lane to your left and is behind of you. 
+The driving Risk Values around you are provided as below:
+(Overall Left Risk Value, 0.53), (Overall Right Risk Value, 1.00), (Front Risk Value, 0.00), (Behind Risk Value, 0.00). The Risk Value is a float number from 0.00 to 1.00. The Value 0.00 means no risk, and 1.00 means the highest risk. You should consider your action and do reasoning, based on the scenario descriptions together with the Left, Right, Front, Behind Risk Values provided to you.
+#### Driving Intensions:
+Try to keep your front and behind risk value under certain level, for example, try to keep the Max of front risk, behind risk under 0.75, and then make your forward speed close to the current average foward speed of all nearby vehicles: 31.27
+#### Available actions:
+Your available actions are: 
+Turn-left - change lane to the left of the current lane Action_id: 0
+IDLE - remain in the current lane with current speed Action_id: 1
+Acceleration - accelerate the vehicle Action_id: 3
+Deceleration - decelerate the vehicle Action_id: 4
+
+
+You can stop reasoning once you have a valid action to take. 
+"
+22,653,-1,12690,12913,223,12790,12824,6,12776,12775,657,3.4322344322344334,28.110000000000014,0.0,28.110000000000014,181.89,23.29,24.2,-1.0,0.53,0.08,1,652,655,651,657,0,0,0.2435711459844388,0.0261110378478174,0.0,0.2615060002637479,0.0,0.0,26.0775,4,212.35,25.43,21.8,136.81,25.37,22.57,245.61,22.25,26.45,144.52,20.98,33.49,,,,,,,3.0,3.0,3.0,0.0,0.0,0.0,0.0,1.0,0.0,3.0,3.0,3.0,3.0,3.0,3.0,3,2,"The current scenario indicates that I am in the rightmost lane with a front risk value of 0.24 and a behind risk value of 0.03. The left risk value is 0.26, while the right risk value is at the maximum of 1.00, indicating a high risk if I were to change lanes to the right. 
+
+Since the front risk is below 0.75 and the behind risk is very low, I can maintain my current lane without significant risk. Additionally, the left risk value is relatively low at 0.26, which suggests that if I were to change lanes to the left, it would be a safer option compared to the right. However, since I am already in the rightmost lane, turning left would be a lane change that I should consider carefully.
+
+The driving intention is to keep the front and behind risk values under 0.75 and to adjust my speed closer to the average speed of nearby vehicles, which is 26.08 m/s. My current speed is 24.22 m/s, which is below the average. 
+
+Given that the behind risk is very low, I can afford to accelerate to match the average speed while remaining in my current lane. This will help me maintain a safe distance from the vehicle ahead while also keeping my speed competitive with surrounding traffic.
+
+Therefore, the best action to take is to accelerate.
+
+Response to user:#### 3","Above messages are some examples of how you make a decision successfully in the past. Those scenarios are similar to the current scenario. You should refer to those examples to make a decision for the current scenario. 
+
+Here is the current scenario:
+#### Driving scenario description:
+You are driving on a road with 2 lanes, and you are currently driving in the rightmost lane. Your current position is `(181.89, 23.29)`, speed is 24.22 m/s, acceleration is 0.54 m/s^2, and lane position is 183.38 m.
+There are other vehicles driving around you, and below is their basic information:
+- Vehicle `652` is driving on the same lane as you and is ahead of you. - Vehicle `655` is driving on the same lane as you and is behind of you. - Vehicle `651` is driving on the lane to your left and is ahead of you. - Vehicle `657` is driving on the lane to your left and is behind of you. 
+The driving Risk Values around you are provided as below:
+(Overall Left Risk Value, 0.26), (Overall Right Risk Value, 1.00), (Front Risk Value, 0.24), (Behind Risk Value, 0.03). The Risk Value is a float number from 0.00 to 1.00. The Value 0.00 means no risk, and 1.00 means the highest risk. You should consider your action and do reasoning, based on the scenario descriptions together with the Left, Right, Front, Behind Risk Values provided to you.
+#### Driving Intensions:
+Try to keep your front and behind risk value under certain level, for example, try to keep the Max of front risk, behind risk under 0.75, and then make your forward speed close to the current average foward speed of all nearby vehicles: 26.08
+#### Available actions:
+Your available actions are: 
+Turn-left - change lane to the left of the current lane Action_id: 0
+IDLE - remain in the current lane with current speed Action_id: 1
+Acceleration - accelerate the vehicle Action_id: 3
+Deceleration - decelerate the vehicle Action_id: 4
+
+
+You can stop reasoning once you have a valid action to take. 
+"
+25,2785,1,28725,29069,344,28862,28924,7,28827,28826,2791,3.966597077244258,19.0,0.0,19.0,94.43,37.44,15.01,1.0,-1.53,-0.22,1,2775,2790,2786,2787,2783,2791,0.0,0.2555716734801529,0.7739680865092972,0.2389555584860873,0.4779111169721746,0.2346037188447844,12.420000000000002,6,148.64,35.94,8.02,68.11,35.45,15.76,95.49,31.53,8.74,72.63,31.48,10.28,113.51,39.02,13.56,63.09,40.13,18.16,3.0,3.0,3.0,0.0,3.0,2.0,0.0,0.0,0.0,0.0,3.0,1.0,3.0,3.0,3.0,1,0,"The current scenario indicates that I am in the second lane from the left, with a front risk value of 0.00, which is very safe, and a behind risk value of 0.26, which is also acceptable. The left risk value is quite high at 0.77, indicating that turning left could be dangerous due to the presence of other vehicles. The right risk value is lower at 0.48, suggesting that turning right is a safer option compared to turning left.
+
+Since my front risk is already at 0.00, I can maintain my current speed without worrying about a collision ahead. The behind risk is also manageable, so I don't need to take immediate action to change lanes or adjust my speed drastically. 
+
+Given that the left risk is high, I should avoid turning left. The right risk is lower than the left risk, but still not ideal. However, since my front risk is safe, I can choose to remain in my current lane and maintain my speed, which aligns with the intention of keeping the front and behind risk values under 0.75.
+
+Therefore, the best action is to remain in the current lane with my current speed.
+
+Response to user:#### 1","Above messages are some examples of how you make a decision successfully in the past. Those scenarios are similar to the current scenario. You should refer to those examples to make a decision for the current scenario. 
+
+Here is the current scenario:
+#### Driving scenario description:
+You are driving on a road with 3 lanes, and you are currently driving in the second lane from the left. Your current position is `(94.43, 37.44)`, speed is 15.04 m/s, acceleration is 1.55 m/s^2, and lane position is 101.58 m.
+There are other vehicles driving around you, and below is their basic information:
+- Vehicle `2775` is driving on the same lane as you and is ahead of you. - Vehicle `2790` is driving on the same lane as you and is behind of you. - Vehicle `2786` is driving on the lane to your left and is ahead of you. - Vehicle `2787` is driving on the lane to your left and is behind of you. - Vehicle `2783` is driving on the lane to your left and is ahead of you. - Vehicle `2791` is driving on the lane to your left and is behind of you. 
+The driving Risk Values around you are provided as below:
+(Overall Left Risk Value, 0.77), (Overall Right Risk Value, 0.48), (Front Risk Value, 0.00), (Behind Risk Value, 0.26). The Risk Value is a float number from 0.00 to 1.00. The Value 0.00 means no risk, and 1.00 means the highest risk. You should consider your action and do reasoning, based on the scenario descriptions together with the Left, Right, Front, Behind Risk Values provided to you.
+#### Driving Intensions:
+Try to keep your front and behind risk value under certain level, for example, try to keep the Max of front risk, behind risk under 0.75, and then make your forward speed close to the current average foward speed of all nearby vehicles: 12.42
+#### Available actions:
+Your available actions are: 
+Turn-left - change lane to the left of the current lane Action_id: 0
+IDLE - remain in the current lane with current speed Action_id: 1
+Turn-right - change lane to the right of the current lane Action_id: 2
+Acceleration - accelerate the vehicle Action_id: 3
+Deceleration - decelerate the vehicle Action_id: 4
+
+
+You can stop reasoning once you have a valid action to take. 
+"
+25,2817,-1,29311,29460,150,29395,29408,7,29385,29384,2809,3.621794871794876,5.650000000000006,0.0,5.650000000000006,151.48,33.7,6.21,-1.06,-0.39,0.06,1,2814,2821,2803,2809,2820,2826,0.3463009363048925,0.0,0.6351048397731769,0.6325992351312145,0.7548463668732691,0.0,7.228333333333333,6,166.1,35.23,5.76,118.71,35.51,6.7,158.09,31.16,6.88,140.31,31.29,7.97,143.14,39.28,8.13,104.22,39.18,7.93,3.0,3.0,3.0,1.0,3.0,1.0,0.0,3.0,1.0,0.0,3.0,2.0,3.0,3.0,3.0,3,2,"The current scenario indicates that I am in the second lane from the left, with a front risk value of 0.35 and a behind risk value of 0.00. The left risk value is 0.64, and the right risk value is 0.75. 
+
+Since the behind risk is very low (0.00), I can consider my options without worrying about being hit from behind. The front risk value is also below the threshold of 0.75, which is good. However, the left risk value (0.64) is relatively high, and the right risk value (0.75) is even higher, indicating that changing lanes to the right would be riskier.
+
+Given that my current speed (6.30 m/s) is below the average speed of nearby vehicles (7.23 m/s), I should consider accelerating to match the speed of surrounding traffic. 
+
+Since the front risk is manageable and the behind risk is very low, I can safely choose to accelerate to increase my speed while remaining in my current lane. This action will help me maintain a safe distance from the vehicle ahead while also improving my speed to match the average of nearby vehicles.
+
+Response to user:#### 3","Above messages are some examples of how you make a decision successfully in the past. Those scenarios are similar to the current scenario. You should refer to those examples to make a decision for the current scenario. 
+
+Here is the current scenario:
+#### Driving scenario description:
+You are driving on a road with 3 lanes, and you are currently driving in the second lane from the left. Your current position is `(151.48, 33.70)`, speed is 6.30 m/s, acceleration is 0.39 m/s^2, and lane position is 155.18 m.
+There are other vehicles driving around you, and below is their basic information:
+- Vehicle `2814` is driving on the same lane as you and is ahead of you. - Vehicle `2821` is driving on the same lane as you and is behind of you. - Vehicle `2803` is driving on the lane to your left and is ahead of you. - Vehicle `2809` is driving on the lane to your left and is behind of you. - Vehicle `2820` is driving on the lane to your left and is ahead of you. - Vehicle `2826` is driving on the lane to your left and is behind of you. 
+The driving Risk Values around you are provided as below:
+(Overall Left Risk Value, 0.64), (Overall Right Risk Value, 0.75), (Front Risk Value, 0.35), (Behind Risk Value, 0.00). The Risk Value is a float number from 0.00 to 1.00. The Value 0.00 means no risk, and 1.00 means the highest risk. You should consider your action and do reasoning, based on the scenario descriptions together with the Left, Right, Front, Behind Risk Values provided to you.
+#### Driving Intensions:
+Try to keep your front and behind risk value under certain level, for example, try to keep the Max of front risk, behind risk under 0.75, and then make your forward speed close to the current average foward speed of all nearby vehicles: 7.23
+#### Available actions:
+Your available actions are: 
+Turn-left - change lane to the left of the current lane Action_id: 0
+IDLE - remain in the current lane with current speed Action_id: 1
+Turn-right - change lane to the right of the current lane Action_id: 2
+Acceleration - accelerate the vehicle Action_id: 3
+Deceleration - decelerate the vehicle Action_id: 4
+
+
+You can stop reasoning once you have a valid action to take. 
+"
+26,213,1,1497,1645,148,1513,1569,7,1556,1555,219,3.9556213017751514,13.370000000000005,0.0,13.370000000000005,171.41,27.16,17.3,1.48,0.75,-0.1,2,208,224,215,217,211,219,0.4127653962811552,0.0,0.5393643676645127,0.7870236054332058,0.2694184359752077,0.7046024001054991,16.333333333333332,6,194.44,25.86,12.44,90.1,24.67,17.86,189.96,21.61,14.1,165.65,21.1,14.97,199.41,29.75,18.87,159.14,28.52,19.76,3.0,3.0,3.0,2.0,3.0,1.0,0.0,1.0,1.0,2.0,2.0,0.0,3.0,3.0,3.0,4,-2,"The current scenario indicates that I am in the second lane from the left, with a front risk value of 0.41 and a behind risk value of 0.00. The left and right risk values are relatively high at 0.79 and 0.70, respectively. 
+
+Given that the behind risk is very low (0.00), I can consider my options carefully. The front risk value is also below the threshold of 0.75, which is acceptable. 
+
+Since the left and right risks are both high, changing lanes to either side is not advisable. The best course of action is to maintain my current lane, as it minimizes risk and keeps my speed steady. 
+
+Additionally, my current speed of 17.36 m/s is slightly above the average speed of nearby vehicles (16.33 m/s). To align my speed with the average while ensuring safety, I can consider decelerating slightly.
+
+Therefore, the most reasonable action is to decelerate to maintain a safe speed and stay in my current lane.
+
+Response to user:#### 4","Above messages are some examples of how you make a decision successfully in the past. Those scenarios are similar to the current scenario. You should refer to those examples to make a decision for the current scenario. 
+
+Here is the current scenario:
+#### Driving scenario description:
+You are driving on a road with 3 lanes, and you are currently driving in the second lane from the left. Your current position is `(171.41, 27.16)`, speed is 17.36 m/s, acceleration is 0.76 m/s^2, and lane position is 173.55 m.
+There are other vehicles driving around you, and below is their basic information:
+- Vehicle `208` is driving on the same lane as you and is ahead of you. - Vehicle `224` is driving on the same lane as you and is behind of you. - Vehicle `215` is driving on the lane to your left and is ahead of you. - Vehicle `217` is driving on the lane to your left and is behind of you. - Vehicle `211` is driving on the lane to your left and is ahead of you. - Vehicle `219` is driving on the lane to your left and is behind of you. 
+The driving Risk Values around you are provided as below:
+(Overall Left Risk Value, 0.79), (Overall Right Risk Value, 0.70), (Front Risk Value, 0.41), (Behind Risk Value, 0.00). The Risk Value is a float number from 0.00 to 1.00. The Value 0.00 means no risk, and 1.00 means the highest risk. You should consider your action and do reasoning, based on the scenario descriptions together with the Left, Right, Front, Behind Risk Values provided to you.
+#### Driving Intensions:
+Try to keep your front and behind risk value under certain level, for example, try to keep the Max of front risk, behind risk under 0.75, and then make your forward speed close to the current average foward speed of all nearby vehicles: 16.33
+#### Available actions:
+Your available actions are: 
+Turn-left - change lane to the left of the current lane Action_id: 0
+IDLE - remain in the current lane with current speed Action_id: 1
+Turn-right - change lane to the right of the current lane Action_id: 2
+Acceleration - accelerate the vehicle Action_id: 3
+Deceleration - decelerate the vehicle Action_id: 4
+
+
+You can stop reasoning once you have a valid action to take. 
+"
+26,496,-1,4725,5303,845,5067,5104,2,5050,5049,522,1.4497991967871502,10.830000000000013,0.0,10.830000000000013,200.56,6.25,-5.52,0.27,-0.43,0.02,3,427,447,510,522,0,0,0.0,0.7671106422260319,0.0,0.4838454437557695,0.0,0.0,-9.7775,4,153.77,3.91,-6.52,206.68,4.31,-6.82,165.04,8.49,-12.48,221.92,8.31,-13.29,,,,,,,2.0,3.0,2.0,1.0,1.0,0.0,2.0,3.0,0.0,3.0,3.0,3.0,3.0,3.0,3.0,1,0,"The current scenario indicates that I am in the rightmost lane with a front risk value of 0.00, which is very safe, but the behind risk value is 0.77, indicating a significant risk from the vehicle behind me. The left risk value is 0.48, which is moderate, and the right risk value is 1.00, indicating a high risk if I were to change lanes to the right.
+
+Given that the front risk is safe, I should prioritize managing the behind risk. Since the behind risk is relatively high, I need to consider my options carefully. The left lane has a moderate risk, which is better than the high risk on the right. However, I have to be cautious about changing lanes too often.
+
+The best course of action is to remain in my current lane and maintain my speed, as the front risk is already at a safe level, and I can monitor the situation behind me. If I accelerate, it may increase my speed relative to the vehicle behind, potentially increasing the risk of a collision. Therefore, the safest action is to remain in my current lane.
+
+Response to user:#### 1","Above messages are some examples of how you make a decision successfully in the past. Those scenarios are similar to the current scenario. You should refer to those examples to make a decision for the current scenario. 
+
+Here is the current scenario:
+#### Driving scenario description:
+You are driving on a road with 3 lanes, and you are currently driving in the rightmost lane. Your current position is `(200.56, 6.25)`, speed is 5.53 m/s, acceleration is 0.43 m/s^2, and lane position is 214.34 m.
+There are other vehicles driving around you, and below is their basic information:
+- Vehicle `427` is driving on the same lane as you and is ahead of you. - Vehicle `447` is driving on the same lane as you and is behind of you. - Vehicle `510` is driving on the lane to your left and is ahead of you. - Vehicle `522` is driving on the lane to your left and is behind of you. 
+The driving Risk Values around you are provided as below:
+(Overall Left Risk Value, 0.48), (Overall Right Risk Value, 1.00), (Front Risk Value, 0.00), (Behind Risk Value, 0.77). The Risk Value is a float number from 0.00 to 1.00. The Value 0.00 means no risk, and 1.00 means the highest risk. You should consider your action and do reasoning, based on the scenario descriptions together with the Left, Right, Front, Behind Risk Values provided to you.
+#### Driving Intensions:
+Try to keep your front and behind risk value under certain level, for example, try to keep the Max of front risk, behind risk under 0.75, and then make your forward speed close to the current average foward speed of all nearby vehicles: 9.78
+#### Available actions:
+Your available actions are: 
+Turn-left - change lane to the left of the current lane Action_id: 0
+IDLE - remain in the current lane with current speed Action_id: 1
+Acceleration - accelerate the vehicle Action_id: 3
+Deceleration - decelerate the vehicle Action_id: 4
+
+
+You can stop reasoning once you have a valid action to take. 
+"
+26,496,-1,5050,5484,845,5326,5377,3,5303,5302,535,2.3175675675675667,6.859999999999999,0.0,6.859999999999999,122.72,9.96,-9.86,0.47,-0.43,0.02,3,522,533,529,535,427,447,0.0089674271396544,0.2510879599103257,0.491230383753132,0.6133456415666623,0.0,0.1482262956613477,-11.378333333333332,6,89.95,7.88,-12.7,148.19,7.67,-13.36,110.99,11.7,-14.17,137.3,12.43,-12.97,85.9,3.64,-8.31,142.43,4.26,-6.76,3.0,3.0,3.0,1.0,3.0,1.0,0.0,1.0,0.0,0.0,1.0,0.0,3.0,3.0,3.0,3,2,"The current scenario indicates that I am in the second lane from the left, with vehicles both ahead and behind me. The front risk value is very low (0.01), which means there is minimal risk of colliding with the vehicle in front. However, the behind risk value is moderate (0.25), indicating some risk from the vehicle behind me.
+
+The left risk value is relatively high (0.61), suggesting that turning left could expose me to a higher risk situation. The right risk value is low (0.15), indicating that changing to the right lane is a safer option compared to the left.
+
+Given that my front risk is very low and I want to keep my overall risk under control, I should consider my options carefully. The best course of action would be to maintain my current lane since the front risk is very low, and the behind risk is manageable. Additionally, I can consider accelerating to match the average speed of nearby vehicles, which is 11.38 m/s, as my current speed is below that.
+
+Since I have the option to accelerate, and it aligns with my intention to increase my speed while keeping risks low, I will choose to accelerate.
+
+Response to user:#### 3","Above messages are some examples of how you make a decision successfully in the past. Those scenarios are similar to the current scenario. You should refer to those examples to make a decision for the current scenario. 
+
+Here is the current scenario:
+#### Driving scenario description:
+You are driving on a road with 3 lanes, and you are currently driving in the second lane from the left. Your current position is `(122.72, 9.96)`, speed is 9.87 m/s, acceleration is 0.43 m/s^2, and lane position is 291.88 m.
+There are other vehicles driving around you, and below is their basic information:
+- Vehicle `522` is driving on the same lane as you and is ahead of you. - Vehicle `533` is driving on the same lane as you and is behind of you. - Vehicle `529` is driving on the lane to your left and is ahead of you. - Vehicle `535` is driving on the lane to your left and is behind of you. - Vehicle `427` is driving on the lane to your left and is ahead of you. - Vehicle `447` is driving on the lane to your left and is behind of you. 
+The driving Risk Values around you are provided as below:
+(Overall Left Risk Value, 0.61), (Overall Right Risk Value, 0.15), (Front Risk Value, 0.01), (Behind Risk Value, 0.25). The Risk Value is a float number from 0.00 to 1.00. The Value 0.00 means no risk, and 1.00 means the highest risk. You should consider your action and do reasoning, based on the scenario descriptions together with the Left, Right, Front, Behind Risk Values provided to you.
+#### Driving Intensions:
+Try to keep your front and behind risk value under certain level, for example, try to keep the Max of front risk, behind risk under 0.75, and then make your forward speed close to the current average foward speed of all nearby vehicles: 11.38
+#### Available actions:
+Your available actions are: 
+Turn-left - change lane to the left of the current lane Action_id: 0
+IDLE - remain in the current lane with current speed Action_id: 1
+Turn-right - change lane to the right of the current lane Action_id: 2
+Acceleration - accelerate the vehicle Action_id: 3
+Deceleration - decelerate the vehicle Action_id: 4
+
+
+You can stop reasoning once you have a valid action to take. 
+"
+26,1599,-1,16549,16895,346,16688,16735,2,16688,16687,1631,2.8127250900360123,23.42999999999998,0.0,23.42999999999998,129.07,6.2,-8.41,1.0,-1.04,0.07,2,1594,1612,1622,1631,0,0,0.1269945931689305,0.0,0.2404061716998549,0.1979427667150204,0.0,0.0,-11.6025,4,103.6,4.06,-6.55,163.78,4.3,-7.2,111.19,8.28,-15.8,162.64,8.35,-16.86,,,,,,,2.0,3.0,2.0,0.0,1.0,0.0,0.0,1.0,0.0,3.0,3.0,3.0,3.0,3.0,3.0,3,2,"The current scenario indicates that I am in the rightmost lane with a low front risk value of 0.13 and a behind risk value of 0.00, which is very safe. The left risk value is 0.24, indicating a moderate risk if I were to change lanes to the left. The right risk value is 1.00, which is very high and suggests that I should not consider moving to the right.
+
+Since the front risk is low and the behind risk is also low, I can focus on maintaining a safe speed. The average forward speed of nearby vehicles is 11.60 m/s, and my current speed is 8.47 m/s. To align my speed closer to the average, I should consider accelerating.
+
+Given that the left risk is manageable and the right risk is too high, I will choose to accelerate to increase my speed while remaining in the current lane.
+
+Response to user:#### 3","Above messages are some examples of how you make a decision successfully in the past. Those scenarios are similar to the current scenario. You should refer to those examples to make a decision for the current scenario. 
+
+Here is the current scenario:
+#### Driving scenario description:
+You are driving on a road with 3 lanes, and you are currently driving in the rightmost lane. Your current position is `(129.07, 6.20)`, speed is 8.47 m/s, acceleration is 1.04 m/s^2, and lane position is 285.78 m.
+There are other vehicles driving around you, and below is their basic information:
+- Vehicle `1594` is driving on the same lane as you and is ahead of you. - Vehicle `1612` is driving on the same lane as you and is behind of you. - Vehicle `1622` is driving on the lane to your left and is ahead of you. - Vehicle `1631` is driving on the lane to your left and is behind of you. 
+The driving Risk Values around you are provided as below:
+(Overall Left Risk Value, 0.24), (Overall Right Risk Value, 1.00), (Front Risk Value, 0.13), (Behind Risk Value, 0.00). The Risk Value is a float number from 0.00 to 1.00. The Value 0.00 means no risk, and 1.00 means the highest risk. You should consider your action and do reasoning, based on the scenario descriptions together with the Left, Right, Front, Behind Risk Values provided to you.
+#### Driving Intensions:
+Try to keep your front and behind risk value under certain level, for example, try to keep the Max of front risk, behind risk under 0.75, and then make your forward speed close to the current average foward speed of all nearby vehicles: 11.60
+#### Available actions:
+Your available actions are: 
+Turn-left - change lane to the left of the current lane Action_id: 0
+IDLE - remain in the current lane with current speed Action_id: 1
+Acceleration - accelerate the vehicle Action_id: 3
+Deceleration - decelerate the vehicle Action_id: 4
+
+
+You can stop reasoning once you have a valid action to take. 
+"
+26,1972,-1,20401,20532,131,20504,20531,3,20456,20455,1996,3.9961089494163415,51.35,0.0,51.35,159.28,9.99,-16.35,1.36,-0.82,0.09,1,1968,1975,1988,1996,1959,1977,0.4139522616378742,0.4127653962811552,0.4453382566266649,0.0,0.2398786759857576,0.0,-18.585000000000004,6,137.95,8.59,-13.8,177.67,8.08,-15.31,141.96,12.59,-25.09,245.61,12.27,-33.88,128.94,4.27,-12.14,237.16,4.33,-11.29,3.0,3.0,3.0,0.0,1.0,1.0,1.0,2.0,1.0,0.0,0.0,0.0,3.0,3.0,3.0,3,2,"The current scenario indicates that I am in the second lane from the left, with vehicles both ahead and behind me in the same lane. The risk values suggest that the left lane has a moderate risk (0.45), while the right lane has a lower risk (0.24). The front and behind risk values are both at 0.41, which is acceptable but could be improved.
+
+Given that the right lane has a lower risk value, it may be beneficial to consider moving to the right lane. However, since I have just been in the current lane and there is a vehicle behind me, I should also consider the risk of changing lanes.
+
+The front risk (0.41) and behind risk (0.41) are both under the threshold of 0.75, which is good. However, I need to maintain a safe distance and speed relative to the vehicles around me. The average speed of nearby vehicles is 18.59 m/s, and my current speed is 16.41 m/s, which is below average.
+
+To improve my situation, I can either accelerate to match the average speed or consider changing lanes. Since the right lane has a lower risk value, I will prioritize accelerating to improve my speed while keeping an eye on the lane changes.
+
+Given the current conditions, I will choose to accelerate to increase my speed closer to the average of nearby vehicles.
+
+Response to user:#### 3","Above messages are some examples of how you make a decision successfully in the past. Those scenarios are similar to the current scenario. You should refer to those examples to make a decision for the current scenario. 
+
+Here is the current scenario:
+#### Driving scenario description:
+You are driving on a road with 3 lanes, and you are currently driving in the second lane from the left. Your current position is `(159.28, 9.99)`, speed is 16.41 m/s, acceleration is 0.82 m/s^2, and lane position is 255.41 m.
+There are other vehicles driving around you, and below is their basic information:
+- Vehicle `1968` is driving on the same lane as you and is ahead of you. - Vehicle `1975` is driving on the same lane as you and is behind of you. - Vehicle `1988` is driving on the lane to your left and is ahead of you. - Vehicle `1996` is driving on the lane to your left and is behind of you. - Vehicle `1959` is driving on the lane to your left and is ahead of you. - Vehicle `1977` is driving on the lane to your left and is behind of you. 
+The driving Risk Values around you are provided as below:
+(Overall Left Risk Value, 0.45), (Overall Right Risk Value, 0.24), (Front Risk Value, 0.41), (Behind Risk Value, 0.41). The Risk Value is a float number from 0.00 to 1.00. The Value 0.00 means no risk, and 1.00 means the highest risk. You should consider your action and do reasoning, based on the scenario descriptions together with the Left, Right, Front, Behind Risk Values provided to you.
+#### Driving Intensions:
+Try to keep your front and behind risk value under certain level, for example, try to keep the Max of front risk, behind risk under 0.75, and then make your forward speed close to the current average foward speed of all nearby vehicles: 18.59
+#### Available actions:
+Your available actions are: 
+Turn-left - change lane to the left of the current lane Action_id: 0
+IDLE - remain in the current lane with current speed Action_id: 1
+Turn-right - change lane to the right of the current lane Action_id: 2
+Acceleration - accelerate the vehicle Action_id: 3
+Deceleration - decelerate the vehicle Action_id: 4
+
+
+You can stop reasoning once you have a valid action to take. 
+"
+27,72,-1,421,607,186,511,602,3,494,493,76,3.978436657681939,29.519999999999985,0.0,29.519999999999985,316.16,10.54,-31.45,0.87,0.02,0.02,1,65,78,69,76,66,73,0.0025056046419622,0.0,0.6999868126071476,0.2472636159831201,0.134775154951866,0.456547540551233,-29.553333333333335,6,262.09,8.5,-24.69,402.78,8.23,-31.2,303.42,12.44,-33.81,355.66,12.9,-39.26,272.15,4.27,-23.62,337.55,4.43,-24.74,3.0,3.0,3.0,0.0,3.0,2.0,0.0,0.0,0.0,1.0,3.0,0.0,3.0,3.0,3.0,1,0,"The current scenario indicates that I am in the second lane from the left, with vehicles both ahead and behind me in the same lane. The front risk value is 0.00, which means there is no risk of colliding with the vehicle ahead. The behind risk value is also 0.00, indicating no risk from the vehicle behind. 
+
+However, the left risk value is 0.70, which is relatively high, suggesting that turning left could be risky due to the presence of vehicles in the left lane. The right risk value is lower at 0.46, indicating that changing to the right lane is a safer option compared to the left.
+
+Given that my front and behind risk values are both at 0.00, I can afford to maintain my current speed or consider changing lanes. Since the right lane has a lower risk value than the left lane, it would be prudent to consider moving to the right lane.
+
+However, since the front and behind risks are already at a safe level, I can also choose to remain in my current lane and maintain my speed, which is close to the average speed of nearby vehicles.
+
+Considering all these factors, the safest action would be to remain in my current lane with my current speed, as it keeps the risk values low and maintains a steady flow of traffic.
+
+Response to user:#### 1","Above messages are some examples of how you make a decision successfully in the past. Those scenarios are similar to the current scenario. You should refer to those examples to make a decision for the current scenario. 
+
+Here is the current scenario:
+#### Driving scenario description:
+You are driving on a road with 3 lanes, and you are currently driving in the second lane from the left. Your current position is `(316.16, 10.54)`, speed is 31.46 m/s, acceleration is 0.03 m/s^2, and lane position is 98.66 m.
+There are other vehicles driving around you, and below is their basic information:
+- Vehicle `65` is driving on the same lane as you and is ahead of you. - Vehicle `78` is driving on the same lane as you and is behind of you. - Vehicle `69` is driving on the lane to your left and is ahead of you. - Vehicle `76` is driving on the lane to your left and is behind of you. - Vehicle `66` is driving on the lane to your left and is ahead of you. - Vehicle `73` is driving on the lane to your left and is behind of you. 
+The driving Risk Values around you are provided as below:
+(Overall Left Risk Value, 0.70), (Overall Right Risk Value, 0.46), (Front Risk Value, 0.00), (Behind Risk Value, 0.00). The Risk Value is a float number from 0.00 to 1.00. The Value 0.00 means no risk, and 1.00 means the highest risk. You should consider your action and do reasoning, based on the scenario descriptions together with the Left, Right, Front, Behind Risk Values provided to you.
+#### Driving Intensions:
+Try to keep your front and behind risk value under certain level, for example, try to keep the Max of front risk, behind risk under 0.75, and then make your forward speed close to the current average foward speed of all nearby vehicles: 29.55
+#### Available actions:
+Your available actions are: 
+Turn-left - change lane to the left of the current lane Action_id: 0
+IDLE - remain in the current lane with current speed Action_id: 1
+Turn-right - change lane to the right of the current lane Action_id: 2
+Acceleration - accelerate the vehicle Action_id: 3
+Deceleration - decelerate the vehicle Action_id: 4
+
+
+You can stop reasoning once you have a valid action to take. 
+"
+28,1972,-1,25683,25877,194,25836,25876,8,25837,25836,1981,3.9953198127925047,25.60999999999996,0.0,25.60999999999996,359.7,26.85,25.25,-0.69,0.05,0.12,1,1965,1978,1976,1981,0,0,0.0,0.0,0.2885401556112356,0.3751813266517209,0.0,0.0,27.655,4,410.23,29.62,21.41,280.3,29.31,25.1,389.91,25.38,32.45,329.24,25.49,31.66,,,,,,,2.0,3.0,2.0,1.0,1.0,0.0,0.0,0.0,0.0,3.0,3.0,3.0,3.0,3.0,3.0,3,2,"The current scenario indicates that I am in the rightmost lane with a front risk value of 0.00 and a behind risk value of 0.00, which are both safe. The left risk value is 0.38, indicating a moderate risk if I were to turn left, while the right risk value is 1.00, indicating a high risk if I were to change lanes to the right. 
+
+Since the front and behind risks are low, I can consider maintaining my current lane. However, I also need to consider my speed relative to the average speed of nearby vehicles, which is 27.66 m/s. My current speed is 25.26 m/s, which is below the average. 
+
+Given that the left risk is manageable and I have the option to accelerate, I can choose to accelerate to increase my speed closer to the average while remaining in my current lane. This will help me maintain a safe distance from the vehicles ahead and behind me.
+
+Response to user:#### 3","Above messages are some examples of how you make a decision successfully in the past. Those scenarios are similar to the current scenario. You should refer to those examples to make a decision for the current scenario. 
+
+Here is the current scenario:
+#### Driving scenario description:
+You are driving on a road with 3 lanes, and you are currently driving in the rightmost lane. Your current position is `(359.70, 26.85)`, speed is 25.26 m/s, acceleration is 0.13 m/s^2, and lane position is 360.70 m.
+There are other vehicles driving around you, and below is their basic information:
+- Vehicle `1965` is driving on the same lane as you and is ahead of you. - Vehicle `1978` is driving on the same lane as you and is behind of you. - Vehicle `1976` is driving on the lane to your left and is ahead of you. - Vehicle `1981` is driving on the lane to your left and is behind of you. 
+The driving Risk Values around you are provided as below:
+(Overall Left Risk Value, 0.38), (Overall Right Risk Value, 1.00), (Front Risk Value, 0.00), (Behind Risk Value, 0.00). The Risk Value is a float number from 0.00 to 1.00. The Value 0.00 means no risk, and 1.00 means the highest risk. You should consider your action and do reasoning, based on the scenario descriptions together with the Left, Right, Front, Behind Risk Values provided to you.
+#### Driving Intensions:
+Try to keep your front and behind risk value under certain level, for example, try to keep the Max of front risk, behind risk under 0.75, and then make your forward speed close to the current average foward speed of all nearby vehicles: 27.66
+#### Available actions:
+Your available actions are: 
+Turn-left - change lane to the left of the current lane Action_id: 0
+IDLE - remain in the current lane with current speed Action_id: 1
+Acceleration - accelerate the vehicle Action_id: 3
+Deceleration - decelerate the vehicle Action_id: 4
+
+
+You can stop reasoning once you have a valid action to take. 
+"
+28,2210,-1,28734,29025,291,28971,28985,2,28939,28938,2213,3.970687711386695,35.22,0.0,35.22,90.61,5.94,-24.74,0.77,0.08,-0.06,1,0,2215,2206,2213,0,0,0.0,0.0,0.0,0.0011868653567189,0.0,0.0,-27.67,3,,,,242.94,3.66,-24.62,16.86,7.09,-24.69,146.58,7.83,-33.7,,,,,,,2.0,0.0,2.0,0.0,0.0,0.0,0.0,0.0,0.0,3.0,3.0,3.0,3.0,3.0,3.0,3,2,"The current scenario indicates that I am in the rightmost lane with a high right risk value of 1.00, which suggests that there is a significant risk of collision if I attempt to change lanes to the right. The left lane has a risk value of 0.00, indicating it is safe to move there. 
+
+The front risk value is also 0.00, meaning there is no immediate risk of colliding with the vehicle ahead, and the behind risk value is 0.00, indicating that the vehicle behind me poses no threat. 
+
+Given that the left lane is safe and the right lane is risky, I should consider moving to the left lane. However, since I have not performed any previous actions, I can also choose to remain in my current lane. 
+
+To align with the driving intentions of keeping the front and behind risk values under 0.75 and adjusting my speed closer to the average speed of nearby vehicles (27.67 m/s), I should consider accelerating to increase my speed while remaining in the current lane, as the front and behind risks are already low.
+
+Therefore, I will choose to accelerate to match the average speed of nearby vehicles while staying in my current lane.
+
+Response to user:#### 3","Above messages are some examples of how you make a decision successfully in the past. Those scenarios are similar to the current scenario. You should refer to those examples to make a decision for the current scenario. 
+
+Here is the current scenario:
+#### Driving scenario description:
+You are driving on a road with 3 lanes, and you are currently driving in the rightmost lane. Your current position is `(90.61, 5.94)`, speed is 24.75 m/s, acceleration is 0.10 m/s^2, and lane position is 324.20 m.
+There are other vehicles driving around you, and below is their basic information:
+- Vehicle `2215` is driving on the same lane as you and is behind of you. - Vehicle `2206` is driving on the lane to your left and is ahead of you. - Vehicle `2213` is driving on the lane to your left and is behind of you. 
+The driving Risk Values around you are provided as below:
+(Overall Left Risk Value, 0.00), (Overall Right Risk Value, 1.00), (Front Risk Value, 0.00), (Behind Risk Value, 0.00). The Risk Value is a float number from 0.00 to 1.00. The Value 0.00 means no risk, and 1.00 means the highest risk. You should consider your action and do reasoning, based on the scenario descriptions together with the Left, Right, Front, Behind Risk Values provided to you.
+#### Driving Intensions:
+Try to keep your front and behind risk value under certain level, for example, try to keep the Max of front risk, behind risk under 0.75, and then make your forward speed close to the current average foward speed of all nearby vehicles: 27.67
+#### Available actions:
+Your available actions are: 
+Turn-left - change lane to the left of the current lane Action_id: 0
+IDLE - remain in the current lane with current speed Action_id: 1
+Acceleration - accelerate the vehicle Action_id: 3
+Deceleration - decelerate the vehicle Action_id: 4
+
+
+You can stop reasoning once you have a valid action to take. 
+"
+29,295,-1,3483,3718,235,3604,3673,7,3577,3576,300,3.988399071925755,34.379999999999995,0.0,34.379999999999995,231.58,23.7,29.18,-0.91,0.67,-0.04,1,294,299,296,300,292,305,0.406303573783463,0.0,0.5740472108664118,0.0949492285375181,0.440195173414216,0.0,28.956666666666667,6,255.76,25.07,25.1,176.82,24.64,29.42,249.09,21.18,33.85,181.68,21.36,39.09,257.99,29.17,23.91,60.9,29.22,22.37,3.0,3.0,3.0,0.0,3.0,1.0,0.0,1.0,1.0,0.0,1.0,1.0,3.0,3.0,3.0,4,-2,"The current scenario indicates that I am in the second lane from the left, with vehicles both ahead and behind me. The front risk value is 0.41, which is acceptable, and the behind risk value is 0.00, indicating no risk from the vehicle behind. The left risk value is 0.57, which is moderate, and the right risk value is 0.44, which is also moderate.
+
+Given that the behind risk is very low, I can consider my options carefully. The front risk is manageable, and I should avoid changing lanes unnecessarily, especially since the left lane has a higher risk value. 
+
+Since my goal is to keep the front and behind risk values under 0.75 and maintain a speed close to the average speed of nearby vehicles, I should consider remaining in my current lane. The current speed of 29.19 m/s is slightly above the average speed of 28.96 m/s, so I might need to decelerate slightly to match the average speed while keeping the risks in check.
+
+Therefore, the best action to take is to decelerate to align my speed with the average of nearby vehicles while maintaining a safe position in my lane.
+
+Response to user:#### 4","Above messages are some examples of how you make a decision successfully in the past. Those scenarios are similar to the current scenario. You should refer to those examples to make a decision for the current scenario. 
+
+Here is the current scenario:
+#### Driving scenario description:
+You are driving on a road with 3 lanes, and you are currently driving in the second lane from the left. Your current position is `(231.58, 23.70)`, speed is 29.19 m/s, acceleration is 0.67 m/s^2, and lane position is 232.79 m.
+There are other vehicles driving around you, and below is their basic information:
+- Vehicle `294` is driving on the same lane as you and is ahead of you. - Vehicle `299` is driving on the same lane as you and is behind of you. - Vehicle `296` is driving on the lane to your left and is ahead of you. - Vehicle `300` is driving on the lane to your left and is behind of you. - Vehicle `292` is driving on the lane to your left and is ahead of you. - Vehicle `305` is driving on the lane to your left and is behind of you. 
+The driving Risk Values around you are provided as below:
+(Overall Left Risk Value, 0.57), (Overall Right Risk Value, 0.44), (Front Risk Value, 0.41), (Behind Risk Value, 0.00). The Risk Value is a float number from 0.00 to 1.00. The Value 0.00 means no risk, and 1.00 means the highest risk. You should consider your action and do reasoning, based on the scenario descriptions together with the Left, Right, Front, Behind Risk Values provided to you.
+#### Driving Intensions:
+Try to keep your front and behind risk value under certain level, for example, try to keep the Max of front risk, behind risk under 0.75, and then make your forward speed close to the current average foward speed of all nearby vehicles: 28.96
+#### Available actions:
+Your available actions are: 
+Turn-left - change lane to the left of the current lane Action_id: 0
+IDLE - remain in the current lane with current speed Action_id: 1
+Turn-right - change lane to the right of the current lane Action_id: 2
+Acceleration - accelerate the vehicle Action_id: 3
+Deceleration - decelerate the vehicle Action_id: 4
+
+
+You can stop reasoning once you have a valid action to take. 
+"
+29,1340,-1,17535,17858,323,17691,17695,3,17669,17668,1348,3.968085106382973,26.10999999999996,0.0,26.10999999999996,275.17,10.26,-26.08,0.48,-0.69,-0.16,1,1336,1342,1341,1348,1339,1343,0.102070420677832,0.1988658842146907,0.0,0.2595278913358829,0.1428194645918502,0.3232229988131346,-27.66333333333333,6,233.29,8.57,-23.86,308.45,8.45,-24.55,222.08,12.74,-36.38,312.71,12.43,-34.15,234.67,4.38,-23.6,303.43,3.3,-23.44,3.0,3.0,3.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,3.0,3.0,3.0,3,2,"The current scenario indicates that I am in the second lane from the left, with vehicles both ahead and behind me in the same lane. The risk values suggest that the front risk (0.10) is low, while the behind risk (0.20) is moderate. The left risk (0.26) and right risk (0.32) are also relatively low but higher than the front risk.
+
+Given that the front risk is low, I can maintain my current speed without immediate concern for a collision ahead. The behind risk is moderate, which means I should be cautious about the vehicle behind me, but it is still manageable.
+
+Since the left and right risks are higher than the front risk, it would be safer to remain in my current lane rather than changing lanes. Additionally, my speed is slightly below the average speed of nearby vehicles (27.66 m/s), so I should consider accelerating to match the average speed while keeping the risks in check.
+
+Therefore, the best action is to accelerate to increase my speed closer to the average of nearby vehicles while maintaining a safe position in my current lane.
+
+Response to user:#### 3","Above messages are some examples of how you make a decision successfully in the past. Those scenarios are similar to the current scenario. You should refer to those examples to make a decision for the current scenario. 
+
+Here is the current scenario:
+#### Driving scenario description:
+You are driving on a road with 3 lanes, and you are currently driving in the second lane from the left. Your current position is `(275.17, 10.26)`, speed is 26.08 m/s, acceleration is 0.71 m/s^2, and lane position is 139.64 m.
+There are other vehicles driving around you, and below is their basic information:
+- Vehicle `1336` is driving on the same lane as you and is ahead of you. - Vehicle `1342` is driving on the same lane as you and is behind of you. - Vehicle `1341` is driving on the lane to your left and is ahead of you. - Vehicle `1348` is driving on the lane to your left and is behind of you. - Vehicle `1339` is driving on the lane to your left and is ahead of you. - Vehicle `1343` is driving on the lane to your left and is behind of you. 
+The driving Risk Values around you are provided as below:
+(Overall Left Risk Value, 0.26), (Overall Right Risk Value, 0.32), (Front Risk Value, 0.10), (Behind Risk Value, 0.20). The Risk Value is a float number from 0.00 to 1.00. The Value 0.00 means no risk, and 1.00 means the highest risk. You should consider your action and do reasoning, based on the scenario descriptions together with the Left, Right, Front, Behind Risk Values provided to you.
+#### Driving Intensions:
+Try to keep your front and behind risk value under certain level, for example, try to keep the Max of front risk, behind risk under 0.75, and then make your forward speed close to the current average foward speed of all nearby vehicles: 27.66
+#### Available actions:
+Your available actions are: 
+Turn-left - change lane to the left of the current lane Action_id: 0
+IDLE - remain in the current lane with current speed Action_id: 1
+Turn-right - change lane to the right of the current lane Action_id: 2
+Acceleration - accelerate the vehicle Action_id: 3
+Deceleration - decelerate the vehicle Action_id: 4
+
+
+You can stop reasoning once you have a valid action to take. 
+"
+31,895,-1,10937,11205,268,11067,11127,2,11083,11082,899,3.99164054336468,38.19999999999999,0.0,38.19999999999999,245.5,6.2,-24.82,0.7,0.07,0.0,1,891,897,894,899,0,0,0.4250296716339179,0.0,0.5732559672952657,0.0476064881972834,0.0,0.0,-27.9275,4,225.66,4.09,-22.93,302.23,3.98,-24.99,229.16,8.59,-29.65,297.03,8.17,-34.14,,,,,,,2.0,0.0,2.0,0.0,1.0,1.0,0.0,1.0,1.0,3.0,3.0,3.0,3.0,3.0,3.0,1,0,"The current scenario indicates that I am in the rightmost lane with a front risk value of 0.43 and a behind risk value of 0.00. The left risk value is 0.57, and the right risk value is 1.00, which is quite high. 
+
+Since the behind risk is very low (0.00), I can consider my options without worrying about being hit from behind. The front risk is also under the threshold of 0.75, which is acceptable. However, the left risk value is moderate (0.57), and the right risk value is extremely high (1.00), indicating that I should avoid moving to the right.
+
+Given that my goal is to keep the front and behind risk values under 0.75 and to adjust my speed closer to the average speed of nearby vehicles (27.93 m/s), I should consider my options carefully. 
+
+1. **Turn-left (Action_id: 0)**: This would change my lane to the left, where the risk is 0.57. This is manageable but not ideal since it is still a moderate risk.
+2. **IDLE (Action_id: 1)**: This would keep me in my current lane, maintaining my speed and the current risk levels.
+3. **Acceleration (Action_id: 3)**: This would increase my speed, but I am already below the average speed of nearby vehicles, and it could increase the front risk if I get too close to the vehicle ahead.
+4. **Deceleration (Action_id: 4)**: This would reduce my speed, which could help in managing the front risk but may not help in reaching the average speed of nearby vehicles.
+
+Considering the above options, remaining in my current lane (IDLE) seems to be the safest choice, as it keeps my front risk manageable and avoids the high right risk. 
+
+Response to user:#### 1","Above messages are some examples of how you make a decision successfully in the past. Those scenarios are similar to the current scenario. You should refer to those examples to make a decision for the current scenario. 
+
+Here is the current scenario:
+#### Driving scenario description:
+You are driving on a road with 3 lanes, and you are currently driving in the rightmost lane. Your current position is `(245.50, 6.20)`, speed is 24.83 m/s, acceleration is 0.07 m/s^2, and lane position is 169.42 m.
+There are other vehicles driving around you, and below is their basic information:
+- Vehicle `891` is driving on the same lane as you and is ahead of you. - Vehicle `897` is driving on the same lane as you and is behind of you. - Vehicle `894` is driving on the lane to your left and is ahead of you. - Vehicle `899` is driving on the lane to your left and is behind of you. 
+The driving Risk Values around you are provided as below:
+(Overall Left Risk Value, 0.57), (Overall Right Risk Value, 1.00), (Front Risk Value, 0.43), (Behind Risk Value, 0.00). The Risk Value is a float number from 0.00 to 1.00. The Value 0.00 means no risk, and 1.00 means the highest risk. You should consider your action and do reasoning, based on the scenario descriptions together with the Left, Right, Front, Behind Risk Values provided to you.
+#### Driving Intensions:
+Try to keep your front and behind risk value under certain level, for example, try to keep the Max of front risk, behind risk under 0.75, and then make your forward speed close to the current average foward speed of all nearby vehicles: 27.93
+#### Available actions:
+Your available actions are: 
+Turn-left - change lane to the left of the current lane Action_id: 0
+IDLE - remain in the current lane with current speed Action_id: 1
+Acceleration - accelerate the vehicle Action_id: 3
+Deceleration - decelerate the vehicle Action_id: 4
+
+
+You can stop reasoning once you have a valid action to take. 
+"
+31,1302,-1,16006,16329,323,16196,16220,8,16169,16168,1311,3.976608187134499,20.399999999999977,0.0,20.399999999999977,259.91,26.95,25.24,-0.5,-0.02,-0.03,1,1300,1307,1301,1311,0,0,0.1210602663853356,0.0535408149808782,0.3581695898720823,0.354081498087828,0.0,0.0,25.93,4,298.46,28.99,23.99,216.83,29.4,24.6,287.94,25.11,24.74,229.12,25.22,30.39,,,,,,,2.0,0.0,2.0,1.0,3.0,1.0,0.0,1.0,0.0,3.0,3.0,3.0,3.0,3.0,3.0,3,2,"The current scenario indicates that I am in the rightmost lane with a front risk value of 0.12 and a behind risk value of 0.05, both of which are under the threshold of 0.75, indicating a relatively safe situation. The left risk value is 0.36, which is manageable, while the right risk value is at 1.00, indicating a high risk if I were to change lanes to the right.
+
+Since the front risk is low and the behind risk is also low, I can consider maintaining my current speed or making slight adjustments to align with the average speed of nearby vehicles, which is 25.93 m/s. My current speed is 25.24 m/s, which is slightly below the average.
+
+Given that the left lane has a moderate risk but is still lower than the right lane, and considering that I should avoid changing lanes unnecessarily, the best course of action is to remain in my current lane and consider accelerating to match the average speed of nearby vehicles.
+
+Therefore, I will choose to accelerate to increase my speed closer to the average speed of 25.93 m/s.
+
+Response to user:#### 3","Above messages are some examples of how you make a decision successfully in the past. Those scenarios are similar to the current scenario. You should refer to those examples to make a decision for the current scenario. 
+
+Here is the current scenario:
+#### Driving scenario description:
+You are driving on a road with 3 lanes, and you are currently driving in the rightmost lane. Your current position is `(259.91, 26.95)`, speed is 25.24 m/s, acceleration is 0.04 m/s^2, and lane position is 261.30 m.
+There are other vehicles driving around you, and below is their basic information:
+- Vehicle `1300` is driving on the same lane as you and is ahead of you. - Vehicle `1307` is driving on the same lane as you and is behind of you. - Vehicle `1301` is driving on the lane to your left and is ahead of you. - Vehicle `1311` is driving on the lane to your left and is behind of you. 
+The driving Risk Values around you are provided as below:
+(Overall Left Risk Value, 0.36), (Overall Right Risk Value, 1.00), (Front Risk Value, 0.12), (Behind Risk Value, 0.05). The Risk Value is a float number from 0.00 to 1.00. The Value 0.00 means no risk, and 1.00 means the highest risk. You should consider your action and do reasoning, based on the scenario descriptions together with the Left, Right, Front, Behind Risk Values provided to you.
+#### Driving Intensions:
+Try to keep your front and behind risk value under certain level, for example, try to keep the Max of front risk, behind risk under 0.75, and then make your forward speed close to the current average foward speed of all nearby vehicles: 25.93
+#### Available actions:
+Your available actions are: 
+Turn-left - change lane to the left of the current lane Action_id: 0
+IDLE - remain in the current lane with current speed Action_id: 1
+Acceleration - accelerate the vehicle Action_id: 3
+Deceleration - decelerate the vehicle Action_id: 4
+
+
+You can stop reasoning once you have a valid action to take. 
+"
+31,1671,1,20630,20848,218,20832,20847,6,20830,20829,1677,3.991477272727265,14.049999999999956,0.0,14.049999999999956,380.58,23.65,35.83,0.9,0.43,0.3,1,0,1684,0,0,0,1677,0.0,0.0,0.0,0.0,0.0,0.6095212976394567,36.955,2,,,,233.65,21.72,34.56,,,,,,,,,,361.08,23.88,39.35,3.0,3.0,3.0,3.0,3.0,3.0,0.0,0.0,0.0,1.0,1.0,0.0,2.0,1.0,2.0,3,2,"The current scenario indicates that I am in the leftmost lane with a front risk value of 0.00 and a behind risk value of 0.00, which are both safe. However, the left risk value is very high at 1.00, indicating a significant risk if I were to turn left. The right risk value is moderate at 0.61, which is acceptable but not ideal.
+
+Since my front and behind risks are both low, I can consider my options. The goal is to keep the front and behind risk values under 0.75 while also adjusting my speed to be closer to the average speed of nearby vehicles, which is 36.95 m/s.
+
+Given that the left risk is too high to consider a left turn, and the front risk is already at 0.00, I can either remain in my current lane or accelerate to match the average speed. Decelerating would not be beneficial as it would increase the difference in speed with the surrounding vehicles.
+
+Since the right risk is manageable, I could also consider changing lanes to the right, but given the current low risks in front and behind, it may be safer to remain in my lane and accelerate.
+
+Therefore, the best action is to accelerate to increase my speed closer to the average of 36.95 m/s while maintaining a safe position in my current lane.
+
+Response to user:#### 3","Above messages are some examples of how you make a decision successfully in the past. Those scenarios are similar to the current scenario. You should refer to those examples to make a decision for the current scenario. 
+
+Here is the current scenario:
+#### Driving scenario description:
+You are driving on a road with 3 lanes, and you are currently driving in the leftmost lane. Your current position is `(380.58, 23.65)`, speed is 35.84 m/s, acceleration is 0.52 m/s^2, and lane position is 381.31 m.
+There are other vehicles driving around you, and below is their basic information:
+- Vehicle `1684` is driving on the same lane as you and is behind of you. - Vehicle `1677` is driving on the lane to your left and is behind of you. 
+The driving Risk Values around you are provided as below:
+(Overall Left Risk Value, 1.00), (Overall Right Risk Value, 0.61), (Front Risk Value, 0.00), (Behind Risk Value, 0.00). The Risk Value is a float number from 0.00 to 1.00. The Value 0.00 means no risk, and 1.00 means the highest risk. You should consider your action and do reasoning, based on the scenario descriptions together with the Left, Right, Front, Behind Risk Values provided to you.
+#### Driving Intensions:
+Try to keep your front and behind risk value under certain level, for example, try to keep the Max of front risk, behind risk under 0.75, and then make your forward speed close to the current average foward speed of all nearby vehicles: 36.95
+#### Available actions:
+Your available actions are: 
+IDLE - remain in the current lane with current speed Action_id: 1
+Turn-right - change lane to the right of the current lane Action_id: 2
+Acceleration - accelerate the vehicle Action_id: 3
+Deceleration - decelerate the vehicle Action_id: 4
+
+
+You can stop reasoning once you have a valid action to take. 
+"
+33,238,-1,2490,2727,237,2575,2589,8,2591,2589,244,3.997979797979797,19.790000000000006,0.0,19.790000000000006,160.65,27.1,27.59,-0.68,0.4,0.06,1,237,252,240,244,0,0,0.3348279045232757,0.0,0.5509692733746538,0.5470130555189239,0.0,0.0,27.52,4,185.3,29.44,25.72,50.21,29.23,22.86,179.57,25.36,29.59,139.05,25.87,31.91,,,,,,,2.0,0.0,2.0,1.0,3.0,1.0,0.0,1.0,0.0,3.0,3.0,3.0,3.0,3.0,3.0,1,0,"The current scenario indicates that I am in the rightmost lane with a front risk value of 0.33 and a behind risk value of 0.00. The left risk value is 0.55, which is moderate, and the right risk value is 1.00, indicating a high risk if I were to change lanes to the right. 
+
+Since the behind risk is very low (0.00), I can consider my options without the immediate concern of being hit from behind. The front risk is also below the threshold of 0.75, which is acceptable. 
+
+Given that the left risk is moderate (0.55), I need to weigh my options carefully. The right risk is too high (1.00), making it unsafe to change lanes to the right. 
+
+The best course of action is to remain in my current lane, as it keeps my front risk manageable and avoids the high risk of changing lanes to the right. Additionally, I can maintain my speed, which is close to the average speed of nearby vehicles.
+
+Therefore, the most reasonable action is to remain in the current lane with my current speed.
+
+Response to user:#### 1","Above messages are some examples of how you make a decision successfully in the past. Those scenarios are similar to the current scenario. You should refer to those examples to make a decision for the current scenario. 
+
+Here is the current scenario:
+#### Driving scenario description:
+You are driving on a road with 3 lanes, and you are currently driving in the rightmost lane. Your current position is `(160.65, 27.10)`, speed is 27.60 m/s, acceleration is 0.40 m/s^2, and lane position is 162.92 m.
+There are other vehicles driving around you, and below is their basic information:
+- Vehicle `237` is driving on the same lane as you and is ahead of you. - Vehicle `252` is driving on the same lane as you and is behind of you. - Vehicle `240` is driving on the lane to your left and is ahead of you. - Vehicle `244` is driving on the lane to your left and is behind of you. 
+The driving Risk Values around you are provided as below:
+(Overall Left Risk Value, 0.55), (Overall Right Risk Value, 1.00), (Front Risk Value, 0.33), (Behind Risk Value, 0.00). The Risk Value is a float number from 0.00 to 1.00. The Value 0.00 means no risk, and 1.00 means the highest risk. You should consider your action and do reasoning, based on the scenario descriptions together with the Left, Right, Front, Behind Risk Values provided to you.
+#### Driving Intensions:
+Try to keep your front and behind risk value under certain level, for example, try to keep the Max of front risk, behind risk under 0.75, and then make your forward speed close to the current average foward speed of all nearby vehicles: 27.52
+#### Available actions:
+Your available actions are: 
+Turn-left - change lane to the left of the current lane Action_id: 0
+IDLE - remain in the current lane with current speed Action_id: 1
+Acceleration - accelerate the vehicle Action_id: 3
+Deceleration - decelerate the vehicle Action_id: 4
+
+
+You can stop reasoning once you have a valid action to take. 
+"
+35,395,-1,5061,5167,106,5153,5166,2,5135,5134,403,3.995661605206073,36.83999999999999,0.0,36.83999999999999,33.54,6.2,-23.45,0.75,-0.06,0.09,1,0,415,0,403,0,0,0.0,0.0,0.0,0.0,0.0,0.0,-28.295,2,,,,348.81,4.53,-23.83,,,,94.16,8.31,-32.76,,,,,,,2.0,0.0,2.0,0.0,0.0,0.0,0.0,0.0,0.0,3.0,3.0,3.0,3.0,3.0,3.0,3,2,"The current scenario indicates that I am in the rightmost lane with a speed of 23.46 m/s. The risk values show that the left side has a risk value of 0.00, while the right side has a risk value of 1.00, indicating that it is unsafe to move right. The front and behind risk values are both 0.00, which means there is no immediate risk from vehicles in front or behind me.
+
+Given that the left risk value is 0.00, it is safe to consider turning left. However, I should also consider my current speed compared to the average speed of nearby vehicles, which is 28.30 m/s. My current speed is below this average, and I should aim to increase my speed to match it.
+
+Since the left lane is safe and I need to increase my speed, I can either accelerate or change lanes to the left. However, since the left lane is safe and I can also accelerate, I should prioritize accelerating to increase my speed while remaining in a safe lane.
+
+Therefore, I will choose to accelerate to get closer to the average speed of nearby vehicles.
+
+Response to user:#### 3","Above messages are some examples of how you make a decision successfully in the past. Those scenarios are similar to the current scenario. You should refer to those examples to make a decision for the current scenario. 
+
+Here is the current scenario:
+#### Driving scenario description:
+You are driving on a road with 3 lanes, and you are currently driving in the rightmost lane. Your current position is `(33.54, 6.20)`, speed is 23.46 m/s, acceleration is 0.11 m/s^2, and lane position is 380.89 m.
+There are other vehicles driving around you, and below is their basic information:
+- Vehicle `415` is driving on the same lane as you and is behind of you. - Vehicle `403` is driving on the lane to your left and is behind of you. 
+The driving Risk Values around you are provided as below:
+(Overall Left Risk Value, 0.00), (Overall Right Risk Value, 1.00), (Front Risk Value, 0.00), (Behind Risk Value, 0.00). The Risk Value is a float number from 0.00 to 1.00. The Value 0.00 means no risk, and 1.00 means the highest risk. You should consider your action and do reasoning, based on the scenario descriptions together with the Left, Right, Front, Behind Risk Values provided to you.
+#### Driving Intensions:
+Try to keep your front and behind risk value under certain level, for example, try to keep the Max of front risk, behind risk under 0.75, and then make your forward speed close to the current average foward speed of all nearby vehicles: 28.30
+#### Available actions:
+Your available actions are: 
+Turn-left - change lane to the left of the current lane Action_id: 0
+IDLE - remain in the current lane with current speed Action_id: 1
+Acceleration - accelerate the vehicle Action_id: 3
+Deceleration - decelerate the vehicle Action_id: 4
+
+
+You can stop reasoning once you have a valid action to take. 
+"
+35,1379,-1,18849,19027,178,19002,19016,8,18999,18998,1383,3.9671361502347375,16.899999999999977,0.0,16.899999999999977,364.4,27.32,25.21,-0.62,0.09,-0.01,1,1377,1384,1378,1383,0,0,0.1631280495845971,0.0,0.1147303178161677,0.5356718976658315,0.0,0.0,26.205,4,396.62,30.22,25.09,269.75,30.04,24.51,405.87,25.96,25.8,342.8,25.67,29.42,,,,,,,2.0,1.0,2.0,1.0,1.0,0.0,0.0,1.0,0.0,3.0,3.0,3.0,3.0,3.0,3.0,1,0,"The current scenario indicates that I am in the rightmost lane with a front risk value of 0.16, which is acceptable, and a behind risk value of 0.00, indicating no risk from the vehicle behind me. The left risk value is 0.54, which is moderate, and the right risk value is 1.00, indicating a high risk if I were to change lanes to the right.
+
+Given that the front risk is low and the behind risk is non-existent, it is prudent to remain in my current lane. The left risk value is manageable, and since I am already in the rightmost lane, turning left is the only option to change lanes, but it carries a moderate risk. 
+
+However, since the right lane has a high risk, I should avoid that direction. The best course of action is to maintain my current speed and position, as the risks are manageable and I can keep my speed close to the average speed of nearby vehicles.
+
+Response to user:#### 1","Above messages are some examples of how you make a decision successfully in the past. Those scenarios are similar to the current scenario. You should refer to those examples to make a decision for the current scenario. 
+
+Here is the current scenario:
+#### Driving scenario description:
+You are driving on a road with 3 lanes, and you are currently driving in the rightmost lane. Your current position is `(364.40, 27.32)`, speed is 25.22 m/s, acceleration is 0.09 m/s^2, and lane position is 365.42 m.
+There are other vehicles driving around you, and below is their basic information:
+- Vehicle `1377` is driving on the same lane as you and is ahead of you. - Vehicle `1384` is driving on the same lane as you and is behind of you. - Vehicle `1378` is driving on the lane to your left and is ahead of you. - Vehicle `1383` is driving on the lane to your left and is behind of you. 
+The driving Risk Values around you are provided as below:
+(Overall Left Risk Value, 0.54), (Overall Right Risk Value, 1.00), (Front Risk Value, 0.16), (Behind Risk Value, 0.00). The Risk Value is a float number from 0.00 to 1.00. The Value 0.00 means no risk, and 1.00 means the highest risk. You should consider your action and do reasoning, based on the scenario descriptions together with the Left, Right, Front, Behind Risk Values provided to you.
+#### Driving Intensions:
+Try to keep your front and behind risk value under certain level, for example, try to keep the Max of front risk, behind risk under 0.75, and then make your forward speed close to the current average foward speed of all nearby vehicles: 26.20
+#### Available actions:
+Your available actions are: 
+Turn-left - change lane to the left of the current lane Action_id: 0
+IDLE - remain in the current lane with current speed Action_id: 1
+Acceleration - accelerate the vehicle Action_id: 3
+Deceleration - decelerate the vehicle Action_id: 4
+
+
+You can stop reasoning once you have a valid action to take. 
+"
+36,1694,-1,20298,20598,300,20479,20495,2,20437,20436,1699,3.947761194029853,15.870000000000005,0.0,15.870000000000005,259.59,6.6,-24.43,0.87,-0.11,0.17,1,1691,1703,1697,1699,0,0,0.3973361466438085,0.0,0.5575629698008704,0.219306343135962,0.0,0.0,-28.3875,4,237.64,4.56,-22.3,339.83,5.14,-30.36,243.54,9.84,-32.91,296.46,8.71,-27.98,,,,,,,2.0,3.0,2.0,0.0,1.0,1.0,0.0,1.0,1.0,3.0,3.0,3.0,3.0,3.0,3.0,3,2,"The current scenario indicates that I am in the rightmost lane with a front risk value of 0.40 and a behind risk value of 0.00. The left risk value is 0.56, and the right risk value is 1.00, which is quite high. 
+
+Since the behind risk is low (0.00), I can consider my options. The front risk is also under the threshold of 0.75, which is good. However, the right risk is very high, making it unsafe to change lanes to the right. 
+
+The left risk value of 0.56 is moderate, but since I am already in the rightmost lane, turning left would involve changing lanes, which I should avoid unless necessary. 
+
+Given that my current speed is 24.45 m/s and the average speed of nearby vehicles is 28.39 m/s, I should consider accelerating to match the speed of surrounding traffic. However, I need to ensure that I maintain a safe distance from the vehicle ahead of me, which is currently at a front risk of 0.40.
+
+Since the front risk is manageable and the behind risk is low, I can safely accelerate to increase my speed while remaining in the current lane. 
+
+Response to user:#### 3","Above messages are some examples of how you make a decision successfully in the past. Those scenarios are similar to the current scenario. You should refer to those examples to make a decision for the current scenario. 
+
+Here is the current scenario:
+#### Driving scenario description:
+You are driving on a road with 3 lanes, and you are currently driving in the rightmost lane. Your current position is `(259.59, 6.60)`, speed is 24.45 m/s, acceleration is 0.20 m/s^2, and lane position is 155.33 m.
+There are other vehicles driving around you, and below is their basic information:
+- Vehicle `1691` is driving on the same lane as you and is ahead of you. - Vehicle `1703` is driving on the same lane as you and is behind of you. - Vehicle `1697` is driving on the lane to your left and is ahead of you. - Vehicle `1699` is driving on the lane to your left and is behind of you. 
+The driving Risk Values around you are provided as below:
+(Overall Left Risk Value, 0.56), (Overall Right Risk Value, 1.00), (Front Risk Value, 0.40), (Behind Risk Value, 0.00). The Risk Value is a float number from 0.00 to 1.00. The Value 0.00 means no risk, and 1.00 means the highest risk. You should consider your action and do reasoning, based on the scenario descriptions together with the Left, Right, Front, Behind Risk Values provided to you.
+#### Driving Intensions:
+Try to keep your front and behind risk value under certain level, for example, try to keep the Max of front risk, behind risk under 0.75, and then make your forward speed close to the current average foward speed of all nearby vehicles: 28.39
+#### Available actions:
+Your available actions are: 
+Turn-left - change lane to the left of the current lane Action_id: 0
+IDLE - remain in the current lane with current speed Action_id: 1
+Acceleration - accelerate the vehicle Action_id: 3
+Deceleration - decelerate the vehicle Action_id: 4
+
+
+You can stop reasoning once you have a valid action to take. 
+"
+36,2324,-1,28563,28737,174,28645,28671,2,28641,28640,2340,3.9989898989898993,39.59,0.0,39.59,77.14,6.59,-13.46,0.95,-0.61,0.04,1,2317,2330,2335,2340,0,0,0.2823420809705921,0.0,0.3031781616774364,0.0,0.0,0.0,-15.73,4,50.63,4.87,-7.33,116.29,4.13,-11.16,55.25,8.55,-20.94,129.34,9.09,-23.49,,,,,,,2.0,3.0,2.0,0.0,1.0,0.0,0.0,1.0,0.0,3.0,3.0,3.0,3.0,3.0,3.0,3,2,"The current scenario indicates that I am in the rightmost lane with a front risk value of 0.28 and a behind risk value of 0.00. The left risk value is 0.30, and the right risk value is 1.00, which indicates a high risk if I were to change lanes to the right. 
+
+Since the behind risk is very low (0.00), I can consider my options without the immediate concern of being hit from behind. The front risk is also under the threshold of 0.75, which is acceptable. 
+
+Given that the left risk value is relatively low (0.30), it may be safe to consider turning left. However, since I am currently in the rightmost lane and have not performed any lane changes recently, I should be cautious about making a left turn unless necessary.
+
+The acceleration option (Action_id: 3) could help me increase my speed towards the average speed of nearby vehicles (15.73 m/s), but I need to ensure that I do not increase my front risk significantly. 
+
+The IDLE option (Action_id: 1) would maintain my current speed and position, which is safe given the current risk values. 
+
+Considering all these factors, the best action is to accelerate slightly to match the average speed of nearby vehicles while keeping the front and behind risk values under control.
+
+Response to user:#### 3","Above messages are some examples of how you make a decision successfully in the past. Those scenarios are similar to the current scenario. You should refer to those examples to make a decision for the current scenario. 
+
+Here is the current scenario:
+#### Driving scenario description:
+You are driving on a road with 3 lanes, and you are currently driving in the rightmost lane. Your current position is `(77.14, 6.59)`, speed is 13.49 m/s, acceleration is 0.61 m/s^2, and lane position is 337.58 m.
+There are other vehicles driving around you, and below is their basic information:
+- Vehicle `2317` is driving on the same lane as you and is ahead of you. - Vehicle `2330` is driving on the same lane as you and is behind of you. - Vehicle `2335` is driving on the lane to your left and is ahead of you. - Vehicle `2340` is driving on the lane to your left and is behind of you. 
+The driving Risk Values around you are provided as below:
+(Overall Left Risk Value, 0.30), (Overall Right Risk Value, 1.00), (Front Risk Value, 0.28), (Behind Risk Value, 0.00). The Risk Value is a float number from 0.00 to 1.00. The Value 0.00 means no risk, and 1.00 means the highest risk. You should consider your action and do reasoning, based on the scenario descriptions together with the Left, Right, Front, Behind Risk Values provided to you.
+#### Driving Intensions:
+Try to keep your front and behind risk value under certain level, for example, try to keep the Max of front risk, behind risk under 0.75, and then make your forward speed close to the current average foward speed of all nearby vehicles: 15.73
+#### Available actions:
+Your available actions are: 
+Turn-left - change lane to the left of the current lane Action_id: 0
+IDLE - remain in the current lane with current speed Action_id: 1
+Acceleration - accelerate the vehicle Action_id: 3
+Deceleration - decelerate the vehicle Action_id: 4
+
+
+You can stop reasoning once you have a valid action to take. 
+"
+36,2407,-1,30048,30419,371,30183,30203,2,30191,30190,2445,3.333333333333334,25.90000000000001,0.0,25.90000000000001,98.59,6.6,-3.6,0.55,-1.08,0.01,1,2396,2464,0,2445,0,0,0.0,0.0,0.0,0.0,0.0,0.0,-5.293333333333333,3,71.43,4.86,-5.48,125.62,4.78,0.05,,,,134.75,8.93,-10.45,,,,,,,2.0,3.0,2.0,0.0,0.0,0.0,0.0,2.0,0.0,3.0,3.0,3.0,3.0,3.0,3.0,3,2,"The current scenario indicates that I am in the rightmost lane with a front risk value of 0.00 and a behind risk value of 0.00, which means there is no immediate risk from vehicles in front or behind me. The left risk value is also 0.00, indicating that I can safely consider moving to the left lane if needed. However, the right risk value is 1.00, which suggests that moving to the right is highly risky.
+
+Given that my goal is to keep the front and behind risk values under 0.75 and to adjust my speed closer to the average speed of nearby vehicles (5.29 m/s), I should consider my options carefully. 
+
+1. **Turn-left (Action_id: 0)**: This action is safe since the left risk value is 0.00. However, it may not be necessary since I am already in a safe lane with no immediate risks.
+2. **IDLE (Action_id: 1)**: This would keep my current speed and position, which is safe but does not help in adjusting my speed closer to the average of 5.29 m/s.
+3. **Acceleration (Action_id: 3)**: This would increase my speed, helping me to reach closer to the average speed of nearby vehicles. Since my current speed is 3.64 m/s, accelerating is a reasonable choice.
+4. **Deceleration (Action_id: 4)**: This would reduce my speed, which is not advisable since I need to increase my speed to match the average.
+
+Considering the above options, the best action is to accelerate, as it will help me reach a safer speed while maintaining a low risk environment.
+
+Response to user:#### 3","Above messages are some examples of how you make a decision successfully in the past. Those scenarios are similar to the current scenario. You should refer to those examples to make a decision for the current scenario. 
+
+Here is the current scenario:
+#### Driving scenario description:
+You are driving on a road with 3 lanes, and you are currently driving in the rightmost lane. Your current position is `(98.59, 6.60)`, speed is 3.64 m/s, acceleration is 1.08 m/s^2, and lane position is 316.19 m.
+There are other vehicles driving around you, and below is their basic information:
+- Vehicle `2396` is driving on the same lane as you and is ahead of you. - Vehicle `2464` is driving on the same lane as you and is behind of you. - Vehicle `2445` is driving on the lane to your left and is behind of you. 
+The driving Risk Values around you are provided as below:
+(Overall Left Risk Value, 0.00), (Overall Right Risk Value, 1.00), (Front Risk Value, 0.00), (Behind Risk Value, 0.00). The Risk Value is a float number from 0.00 to 1.00. The Value 0.00 means no risk, and 1.00 means the highest risk. You should consider your action and do reasoning, based on the scenario descriptions together with the Left, Right, Front, Behind Risk Values provided to you.
+#### Driving Intensions:
+Try to keep your front and behind risk value under certain level, for example, try to keep the Max of front risk, behind risk under 0.75, and then make your forward speed close to the current average foward speed of all nearby vehicles: 5.29
+#### Available actions:
+Your available actions are: 
+Turn-left - change lane to the left of the current lane Action_id: 0
+IDLE - remain in the current lane with current speed Action_id: 1
+Acceleration - accelerate the vehicle Action_id: 3
+Deceleration - decelerate the vehicle Action_id: 4
+
+
+You can stop reasoning once you have a valid action to take. 
+"
+39,1800,-1,24565,24893,328,24687,24749,3,24664,24663,1806,2.939869281045753,22.49000000000001,0.0,22.49000000000001,281.62,14.85,-31.39,0.96,-0.14,-0.02,1,1797,1803,1801,1806,1798,0,0.4444151391269946,0.2526704470526177,0.626005538704998,0.3263879730977185,0.8814453382566266,0.0,-32.27,5,259.2,13.28,-28.46,315.92,13.26,-32.16,266.02,17.59,-35.65,317.24,17.24,-40.8,274.38,9.63,-24.28,,,,3.0,3.0,3.0,0.0,1.0,1.0,0.0,1.0,1.0,0.0,3.0,2.0,3.0,3.0,3.0,1,0,"The current scenario indicates that I am in the second lane from the left, with vehicles both ahead and behind me. The front risk value is 0.44, which is acceptable, while the behind risk value is 0.25, which is also low. The left risk value is 0.63, indicating a moderate risk if I were to change lanes to the left, while the right risk value is quite high at 0.88, suggesting that changing lanes to the right would be very risky.
+
+Given that the front and behind risk values are both below 0.75, I can maintain my current lane without significant risk. Additionally, my speed is slightly below the average speed of nearby vehicles (32.27 m/s), so I should consider adjusting my speed to match the flow of traffic.
+
+Since the left lane has a moderate risk and the right lane has a high risk, the safest option is to remain in my current lane and consider accelerating to match the average speed of nearby vehicles.
+
+Response to user:#### 1","Above messages are some examples of how you make a decision successfully in the past. Those scenarios are similar to the current scenario. You should refer to those examples to make a decision for the current scenario. 
+
+Here is the current scenario:
+#### Driving scenario description:
+You are driving on a road with 3 lanes, and you are currently driving in the second lane from the left. Your current position is `(281.62, 14.85)`, speed is 31.40 m/s, acceleration is 0.14 m/s^2, and lane position is 132.99 m.
+There are other vehicles driving around you, and below is their basic information:
+- Vehicle `1797` is driving on the same lane as you and is ahead of you. - Vehicle `1803` is driving on the same lane as you and is behind of you. - Vehicle `1801` is driving on the lane to your left and is ahead of you. - Vehicle `1806` is driving on the lane to your left and is behind of you. - Vehicle `1798` is driving on the lane to your left and is ahead of you. 
+The driving Risk Values around you are provided as below:
+(Overall Left Risk Value, 0.63), (Overall Right Risk Value, 0.88), (Front Risk Value, 0.44), (Behind Risk Value, 0.25). The Risk Value is a float number from 0.00 to 1.00. The Value 0.00 means no risk, and 1.00 means the highest risk. You should consider your action and do reasoning, based on the scenario descriptions together with the Left, Right, Front, Behind Risk Values provided to you.
+#### Driving Intensions:
+Try to keep your front and behind risk value under certain level, for example, try to keep the Max of front risk, behind risk under 0.75, and then make your forward speed close to the current average foward speed of all nearby vehicles: 32.27
+#### Available actions:
+Your available actions are: 
+Turn-left - change lane to the left of the current lane Action_id: 0
+IDLE - remain in the current lane with current speed Action_id: 1
+Turn-right - change lane to the right of the current lane Action_id: 2
+Acceleration - accelerate the vehicle Action_id: 3
+Deceleration - decelerate the vehicle Action_id: 4
+
+
+You can stop reasoning once you have a valid action to take. 
+"
+40,682,-1,7805,8001,196,7871,7929,2,7885,7884,687,2.6043577981651347,22.70999999999998,0.0,22.70999999999998,277.84,11.23,-25.39,1.11,-0.05,-0.08,1,678,0,680,687,0,0,0.523539496241593,0.0,0.6436766451272583,0.2944744823948305,0.0,0.0,-29.01,3,268.13,8.94,-24.07,,,,264.09,13.14,-29.04,313.58,13.4,-33.92,,,,,,,2.0,3.0,2.0,0.0,3.0,1.0,0.0,3.0,1.0,3.0,3.0,3.0,3.0,3.0,3.0,3,2,"The current scenario indicates that I am in the rightmost lane with a front risk value of 0.52, which is acceptable as it is below 0.75. The behind risk value is 0.00, indicating no risk from vehicles behind me. However, the overall right risk value is 1.00, which is very high, suggesting that turning right is not a safe option.
+
+The left risk value is 0.64, which is moderate but still higher than the behind risk. Since I am already in the rightmost lane and the right risk is extremely high, I should avoid turning right. 
+
+Given that the front risk is manageable and the behind risk is non-existent, I can consider either maintaining my current speed or accelerating to match the average speed of nearby vehicles, which is 29.01 m/s. However, since my current speed is 25.41 m/s, I should accelerate to improve my speed while keeping the front risk in check.
+
+Therefore, the best action to take is to accelerate.
+
+Response to user:#### 3","Above messages are some examples of how you make a decision successfully in the past. Those scenarios are similar to the current scenario. You should refer to those examples to make a decision for the current scenario. 
+
+Here is the current scenario:
+#### Driving scenario description:
+You are driving on a road with 3 lanes, and you are currently driving in the rightmost lane. Your current position is `(277.84, 11.23)`, speed is 25.41 m/s, acceleration is 0.09 m/s^2, and lane position is 136.93 m.
+There are other vehicles driving around you, and below is their basic information:
+- Vehicle `678` is driving on the same lane as you and is ahead of you. - Vehicle `680` is driving on the lane to your left and is ahead of you. - Vehicle `687` is driving on the lane to your left and is behind of you. 
+The driving Risk Values around you are provided as below:
+(Overall Left Risk Value, 0.64), (Overall Right Risk Value, 1.00), (Front Risk Value, 0.52), (Behind Risk Value, 0.00). The Risk Value is a float number from 0.00 to 1.00. The Value 0.00 means no risk, and 1.00 means the highest risk. You should consider your action and do reasoning, based on the scenario descriptions together with the Left, Right, Front, Behind Risk Values provided to you.
+#### Driving Intensions:
+Try to keep your front and behind risk value under certain level, for example, try to keep the Max of front risk, behind risk under 0.75, and then make your forward speed close to the current average foward speed of all nearby vehicles: 29.01
+#### Available actions:
+Your available actions are: 
+Turn-left - change lane to the left of the current lane Action_id: 0
+IDLE - remain in the current lane with current speed Action_id: 1
+Acceleration - accelerate the vehicle Action_id: 3
+Deceleration - decelerate the vehicle Action_id: 4
+
+
+You can stop reasoning once you have a valid action to take. 
+"
+40,1275,-1,15155,15486,331,15318,15369,2,15319,15318,1285,2.499999999999999,19.599999999999994,0.0,19.599999999999994,207.27,11.23,-21.77,1.1,-0.01,-0.03,1,1268,1282,1279,1285,0,0,0.3699063695107477,0.1379401292364499,0.4800210998285639,0.2382961888434656,0.0,0.0,-25.775,4,183.07,9.56,-20.35,245.3,10.09,-23.42,188.47,14.25,-29.72,244.56,13.73,-29.61,,,,,,,2.0,3.0,2.0,0.0,1.0,1.0,0.0,1.0,1.0,3.0,3.0,3.0,3.0,3.0,3.0,3,2,"The current scenario indicates that I am in the rightmost lane with a front risk value of 0.37 and a behind risk value of 0.14. The left risk value is 0.48, which is moderate, while the right risk value is at the maximum of 1.00, indicating a high risk if I were to change lanes to the right.
+
+Given that the front risk is below 0.75 and the behind risk is also below 0.75, I can maintain my current lane without immediate concern. The left risk value is manageable, but since I am already in the rightmost lane, I should avoid turning left unless necessary.
+
+The average forward speed of nearby vehicles is 25.77 m/s, and my current speed is 21.80 m/s. To align my speed closer to the average, I should consider accelerating. However, I must also ensure that I do not increase the front risk significantly.
+
+Since the front risk is already at a safe level, I can choose to accelerate to increase my speed while remaining in the current lane. This action will help me get closer to the average speed without introducing additional risk.
+
+Response to user:#### 3","Above messages are some examples of how you make a decision successfully in the past. Those scenarios are similar to the current scenario. You should refer to those examples to make a decision for the current scenario. 
+
+Here is the current scenario:
+#### Driving scenario description:
+You are driving on a road with 3 lanes, and you are currently driving in the rightmost lane. Your current position is `(207.27, 11.23)`, speed is 21.80 m/s, acceleration is 0.03 m/s^2, and lane position is 207.43 m.
+There are other vehicles driving around you, and below is their basic information:
+- Vehicle `1268` is driving on the same lane as you and is ahead of you. - Vehicle `1282` is driving on the same lane as you and is behind of you. - Vehicle `1279` is driving on the lane to your left and is ahead of you. - Vehicle `1285` is driving on the lane to your left and is behind of you. 
+The driving Risk Values around you are provided as below:
+(Overall Left Risk Value, 0.48), (Overall Right Risk Value, 1.00), (Front Risk Value, 0.37), (Behind Risk Value, 0.14). The Risk Value is a float number from 0.00 to 1.00. The Value 0.00 means no risk, and 1.00 means the highest risk. You should consider your action and do reasoning, based on the scenario descriptions together with the Left, Right, Front, Behind Risk Values provided to you.
+#### Driving Intensions:
+Try to keep your front and behind risk value under certain level, for example, try to keep the Max of front risk, behind risk under 0.75, and then make your forward speed close to the current average foward speed of all nearby vehicles: 25.77
+#### Available actions:
+Your available actions are: 
+Turn-left - change lane to the left of the current lane Action_id: 0
+IDLE - remain in the current lane with current speed Action_id: 1
+Acceleration - accelerate the vehicle Action_id: 3
+Deceleration - decelerate the vehicle Action_id: 4
+
+
+You can stop reasoning once you have a valid action to take. 
+"
+40,1767,-1,21564,21822,258,21757,21789,3,21729,21728,1770,3.998935037273698,37.55,0.0,37.55,132.1,15.35,-32.5,0.94,0.32,-0.16,1,1766,1768,1765,1770,1761,1769,0.1263352235263088,0.1800079124357114,0.0,0.0424634049848344,0.0,0.0,-31.35166666666667,6,91.11,13.37,-28.92,162.78,12.43,-31.73,21.42,17.13,-33.66,188.38,17.23,-44.47,69.96,8.81,-24.02,249.11,9.05,-25.31,3.0,3.0,3.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,3.0,3.0,3.0,2,1,"The current scenario indicates that I am in the second lane from the left, with vehicles both ahead and behind me in the same lane. The left lane has a low risk value of 0.04, while the right lane has a risk value of 0.00, indicating it is safe to change to the right lane. The front risk value is 0.13, which is acceptable, but the behind risk value is 0.18, which is higher than I would prefer.
+
+Given that the right lane has a risk value of 0.00, it presents a safer option compared to my current lane, especially considering the higher behind risk. However, I should also consider the overall traffic flow and my intention to maintain a speed close to the average of nearby vehicles.
+
+Since the right lane is completely safe, I can change to that lane without increasing my risk. This will also help in managing the behind risk, as I can create more space from the vehicle behind me.
+
+Therefore, the best action to take is to turn right into the right lane.
+
+Response to user:#### 2","Above messages are some examples of how you make a decision successfully in the past. Those scenarios are similar to the current scenario. You should refer to those examples to make a decision for the current scenario. 
+
+Here is the current scenario:
+#### Driving scenario description:
+You are driving on a road with 3 lanes, and you are currently driving in the second lane from the left. Your current position is `(132.10, 15.35)`, speed is 32.51 m/s, acceleration is 0.36 m/s^2, and lane position is 282.01 m.
+There are other vehicles driving around you, and below is their basic information:
+- Vehicle `1766` is driving on the same lane as you and is ahead of you. - Vehicle `1768` is driving on the same lane as you and is behind of you. - Vehicle `1765` is driving on the lane to your left and is ahead of you. - Vehicle `1770` is driving on the lane to your left and is behind of you. - Vehicle `1761` is driving on the lane to your left and is ahead of you. - Vehicle `1769` is driving on the lane to your left and is behind of you. 
+The driving Risk Values around you are provided as below:
+(Overall Left Risk Value, 0.04), (Overall Right Risk Value, 0.00), (Front Risk Value, 0.13), (Behind Risk Value, 0.18). The Risk Value is a float number from 0.00 to 1.00. The Value 0.00 means no risk, and 1.00 means the highest risk. You should consider your action and do reasoning, based on the scenario descriptions together with the Left, Right, Front, Behind Risk Values provided to you.
+#### Driving Intensions:
+Try to keep your front and behind risk value under certain level, for example, try to keep the Max of front risk, behind risk under 0.75, and then make your forward speed close to the current average foward speed of all nearby vehicles: 31.35
+#### Available actions:
+Your available actions are: 
+Turn-left - change lane to the left of the current lane Action_id: 0
+IDLE - remain in the current lane with current speed Action_id: 1
+Turn-right - change lane to the right of the current lane Action_id: 2
+Acceleration - accelerate the vehicle Action_id: 3
+Deceleration - decelerate the vehicle Action_id: 4
+
+
+You can stop reasoning once you have a valid action to take. 
+"
+43,1952,-1,22003,22295,292,22159,22205,3,22157,22156,1953,3.3497942386831223,16.279999999999973,0.0,16.279999999999973,202.52,20.55,-32.85,1.02,0.3,-0.01,1,1948,1956,1943,1953,1937,1954,0.132005802452855,0.0,0.0,0.5880258472899907,0.0,0.0,-28.585000000000004,6,159.55,18.88,-24.54,298.93,18.87,-33.75,19.9,22.99,-33.12,223.24,22.34,-37.81,123.6,14.47,-18.58,285.27,14.08,-23.71,3.0,3.0,3.0,1.0,3.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,3.0,3.0,3.0,4,-2,"The current scenario indicates that I am in the second lane from the left, with vehicles both ahead and behind me in the same lane. The left lane has a moderate risk value of 0.59, while the right lane has a low risk value of 0.00. The front risk is relatively low at 0.13, and there is no risk from behind (0.00). 
+
+Given that the right lane has a risk value of 0.00, it presents a safer option for a lane change compared to the left lane, which has a higher risk. However, since I am currently in a lane with low front risk and no behind risk, it may be prudent to remain in my current lane to maintain stability and avoid unnecessary lane changes.
+
+Additionally, my current speed of 32.87 m/s is above the average speed of nearby vehicles (28.59 m/s). To align my speed with the average while keeping the front and behind risk values under control, deceleration would be a suitable action.
+
+Considering all these factors, the best course of action is to decelerate to reduce my speed closer to the average of nearby vehicles while remaining in my current lane.
+
+Response to user:#### 4","Above messages are some examples of how you make a decision successfully in the past. Those scenarios are similar to the current scenario. You should refer to those examples to make a decision for the current scenario. 
+
+Here is the current scenario:
+#### Driving scenario description:
+You are driving on a road with 3 lanes, and you are currently driving in the second lane from the left. Your current position is `(202.52, 20.55)`, speed is 32.87 m/s, acceleration is 0.30 m/s^2, and lane position is 211.44 m.
+There are other vehicles driving around you, and below is their basic information:
+- Vehicle `1948` is driving on the same lane as you and is ahead of you. - Vehicle `1956` is driving on the same lane as you and is behind of you. - Vehicle `1943` is driving on the lane to your left and is ahead of you. - Vehicle `1953` is driving on the lane to your left and is behind of you. - Vehicle `1937` is driving on the lane to your left and is ahead of you. - Vehicle `1954` is driving on the lane to your left and is behind of you. 
+The driving Risk Values around you are provided as below:
+(Overall Left Risk Value, 0.59), (Overall Right Risk Value, 0.00), (Front Risk Value, 0.13), (Behind Risk Value, 0.00). The Risk Value is a float number from 0.00 to 1.00. The Value 0.00 means no risk, and 1.00 means the highest risk. You should consider your action and do reasoning, based on the scenario descriptions together with the Left, Right, Front, Behind Risk Values provided to you.
+#### Driving Intensions:
+Try to keep your front and behind risk value under certain level, for example, try to keep the Max of front risk, behind risk under 0.75, and then make your forward speed close to the current average foward speed of all nearby vehicles: 28.59
+#### Available actions:
+Your available actions are: 
+Turn-left - change lane to the left of the current lane Action_id: 0
+IDLE - remain in the current lane with current speed Action_id: 1
+Turn-right - change lane to the right of the current lane Action_id: 2
+Acceleration - accelerate the vehicle Action_id: 3
+Deceleration - decelerate the vehicle Action_id: 4
+
+
+You can stop reasoning once you have a valid action to take. 
+"
+44,1612,-1,18490,18859,369,18613,18647,2,18627,18626,1616,3.991620111731845,28.580000000000013,0.0,28.580000000000013,212.57,16.26,-24.75,0.7,0.0,-0.08,1,1609,1619,1611,1616,0,0,0.2365818277726493,0.0,0.4523275748384544,0.2452855070552551,0.0,0.0,-27.005000000000003,4,181.71,14.16,-23.46,304.53,14.18,-25.9,189.9,18.48,-27.06,249.86,18.49,-31.6,,,,,,,2.0,0.0,2.0,0.0,1.0,1.0,0.0,0.0,0.0,3.0,3.0,3.0,3.0,3.0,3.0,3,2,"The current scenario indicates that I am in the rightmost lane with a front risk value of 0.24, which is acceptable, and a behind risk value of 0.00, indicating no risk from the vehicle behind me. The left risk value is 0.45, which is moderate, and the right risk value is 1.00, indicating high risk if I were to change lanes to the right.
+
+Given that the front risk is under the threshold of 0.75 and the behind risk is 0.00, I can consider my options. The left lane has a moderate risk, but it is still lower than the right lane's risk. However, since I am already in the rightmost lane and the right risk is very high, it would be unwise to change lanes to the right.
+
+The best course of action is to remain in my current lane and maintain my speed, as this will keep my front and behind risk values under control. Additionally, I should consider accelerating to match the average speed of nearby vehicles, which is 27.01 m/s, but I need to ensure that I do not increase the front risk significantly.
+
+Since the front risk is already low, I can safely accelerate without exceeding the risk threshold. Therefore, I will choose to accelerate.
+
+Response to user:#### 3","Above messages are some examples of how you make a decision successfully in the past. Those scenarios are similar to the current scenario. You should refer to those examples to make a decision for the current scenario. 
+
+Here is the current scenario:
+#### Driving scenario description:
+You are driving on a road with 3 lanes, and you are currently driving in the rightmost lane. Your current position is `(212.57, 16.26)`, speed is 24.76 m/s, acceleration is 0.08 m/s^2, and lane position is 201.81 m.
+There are other vehicles driving around you, and below is their basic information:
+- Vehicle `1609` is driving on the same lane as you and is ahead of you. - Vehicle `1619` is driving on the same lane as you and is behind of you. - Vehicle `1611` is driving on the lane to your left and is ahead of you. - Vehicle `1616` is driving on the lane to your left and is behind of you. 
+The driving Risk Values around you are provided as below:
+(Overall Left Risk Value, 0.45), (Overall Right Risk Value, 1.00), (Front Risk Value, 0.24), (Behind Risk Value, 0.00). The Risk Value is a float number from 0.00 to 1.00. The Value 0.00 means no risk, and 1.00 means the highest risk. You should consider your action and do reasoning, based on the scenario descriptions together with the Left, Right, Front, Behind Risk Values provided to you.
+#### Driving Intensions:
+Try to keep your front and behind risk value under certain level, for example, try to keep the Max of front risk, behind risk under 0.75, and then make your forward speed close to the current average foward speed of all nearby vehicles: 27.01
+#### Available actions:
+Your available actions are: 
+Turn-left - change lane to the left of the current lane Action_id: 0
+IDLE - remain in the current lane with current speed Action_id: 1
+Acceleration - accelerate the vehicle Action_id: 3
+Deceleration - decelerate the vehicle Action_id: 4
+
+
+You can stop reasoning once you have a valid action to take. 
+"
+45,168,-1,1900,2047,147,1991,2046,2,1995,1994,171,3.8135593220338992,15.75,0.0,15.75,59.04,16.51,-27.57,0.89,0.26,0.01,1,163,177,0,171,0,0,0.5397599894500857,0.0,0.0,0.6155874983515759,0.0,0.0,-26.19666666666667,3,41.64,14.27,-21.57,208.72,13.89,-25.35,,,,77.34,18.23,-31.67,,,,,,,2.0,3.0,2.0,1.0,3.0,0.0,0.0,1.0,1.0,3.0,3.0,3.0,3.0,3.0,3.0,4,-2,"The current scenario indicates that I am in the rightmost lane with a front risk value of 0.54 and a behind risk value of 0.00. The left risk value is 0.62, and the right risk value is 1.00, which is quite high. 
+
+Since the behind risk is very low (0.00), I can consider my options without worrying about being hit from behind. The front risk is also below the threshold of 0.75, which is acceptable. However, the left risk is moderately high at 0.62, and the right risk is at its maximum of 1.00, indicating that turning right is not a safe option.
+
+Given that my current speed is slightly above the average speed of nearby vehicles (27.58 m/s vs. 26.20 m/s), I should consider decelerating to align my speed more closely with the average. This will help maintain safety and stability in the current lane.
+
+Since I have not performed any previous actions, I can safely choose to decelerate without the risk of changing lanes unnecessarily.
+
+Response to user:#### 4","Above messages are some examples of how you make a decision successfully in the past. Those scenarios are similar to the current scenario. You should refer to those examples to make a decision for the current scenario. 
+
+Here is the current scenario:
+#### Driving scenario description:
+You are driving on a road with 3 lanes, and you are currently driving in the rightmost lane. Your current position is `(59.04, 16.51)`, speed is 27.58 m/s, acceleration is 0.26 m/s^2, and lane position is 353.70 m.
+There are other vehicles driving around you, and below is their basic information:
+- Vehicle `163` is driving on the same lane as you and is ahead of you. - Vehicle `177` is driving on the same lane as you and is behind of you. - Vehicle `171` is driving on the lane to your left and is behind of you. 
+The driving Risk Values around you are provided as below:
+(Overall Left Risk Value, 0.62), (Overall Right Risk Value, 1.00), (Front Risk Value, 0.54), (Behind Risk Value, 0.00). The Risk Value is a float number from 0.00 to 1.00. The Value 0.00 means no risk, and 1.00 means the highest risk. You should consider your action and do reasoning, based on the scenario descriptions together with the Left, Right, Front, Behind Risk Values provided to you.
+#### Driving Intensions:
+Try to keep your front and behind risk value under certain level, for example, try to keep the Max of front risk, behind risk under 0.75, and then make your forward speed close to the current average foward speed of all nearby vehicles: 26.20
+#### Available actions:
+Your available actions are: 
+Turn-left - change lane to the left of the current lane Action_id: 0
+IDLE - remain in the current lane with current speed Action_id: 1
+Acceleration - accelerate the vehicle Action_id: 3
+Deceleration - decelerate the vehicle Action_id: 4
+
+
+You can stop reasoning once you have a valid action to take. 
+"
+46,2590,-1,27311,27477,166,27446,27476,2,27405,27404,2599,3.9900826446280986,24.139999999999983,0.0,24.139999999999983,109.35,6.62,-25.41,1.19,-0.31,0.08,1,2587,2595,2593,2599,0,0,0.3474878016616115,0.0,0.390346828432019,0.1524462613741263,0.0,0.0,-28.8025,4,85.26,4.35,-22.27,168.5,5.02,-26.19,84.84,9.19,-34.46,152.44,9.03,-32.29,,,,,,,2.0,0.0,2.0,0.0,1.0,1.0,0.0,1.0,1.0,3.0,3.0,3.0,3.0,3.0,3.0,3,2,"The current scenario indicates that I am in the rightmost lane with a front risk value of 0.35 and a behind risk value of 0.00. The left risk value is 0.39, and the right risk value is 1.00, which is quite high. 
+
+Since the behind risk is very low (0.00), I can consider my options without worrying about being hit from behind. The front risk is also under the threshold of 0.75, which is acceptable. 
+
+The left risk value (0.39) is manageable, and since I am already in the rightmost lane, turning left is a viable option if I need to change lanes. However, the right risk value is extremely high (1.00), indicating that I should avoid any actions that would lead me to the right.
+
+Given that my current speed (25.44 m/s) is below the average speed of nearby vehicles (28.80 m/s), I should consider accelerating to match the speed of surrounding traffic. 
+
+Decelerating would not be beneficial as it would further decrease my speed relative to others. Remaining idle would keep my speed constant but would not help in matching the average speed. 
+
+Therefore, the best action is to accelerate to increase my speed closer to the average of 28.80 m/s while maintaining a safe front risk.
+
+Response to user:#### 3","Above messages are some examples of how you make a decision successfully in the past. Those scenarios are similar to the current scenario. You should refer to those examples to make a decision for the current scenario. 
+
+Here is the current scenario:
+#### Driving scenario description:
+You are driving on a road with 3 lanes, and you are currently driving in the rightmost lane. Your current position is `(109.35, 6.62)`, speed is 25.44 m/s, acceleration is 0.32 m/s^2, and lane position is 305.45 m.
+There are other vehicles driving around you, and below is their basic information:
+- Vehicle `2587` is driving on the same lane as you and is ahead of you. - Vehicle `2595` is driving on the same lane as you and is behind of you. - Vehicle `2593` is driving on the lane to your left and is ahead of you. - Vehicle `2599` is driving on the lane to your left and is behind of you. 
+The driving Risk Values around you are provided as below:
+(Overall Left Risk Value, 0.39), (Overall Right Risk Value, 1.00), (Front Risk Value, 0.35), (Behind Risk Value, 0.00). The Risk Value is a float number from 0.00 to 1.00. The Value 0.00 means no risk, and 1.00 means the highest risk. You should consider your action and do reasoning, based on the scenario descriptions together with the Left, Right, Front, Behind Risk Values provided to you.
+#### Driving Intensions:
+Try to keep your front and behind risk value under certain level, for example, try to keep the Max of front risk, behind risk under 0.75, and then make your forward speed close to the current average foward speed of all nearby vehicles: 28.80
+#### Available actions:
+Your available actions are: 
+Turn-left - change lane to the left of the current lane Action_id: 0
+IDLE - remain in the current lane with current speed Action_id: 1
+Acceleration - accelerate the vehicle Action_id: 3
+Deceleration - decelerate the vehicle Action_id: 4
+
+
+You can stop reasoning once you have a valid action to take. 
+"
+47,2347,1,24421,24581,160,24540,24556,3,24511,24510,2353,3.9269230769230776,10.210000000000008,0.0,10.210000000000008,49.69,6.11,-25.15,-0.77,0.01,0.1,1,2344,2360,0,2349,0,2353,0.3808519055782672,0.0,0.0,0.8046947118554661,0.0,0.2566266649083476,-27.16,4,18.02,7.94,-25.19,176.99,8.08,-26.04,,,,60.09,12.4,-30.92,,,,83.69,5.66,-26.49,3.0,3.0,3.0,2.0,3.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,3.0,3.0,3.0,2,1,"The current scenario indicates that I am in the second lane from the left, with a front risk value of 0.38 and a behind risk value of 0.00. The left risk value is quite high at 0.80, which suggests that turning left is not a safe option. The right risk value is relatively low at 0.26, indicating that changing to the right lane could be a safer choice compared to the left.
+
+Since the behind risk is 0.00, I do not need to worry about being hit from behind, which allows me to focus on the front and side risks. The front risk value of 0.38 is acceptable, but I want to keep it under 0.75 as per my driving intentions. 
+
+Given that the left lane has a high risk and the right lane has a lower risk, I should consider my options carefully. I could either remain in my current lane (Action_id: 1) or change to the right lane (Action_id: 2). However, since the right lane has a lower risk value, it would be prudent to change lanes to the right.
+
+Therefore, I will choose to turn right.
+
+Response to user:#### 2","Above messages are some examples of how you make a decision successfully in the past. Those scenarios are similar to the current scenario. You should refer to those examples to make a decision for the current scenario. 
+
+Here is the current scenario:
+#### Driving scenario description:
+You are driving on a road with 3 lanes, and you are currently driving in the second lane from the left. Your current position is `(49.69, 6.11)`, speed is 25.16 m/s, acceleration is 0.10 m/s^2, and lane position is 364.94 m.
+There are other vehicles driving around you, and below is their basic information:
+- Vehicle `2344` is driving on the same lane as you and is ahead of you. - Vehicle `2360` is driving on the same lane as you and is behind of you. - Vehicle `2349` is driving on the lane to your left and is behind of you. - Vehicle `2353` is driving on the lane to your left and is behind of you. 
+The driving Risk Values around you are provided as below:
+(Overall Left Risk Value, 0.80), (Overall Right Risk Value, 0.26), (Front Risk Value, 0.38), (Behind Risk Value, 0.00). The Risk Value is a float number from 0.00 to 1.00. The Value 0.00 means no risk, and 1.00 means the highest risk. You should consider your action and do reasoning, based on the scenario descriptions together with the Left, Right, Front, Behind Risk Values provided to you.
+#### Driving Intensions:
+Try to keep your front and behind risk value under certain level, for example, try to keep the Max of front risk, behind risk under 0.75, and then make your forward speed close to the current average foward speed of all nearby vehicles: 27.16
+#### Available actions:
+Your available actions are: 
+Turn-left - change lane to the left of the current lane Action_id: 0
+IDLE - remain in the current lane with current speed Action_id: 1
+Turn-right - change lane to the right of the current lane Action_id: 2
+Acceleration - accelerate the vehicle Action_id: 3
+Deceleration - decelerate the vehicle Action_id: 4
+
+
+You can stop reasoning once you have a valid action to take. 
+"
+48,76,-1,583,881,298,709,765,8,716,715,79,2.7477272727272744,24.180000000000007,0.0,24.180000000000007,176.72,28.44,25.35,-0.85,0.14,0.07,1,72,0,77,79,0,0,0.3535540023737307,0.0,0.3859949887907161,0.4682843201898984,0.0,0.0,29.070000000000004,3,199.16,30.86,23.58,,,,202.45,26.63,29.57,149.9,26.63,34.06,,,,,,,2.0,1.0,2.0,1.0,3.0,1.0,0.0,3.0,1.0,3.0,3.0,3.0,3.0,3.0,3.0,3,2,"The current scenario indicates that I am in the rightmost lane with a front risk value of 0.35, which is acceptable, and a behind risk value of 0.00, indicating no risk from the vehicle behind me. The left risk value is 0.47, which is moderate, and the right risk value is at the maximum of 1.00, indicating a high risk if I were to change lanes to the right.
+
+Given that the front risk is manageable and the behind risk is non-existent, I should prioritize maintaining my current lane to avoid the high risk on the right. Additionally, my speed is currently lower than the average speed of nearby vehicles (29.07 m/s), so I should consider accelerating to match the average speed while keeping the risks in check.
+
+Since the left risk is moderate but not excessively high, I can also consider the option of turning left if necessary, but it is not the best choice given the current risks. The safest action is to remain in my current lane and accelerate to increase my speed closer to the average of nearby vehicles.
+
+Response to user:#### 3","Above messages are some examples of how you make a decision successfully in the past. Those scenarios are similar to the current scenario. You should refer to those examples to make a decision for the current scenario. 
+
+Here is the current scenario:
+#### Driving scenario description:
+You are driving on a road with 3 lanes, and you are currently driving in the rightmost lane. Your current position is `(176.72, 28.44)`, speed is 25.36 m/s, acceleration is 0.16 m/s^2, and lane position is 178.99 m.
+There are other vehicles driving around you, and below is their basic information:
+- Vehicle `72` is driving on the same lane as you and is ahead of you. - Vehicle `77` is driving on the lane to your left and is ahead of you. - Vehicle `79` is driving on the lane to your left and is behind of you. 
+The driving Risk Values around you are provided as below:
+(Overall Left Risk Value, 0.47), (Overall Right Risk Value, 1.00), (Front Risk Value, 0.35), (Behind Risk Value, 0.00). The Risk Value is a float number from 0.00 to 1.00. The Value 0.00 means no risk, and 1.00 means the highest risk. You should consider your action and do reasoning, based on the scenario descriptions together with the Left, Right, Front, Behind Risk Values provided to you.
+#### Driving Intensions:
+Try to keep your front and behind risk value under certain level, for example, try to keep the Max of front risk, behind risk under 0.75, and then make your forward speed close to the current average foward speed of all nearby vehicles: 29.07
+#### Available actions:
+Your available actions are: 
+Turn-left - change lane to the left of the current lane Action_id: 0
+IDLE - remain in the current lane with current speed Action_id: 1
+Acceleration - accelerate the vehicle Action_id: 3
+Deceleration - decelerate the vehicle Action_id: 4
+
+
+You can stop reasoning once you have a valid action to take. 
+"
+49,1257,-1,15633,15880,247,15737,15751,3,15732,15731,1261,3.375000000000002,21.870000000000005,0.0,21.870000000000005,274.46,10.44,-31.06,1.07,-0.63,-0.07,1,1251,1260,1259,1261,1249,1256,0.0749043914018198,0.0937623631807991,0.5600685744428326,0.4400632994856917,0.2102070420677832,0.6223130687063168,-29.82333333333333,6,228.2,8.74,-25.68,318.01,8.49,-31.76,256.13,12.71,-37.16,303.13,12.78,-38.24,235.06,3.95,-22.97,287.28,4.41,-23.13,3.0,3.0,3.0,1.0,3.0,1.0,0.0,0.0,0.0,1.0,3.0,0.0,3.0,3.0,3.0,4,-2,"The current scenario indicates that I am in the second lane from the left, with a low front risk value of 0.07 and a behind risk value of 0.09, both of which are well below the threshold of 0.75. This suggests that my current lane is relatively safe in terms of potential collisions. 
+
+The left risk value is 0.56 and the right risk value is 0.62, which are both moderate. Since I am already in a lane with low front and behind risks, it would be prudent to remain in my current lane rather than changing lanes, as both left and right options present higher risks.
+
+Additionally, my current speed of 31.08 m/s is above the average speed of nearby vehicles (29.82 m/s). To align my speed with the average while maintaining safety, I should consider decelerating slightly.
+
+Given these considerations, the best action is to decelerate to reduce my speed closer to the average of nearby vehicles while remaining in the current lane, which has the lowest risk values.
+
+Response to user:#### 4","Above messages are some examples of how you make a decision successfully in the past. Those scenarios are similar to the current scenario. You should refer to those examples to make a decision for the current scenario. 
+
+Here is the current scenario:
+#### Driving scenario description:
+You are driving on a road with 3 lanes, and you are currently driving in the second lane from the left. Your current position is `(274.46, 10.44)`, speed is 31.08 m/s, acceleration is 0.63 m/s^2, and lane position is 140.34 m.
+There are other vehicles driving around you, and below is their basic information:
+- Vehicle `1251` is driving on the same lane as you and is ahead of you. - Vehicle `1260` is driving on the same lane as you and is behind of you. - Vehicle `1259` is driving on the lane to your left and is ahead of you. - Vehicle `1261` is driving on the lane to your left and is behind of you. - Vehicle `1249` is driving on the lane to your left and is ahead of you. - Vehicle `1256` is driving on the lane to your left and is behind of you. 
+The driving Risk Values around you are provided as below:
+(Overall Left Risk Value, 0.56), (Overall Right Risk Value, 0.62), (Front Risk Value, 0.07), (Behind Risk Value, 0.09). The Risk Value is a float number from 0.00 to 1.00. The Value 0.00 means no risk, and 1.00 means the highest risk. You should consider your action and do reasoning, based on the scenario descriptions together with the Left, Right, Front, Behind Risk Values provided to you.
+#### Driving Intensions:
+Try to keep your front and behind risk value under certain level, for example, try to keep the Max of front risk, behind risk under 0.75, and then make your forward speed close to the current average foward speed of all nearby vehicles: 29.82
+#### Available actions:
+Your available actions are: 
+Turn-left - change lane to the left of the current lane Action_id: 0
+IDLE - remain in the current lane with current speed Action_id: 1
+Turn-right - change lane to the right of the current lane Action_id: 2
+Acceleration - accelerate the vehicle Action_id: 3
+Deceleration - decelerate the vehicle Action_id: 4
+
+
+You can stop reasoning once you have a valid action to take. 
+"
+50,906,-1,12153,12334,181,12281,12300,7,12284,12283,915,3.023529411764711,12.850000000000025,0.0,12.850000000000025,316.05,34.32,25.8,-1.26,0.34,0.01,1,901,911,910,915,898,904,0.4341289727020967,0.0,0.2094157984966372,0.6395885533430041,0.0,0.8913358828959514,27.315,6,335.74,36.62,24.75,245.17,36.58,24.21,350.77,32.18,35.35,299.03,32.62,29.89,410.9,40.87,25.41,312.23,41.16,24.28,3.0,3.0,3.0,1.0,1.0,0.0,0.0,3.0,1.0,2.0,1.0,0.0,3.0,3.0,3.0,3,2,"The current scenario indicates that I am in the second lane from the left, with vehicles both ahead and behind me. The front risk value is 0.43, which is acceptable, while the behind risk value is 0.00, indicating no risk from the vehicle behind. The left risk value is 0.64, which is moderate, and the right risk value is 0.89, indicating a high risk if I were to change lanes to the right.
+
+Given that the behind risk is low and the front risk is manageable, I should prioritize maintaining my current lane to avoid the high risk on the right. Additionally, since my speed is currently lower than the average speed of nearby vehicles (27.32 m/s), I should consider accelerating to match the flow of traffic.
+
+However, I must also keep in mind that changing lanes is not advisable due to the high right risk. Therefore, the best course of action is to remain in my current lane and accelerate to improve my speed.
+
+Response to user:#### 3","Above messages are some examples of how you make a decision successfully in the past. Those scenarios are similar to the current scenario. You should refer to those examples to make a decision for the current scenario. 
+
+Here is the current scenario:
+#### Driving scenario description:
+You are driving on a road with 3 lanes, and you are currently driving in the second lane from the left. Your current position is `(316.05, 34.32)`, speed is 25.83 m/s, acceleration is 0.34 m/s^2, and lane position is 317.91 m.
+There are other vehicles driving around you, and below is their basic information:
+- Vehicle `901` is driving on the same lane as you and is ahead of you. - Vehicle `911` is driving on the same lane as you and is behind of you. - Vehicle `910` is driving on the lane to your left and is ahead of you. - Vehicle `915` is driving on the lane to your left and is behind of you. - Vehicle `898` is driving on the lane to your left and is ahead of you. - Vehicle `904` is driving on the lane to your left and is behind of you. 
+The driving Risk Values around you are provided as below:
+(Overall Left Risk Value, 0.64), (Overall Right Risk Value, 0.89), (Front Risk Value, 0.43), (Behind Risk Value, 0.00). The Risk Value is a float number from 0.00 to 1.00. The Value 0.00 means no risk, and 1.00 means the highest risk. You should consider your action and do reasoning, based on the scenario descriptions together with the Left, Right, Front, Behind Risk Values provided to you.
+#### Driving Intensions:
+Try to keep your front and behind risk value under certain level, for example, try to keep the Max of front risk, behind risk under 0.75, and then make your forward speed close to the current average foward speed of all nearby vehicles: 27.32
+#### Available actions:
+Your available actions are: 
+Turn-left - change lane to the left of the current lane Action_id: 0
+IDLE - remain in the current lane with current speed Action_id: 1
+Turn-right - change lane to the right of the current lane Action_id: 2
+Acceleration - accelerate the vehicle Action_id: 3
+Deceleration - decelerate the vehicle Action_id: 4
+
+
+You can stop reasoning once you have a valid action to take. 
+"
+51,1577,-1,19238,19434,196,19347,19403,8,19302,19301,1587,3.971949509116413,28.32000000000002,0.0,28.32000000000002,225.47,27.65,26.19,-1.06,0.13,0.14,1,1575,1586,1576,1587,0,0,0.3356191480944217,0.0,0.0,0.1074772517473295,0.0,0.0,28.5675,4,248.57,30.18,24.3,156.77,29.96,25.0,298.27,26.26,31.13,178.68,25.99,33.84,,,,,,,2.0,3.0,2.0,0.0,0.0,0.0,0.0,3.0,1.0,3.0,3.0,3.0,3.0,3.0,3.0,3,2,"The current scenario indicates that I am in the rightmost lane with a front risk value of 0.34 and a behind risk value of 0.00. The left risk value is relatively low at 0.11, while the right risk value is very high at 1.00. 
+
+Since the behind risk is 0.00, I have no immediate concern from the vehicle behind me. The front risk is also below the threshold of 0.75, which is acceptable. The left lane has a low risk value, making it a potential option for a lane change. However, since I am already in the rightmost lane and the right risk is extremely high, it is not advisable to change lanes to the right.
+
+Given that my speed is currently below the average speed of nearby vehicles (28.57 m/s), I should consider accelerating to match the speed of the surrounding traffic. This will help maintain a safe distance from the vehicle ahead while also improving my overall driving efficiency.
+
+Therefore, the best action to take is to accelerate.
+
+Response to user:#### 3","Above messages are some examples of how you make a decision successfully in the past. Those scenarios are similar to the current scenario. You should refer to those examples to make a decision for the current scenario. 
+
+Here is the current scenario:
+#### Driving scenario description:
+You are driving on a road with 3 lanes, and you are currently driving in the rightmost lane. Your current position is `(225.47, 27.65)`, speed is 26.21 m/s, acceleration is 0.19 m/s^2, and lane position is 227.16 m.
+There are other vehicles driving around you, and below is their basic information:
+- Vehicle `1575` is driving on the same lane as you and is ahead of you. - Vehicle `1586` is driving on the same lane as you and is behind of you. - Vehicle `1576` is driving on the lane to your left and is ahead of you. - Vehicle `1587` is driving on the lane to your left and is behind of you. 
+The driving Risk Values around you are provided as below:
+(Overall Left Risk Value, 0.11), (Overall Right Risk Value, 1.00), (Front Risk Value, 0.34), (Behind Risk Value, 0.00). The Risk Value is a float number from 0.00 to 1.00. The Value 0.00 means no risk, and 1.00 means the highest risk. You should consider your action and do reasoning, based on the scenario descriptions together with the Left, Right, Front, Behind Risk Values provided to you.
+#### Driving Intensions:
+Try to keep your front and behind risk value under certain level, for example, try to keep the Max of front risk, behind risk under 0.75, and then make your forward speed close to the current average foward speed of all nearby vehicles: 28.57
+#### Available actions:
+Your available actions are: 
+Turn-left - change lane to the left of the current lane Action_id: 0
+IDLE - remain in the current lane with current speed Action_id: 1
+Acceleration - accelerate the vehicle Action_id: 3
+Deceleration - decelerate the vehicle Action_id: 4
+
+
+You can stop reasoning once you have a valid action to take. 
+"
+52,1478,-1,17409,17734,325,17590,17598,8,17584,17583,1487,3.9917012448132767,38.47999999999999,0.0,38.47999999999999,153.02,28.0,22.21,-0.86,0.33,0.23,1,1464,1486,1475,1487,0,0,0.0,0.0,0.2440986416985362,0.08373994461295,0.0,0.0,24.41,4,204.18,30.53,19.28,80.94,30.77,21.32,184.97,26.28,25.18,105.32,25.7,31.86,,,,,,,2.0,0.0,2.0,0.0,3.0,0.0,0.0,0.0,0.0,3.0,3.0,3.0,3.0,3.0,3.0,3,2,"The current scenario indicates that I am in the rightmost lane with a front risk value of 0.00 and a behind risk value of 0.00, which are both very low. The left risk value is 0.24, indicating a moderate risk if I were to turn left, while the right risk value is 1.00, indicating a high risk if I were to turn right. 
+
+Since the front and behind risks are both low, I can maintain my current lane without any immediate danger. Additionally, my speed is currently below the average speed of nearby vehicles (24.41 m/s), so I should consider accelerating to match the average speed while remaining in my lane.
+
+Given that the left risk is manageable and the right risk is very high, it is safer to stay in my current lane or accelerate rather than changing lanes. 
+
+Therefore, the best action is to accelerate to increase my speed closer to the average of nearby vehicles.
+
+Response to user:#### 3","Above messages are some examples of how you make a decision successfully in the past. Those scenarios are similar to the current scenario. You should refer to those examples to make a decision for the current scenario. 
+
+Here is the current scenario:
+#### Driving scenario description:
+You are driving on a road with 3 lanes, and you are currently driving in the rightmost lane. Your current position is `(153.02, 28.00)`, speed is 22.23 m/s, acceleration is 0.40 m/s^2, and lane position is 155.56 m.
+There are other vehicles driving around you, and below is their basic information:
+- Vehicle `1464` is driving on the same lane as you and is ahead of you. - Vehicle `1486` is driving on the same lane as you and is behind of you. - Vehicle `1475` is driving on the lane to your left and is ahead of you. - Vehicle `1487` is driving on the lane to your left and is behind of you. 
+The driving Risk Values around you are provided as below:
+(Overall Left Risk Value, 0.24), (Overall Right Risk Value, 1.00), (Front Risk Value, 0.00), (Behind Risk Value, 0.00). The Risk Value is a float number from 0.00 to 1.00. The Value 0.00 means no risk, and 1.00 means the highest risk. You should consider your action and do reasoning, based on the scenario descriptions together with the Left, Right, Front, Behind Risk Values provided to you.
+#### Driving Intensions:
+Try to keep your front and behind risk value under certain level, for example, try to keep the Max of front risk, behind risk under 0.75, and then make your forward speed close to the current average foward speed of all nearby vehicles: 24.41
+#### Available actions:
+Your available actions are: 
+Turn-left - change lane to the left of the current lane Action_id: 0
+IDLE - remain in the current lane with current speed Action_id: 1
+Acceleration - accelerate the vehicle Action_id: 3
+Deceleration - decelerate the vehicle Action_id: 4
+
+
+You can stop reasoning once you have a valid action to take. 
+"
+54,390,-1,4275,4651,376,4596,4641,8,4588,4587,394,3.9741935483871065,24.640000000000043,0.0,24.640000000000043,324.83,32.53,26.31,-0.43,0.13,0.03,1,382,397,389,394,0,0,0.0,0.0,0.0,0.3474878016616115,0.0,0.0,28.4675,4,398.75,35.42,24.96,188.77,34.89,23.68,409.0,31.69,32.68,292.84,31.02,32.55,,,,,,,2.0,0.0,2.0,1.0,0.0,0.0,0.0,0.0,0.0,3.0,3.0,3.0,3.0,3.0,3.0,3,2,"The current scenario indicates that I am in the rightmost lane with a front risk value of 0.00 and a behind risk value of 0.00, which means there is no immediate risk from vehicles in front or behind me. The left risk value is 0.35, which is relatively low, while the right risk value is 1.00, indicating a high risk if I were to change lanes to the right.
+
+Given that my front and behind risks are both at 0.00, I can safely remain in my current lane without any immediate concerns. Additionally, my speed is currently below the average speed of nearby vehicles (28.47 m/s), so I should consider accelerating to match the average speed while maintaining safety.
+
+Since the left risk is manageable and the right risk is high, I should avoid turning right. The best course of action is to either accelerate to increase my speed or remain idle if I feel that the current speed is sufficient. However, since I want to align my speed closer to the average of nearby vehicles, I will choose to accelerate.
+
+Response to user:#### 3","Above messages are some examples of how you make a decision successfully in the past. Those scenarios are similar to the current scenario. You should refer to those examples to make a decision for the current scenario. 
+
+Here is the current scenario:
+#### Driving scenario description:
+You are driving on a road with 3 lanes, and you are currently driving in the rightmost lane. Your current position is `(324.83, 32.53)`, speed is 26.31 m/s, acceleration is 0.13 m/s^2, and lane position is 326.45 m.
+There are other vehicles driving around you, and below is their basic information:
+- Vehicle `382` is driving on the same lane as you and is ahead of you. - Vehicle `397` is driving on the same lane as you and is behind of you. - Vehicle `389` is driving on the lane to your left and is ahead of you. - Vehicle `394` is driving on the lane to your left and is behind of you. 
+The driving Risk Values around you are provided as below:
+(Overall Left Risk Value, 0.35), (Overall Right Risk Value, 1.00), (Front Risk Value, 0.00), (Behind Risk Value, 0.00). The Risk Value is a float number from 0.00 to 1.00. The Value 0.00 means no risk, and 1.00 means the highest risk. You should consider your action and do reasoning, based on the scenario descriptions together with the Left, Right, Front, Behind Risk Values provided to you.
+#### Driving Intensions:
+Try to keep your front and behind risk value under certain level, for example, try to keep the Max of front risk, behind risk under 0.75, and then make your forward speed close to the current average foward speed of all nearby vehicles: 28.47
+#### Available actions:
+Your available actions are: 
+Turn-left - change lane to the left of the current lane Action_id: 0
+IDLE - remain in the current lane with current speed Action_id: 1
+Acceleration - accelerate the vehicle Action_id: 3
+Deceleration - decelerate the vehicle Action_id: 4
+
+
+You can stop reasoning once you have a valid action to take. 
+"
+55,1102,-1,12603,12798,195,12664,12693,8,12624,12623,1105,3.971563981042653,8.379999999999995,0.0,8.379999999999995,22.45,32.29,24.35,-0.56,0.18,0.14,1,1098,0,1096,1105,0,0,0.1602268231570618,0.0,0.0,0.6355004615587498,0.0,0.0,26.486666666666668,3,57.01,34.62,23.8,,,,81.19,31.19,29.85,6.78,31.0,25.81,,,,,,,2.0,3.0,2.0,1.0,1.0,0.0,0.0,1.0,0.0,3.0,3.0,3.0,3.0,3.0,3.0,3,2,"The current scenario indicates that I am in the rightmost lane with a front risk value of 0.16, which is relatively low, and a behind risk value of 0.00, indicating no risk from the vehicle behind me. The left risk value is 0.64, which is moderate, and the right risk value is 1.00, indicating a high risk if I were to change lanes to the right.
+
+Given that the front risk is acceptable and the behind risk is non-existent, I should prioritize maintaining my current lane to avoid the high risk on the right. Additionally, since my speed is currently below the average speed of nearby vehicles (26.49 m/s), I should consider accelerating to match the average speed while keeping the risks in check.
+
+Since the left risk is moderate, I should avoid turning left as it could increase my risk exposure. Therefore, the best course of action is to accelerate to increase my speed while remaining in the current lane.
+
+Response to user:#### 3","Above messages are some examples of how you make a decision successfully in the past. Those scenarios are similar to the current scenario. You should refer to those examples to make a decision for the current scenario. 
+
+Here is the current scenario:
+#### Driving scenario description:
+You are driving on a road with 3 lanes, and you are currently driving in the rightmost lane. Your current position is `(22.45, 32.29)`, speed is 24.36 m/s, acceleration is 0.23 m/s^2, and lane position is 39.33 m.
+There are other vehicles driving around you, and below is their basic information:
+- Vehicle `1098` is driving on the same lane as you and is ahead of you. - Vehicle `1096` is driving on the lane to your left and is ahead of you. - Vehicle `1105` is driving on the lane to your left and is behind of you. 
+The driving Risk Values around you are provided as below:
+(Overall Left Risk Value, 0.64), (Overall Right Risk Value, 1.00), (Front Risk Value, 0.16), (Behind Risk Value, 0.00). The Risk Value is a float number from 0.00 to 1.00. The Value 0.00 means no risk, and 1.00 means the highest risk. You should consider your action and do reasoning, based on the scenario descriptions together with the Left, Right, Front, Behind Risk Values provided to you.
+#### Driving Intensions:
+Try to keep your front and behind risk value under certain level, for example, try to keep the Max of front risk, behind risk under 0.75, and then make your forward speed close to the current average foward speed of all nearby vehicles: 26.49
+#### Available actions:
+Your available actions are: 
+Turn-left - change lane to the left of the current lane Action_id: 0
+IDLE - remain in the current lane with current speed Action_id: 1
+Acceleration - accelerate the vehicle Action_id: 3
+Deceleration - decelerate the vehicle Action_id: 4
+
+
+You can stop reasoning once you have a valid action to take. 
+"
+58,526,-1,7151,7234,83,7203,7221,8,7227,7221,529,3.993506493506496,30.75,0.0,30.75,389.61,26.38,36.26,-0.96,0.65,-0.22,1,0,533,0,529,507,514,0.0,0.0,0.0,0.4194909666358961,0.6940524858235527,0.0,29.84,4,,,,216.35,27.79,31.38,,,,359.35,25.0,42.64,381.69,30.83,23.06,305.22,31.05,22.28,3.0,3.0,3.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,3.0,2.0,3.0,3.0,3.0,4,-2,"The current scenario indicates that I am in the second lane from the left, with a speed of 36.27 m/s. The front risk value is 0.00, which means there is no risk of colliding with the vehicle ahead. The behind risk value is also 0.00, indicating no risk from the vehicle behind me. 
+
+The left risk value is 0.42, which is moderate, while the right risk value is 0.69, which is relatively high. Given that both front and behind risks are at 0.00, I can consider my options without immediate danger from those directions.
+
+Since my goal is to keep the front and behind risk values under 0.75 and to adjust my speed closer to the average speed of nearby vehicles (29.84 m/s), I should consider decelerating. This will help me align my speed with the average while maintaining a safe distance from other vehicles.
+
+Additionally, changing lanes to the left (Action_id: 0) is not advisable due to the moderate left risk value, and changing to the right (Action_id: 2) is not a good option either because of the high right risk value. Therefore, the best course of action is to remain in my current lane and decelerate to reduce my speed closer to the average.
+
+Response to user:#### 4","Above messages are some examples of how you make a decision successfully in the past. Those scenarios are similar to the current scenario. You should refer to those examples to make a decision for the current scenario. 
+
+Here is the current scenario:
+#### Driving scenario description:
+You are driving on a road with 3 lanes, and you are currently driving in the second lane from the left. Your current position is `(389.61, 26.38)`, speed is 36.27 m/s, acceleration is 0.69 m/s^2, and lane position is 390.50 m.
+There are other vehicles driving around you, and below is their basic information:
+- Vehicle `533` is driving on the same lane as you and is behind of you. - Vehicle `529` is driving on the lane to your left and is behind of you. - Vehicle `507` is driving on the lane to your left and is ahead of you. - Vehicle `514` is driving on the lane to your left and is behind of you. 
+The driving Risk Values around you are provided as below:
+(Overall Left Risk Value, 0.42), (Overall Right Risk Value, 0.69), (Front Risk Value, 0.00), (Behind Risk Value, 0.00). The Risk Value is a float number from 0.00 to 1.00. The Value 0.00 means no risk, and 1.00 means the highest risk. You should consider your action and do reasoning, based on the scenario descriptions together with the Left, Right, Front, Behind Risk Values provided to you.
+#### Driving Intensions:
+Try to keep your front and behind risk value under certain level, for example, try to keep the Max of front risk, behind risk under 0.75, and then make your forward speed close to the current average foward speed of all nearby vehicles: 29.84
+#### Available actions:
+Your available actions are: 
+Turn-left - change lane to the left of the current lane Action_id: 0
+IDLE - remain in the current lane with current speed Action_id: 1
+Turn-right - change lane to the right of the current lane Action_id: 2
+Acceleration - accelerate the vehicle Action_id: 3
+Deceleration - decelerate the vehicle Action_id: 4
+
+
+You can stop reasoning once you have a valid action to take. 
+"
+58,554,-1,7405,7776,371,7642,7682,9,7638,7637,560,3.9758842443729896,24.72999999999999,0.0,24.72999999999999,261.62,29.38,22.16,-0.52,0.35,0.03,1,548,559,551,560,0,0,0.2526704470526177,0.0,0.3275748384544376,0.3495977845180008,0.0,0.0,23.24,4,288.22,32.25,18.45,193.95,30.79,21.27,289.17,27.4,24.87,230.93,27.91,28.37,,,,,,,2.0,1.0,2.0,1.0,1.0,0.0,0.0,1.0,0.0,3.0,3.0,3.0,3.0,3.0,3.0,3,2,"The current scenario indicates that I am in the rightmost lane with a front risk value of 0.25 and a behind risk value of 0.00. The left risk value is 0.35, which is manageable, while the right risk value is 1.00, indicating a high risk if I were to change lanes to the right.
+
+Since the front risk is below 0.75 and the behind risk is 0.00, I can safely remain in my current lane. The front vehicle is not posing a significant risk, and the vehicle behind me is at no risk of collision. 
+
+Additionally, my speed is slightly below the average speed of nearby vehicles (23.24 m/s). To align my speed closer to the average while maintaining safety, I can consider accelerating.
+
+However, since the left risk is also relatively low (0.35), I could also consider turning left if necessary, but given the current conditions, it seems more prudent to remain in my lane and adjust my speed.
+
+Given these considerations, the best action is to accelerate to match the average speed of nearby vehicles while keeping the risks in check.
+
+Response to user:#### 3","Above messages are some examples of how you make a decision successfully in the past. Those scenarios are similar to the current scenario. You should refer to those examples to make a decision for the current scenario. 
+
+Here is the current scenario:
+#### Driving scenario description:
+You are driving on a road with 3 lanes, and you are currently driving in the rightmost lane. Your current position is `(261.62, 29.38)`, speed is 22.17 m/s, acceleration is 0.35 m/s^2, and lane position is 263.26 m.
+There are other vehicles driving around you, and below is their basic information:
+- Vehicle `548` is driving on the same lane as you and is ahead of you. - Vehicle `559` is driving on the same lane as you and is behind of you. - Vehicle `551` is driving on the lane to your left and is ahead of you. - Vehicle `560` is driving on the lane to your left and is behind of you. 
+The driving Risk Values around you are provided as below:
+(Overall Left Risk Value, 0.35), (Overall Right Risk Value, 1.00), (Front Risk Value, 0.25), (Behind Risk Value, 0.00). The Risk Value is a float number from 0.00 to 1.00. The Value 0.00 means no risk, and 1.00 means the highest risk. You should consider your action and do reasoning, based on the scenario descriptions together with the Left, Right, Front, Behind Risk Values provided to you.
+#### Driving Intensions:
+Try to keep your front and behind risk value under certain level, for example, try to keep the Max of front risk, behind risk under 0.75, and then make your forward speed close to the current average foward speed of all nearby vehicles: 23.24
+#### Available actions:
+Your available actions are: 
+Turn-left - change lane to the left of the current lane Action_id: 0
+IDLE - remain in the current lane with current speed Action_id: 1
+Acceleration - accelerate the vehicle Action_id: 3
+Deceleration - decelerate the vehicle Action_id: 4
+
+
+You can stop reasoning once you have a valid action to take. 
+"
+60,1322,-1,21535,21709,174,21618,21621,2,21619,21618,1326,3.585034013605428,10.539999999999964,0.0,10.539999999999964,330.16,7.49,-21.59,0.81,-0.76,-0.06,1,0,0,1318,1326,0,0,0.0,0.0,0.0,0.4434920216273242,0.0,0.0,-28.01,2,,,,,,,229.93,9.19,-31.49,354.55,9.69,-24.53,,,,,,,2.0,3.0,2.0,1.0,1.0,0.0,0.0,0.0,0.0,3.0,3.0,3.0,3.0,3.0,3.0,3,2,"The current scenario indicates that I am in the rightmost lane with a front risk value of 0.00 and a behind risk value of 0.00, which are both safe. The left risk value is 0.44, indicating a moderate risk if I were to turn left, while the right risk value is 1.00, indicating a high risk if I were to turn right. 
+
+Since the front and behind risks are low, I can consider my options. The left lane has a moderate risk, but it is still lower than the right lane's high risk. However, I should also consider my speed relative to the average speed of nearby vehicles, which is 28.01 m/s. My current speed is 21.61 m/s, which is below the average.
+
+Given that my front and behind risks are safe, I can either accelerate to match the average speed or remain idle. However, since I want to increase my speed to be closer to the average, I should choose to accelerate.
+
+Response to user:#### 3","Above messages are some examples of how you make a decision successfully in the past. Those scenarios are similar to the current scenario. You should refer to those examples to make a decision for the current scenario. 
+
+Here is the current scenario:
+#### Driving scenario description:
+You are driving on a road with 4 lanes, and you are currently driving in the rightmost lane. Your current position is `(330.16, 7.49)`, speed is 21.61 m/s, acceleration is 0.76 m/s^2, and lane position is 84.76 m.
+There are other vehicles driving around you, and below is their basic information:
+- Vehicle `1318` is driving on the lane to your left and is ahead of you. - Vehicle `1326` is driving on the lane to your left and is behind of you. 
+The driving Risk Values around you are provided as below:
+(Overall Left Risk Value, 0.44), (Overall Right Risk Value, 1.00), (Front Risk Value, 0.00), (Behind Risk Value, 0.00). The Risk Value is a float number from 0.00 to 1.00. The Value 0.00 means no risk, and 1.00 means the highest risk. You should consider your action and do reasoning, based on the scenario descriptions together with the Left, Right, Front, Behind Risk Values provided to you.
+#### Driving Intensions:
+Try to keep your front and behind risk value under certain level, for example, try to keep the Max of front risk, behind risk under 0.75, and then make your forward speed close to the current average foward speed of all nearby vehicles: 28.01
+#### Available actions:
+Your available actions are: 
+Turn-left - change lane to the left of the current lane Action_id: 0
+IDLE - remain in the current lane with current speed Action_id: 1
+Acceleration - accelerate the vehicle Action_id: 3
+Deceleration - decelerate the vehicle Action_id: 4
+
+
+You can stop reasoning once you have a valid action to take. 
+"
