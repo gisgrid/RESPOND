@@ -20,7 +20,7 @@ from highway_env.envs.common.abstract import AbstractEnv
 from highway_env.vehicle.controller import MDPVehicle,ControlledVehicle
 from highway_env.vehicle.behavior import IDMVehicle
 
-from dilu.scenario.DBBridge import DBBridge
+from third_party.dilu.dilu.scenario.DBBridge import DBBridge
 from respond.scenario.envPlotter import ScePlotter
 from respond.scenario.utils import vehicleKeyInfo, vehicleInfo, vehicleKeyInfoMore, risk_of_two, printCarInfo
 from respond.risk_pattern.risk_calculator import riskValueCal, getSurroundingRiskPattern

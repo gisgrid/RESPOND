@@ -1,0 +1,1478 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>DiLu Autonomous Driving Decision Experiment Report</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: "Arial", "Helvetica", sans-serif;
+                background-color: #f5f5f5;
+                color: #333;
+                line-height: 1.6;
+            }
+
+            .container {
+                width: 100%;
+                max-width: 100%;
+                margin: 0 auto;
+                padding: 10px;
+                box-sizing: border-box;
+            }
+
+            header {
+                text-align: center;
+                margin-bottom: 30px;
+                background-color: #003366;
+                color: white;
+                padding: 20px;
+                border-radius: 8px;
+            }
+
+            h1 {
+                font-size: 28px;
+                margin-bottom: 10px;
+            }
+
+            .subtitle {
+                font-size: 16px;
+                opacity: 0.9;
+            }
+
+            .experiment-grid {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 20px;
+                width: 100%;
+            }
+
+            .experiment-card {
+                background: white;
+                border-radius: 10px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                overflow: hidden;
+                border: 2px solid #003366;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            .card-header {
+                background-color: #003366;
+                color: white;
+                padding: 12px 20px;
+                font-size: 18px;
+                font-weight: bold;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+
+            .header-left {
+                flex: 1;
+                min-width: 300px;
+            }
+
+            .header-center {
+                display: flex;
+                justify-content: center;
+                flex: 0 0 auto;
+            }
+
+            .header-right {
+                flex: 0 0 auto;
+                text-align: right;
+            }
+
+            .pagination-inline {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                background-color: rgba(255, 255, 255, 0.1);
+                padding: 5px 10px;
+                border-radius: 4px;
+            }
+
+            .pagination-btn {
+                padding: 4px 8px;
+                background-color: rgba(255, 255, 255, 0.2);
+                color: white;
+                border: 1px solid rgba(255, 255, 255, 0.3);
+                border-radius: 3px;
+                cursor: pointer;
+                font-size: 12px;
+                transition: background-color 0.2s;
+            }
+
+            .pagination-btn:hover:not(:disabled) {
+                background-color: rgba(255, 255, 255, 0.3);
+            }
+
+            .pagination-btn:disabled {
+                opacity: 0.5;
+                cursor: not-allowed;
+            }
+
+            .page-info-inline {
+                font-size: 14px;
+                font-weight: normal;
+            }
+
+            .record-count {
+                font-size: 14px;
+                font-weight: normal;
+                opacity: 0.8;
+            }
+
+            .card-content {
+                display: flex;
+                flex-direction: column;
+                padding: 15px;
+                gap: 15px;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            .image-section {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .middle-section {
+                display: grid;
+                grid-template-columns: 1fr 2fr 1fr;
+                gap: 15px;
+                width: 100%;
+            }
+
+            /* Left column - Decision frame and risk pattern */
+            .decision-section {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .decision-info {
+                background-color: #f0f7ff;
+                padding: 12px;
+                border-radius: 6px;
+                border: 1px solid #cce0ff;
+            }
+
+            .decision-info h3 {
+                font-size: 16px;
+                color: #003366;
+                margin-bottom: 8px;
+            }
+
+            .decision-info p {
+                font-size: 14px;
+                margin: 4px 0;
+            }
+
+            .risk-pattern {
+                background-color: #f9f9f9;
+                padding: 15px;
+                border-radius: 6px;
+                border: 1px solid #ddd;
+            }
+
+            .risk-pattern h3 {
+                font-size: 16px;
+                color: #003366;
+                margin-bottom: 10px;
+                text-align: center;
+            }
+
+            .risk-grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 2px;
+                border: 1px solid #003366;
+                margin: 0 auto;
+                width: fit-content;
+            }
+
+            .risk-cell {
+                width: 50px;
+                height: 40px;
+                border: 1px solid #003366;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 10px;
+                font-weight: bold;
+            }
+
+            .risk-low {
+                background-color: #d0f0c0;
+            }
+
+            .risk-medium {
+                background-color: #ffffcc;
+            }
+
+            .risk-high {
+                background-color: #ff9999;
+            }
+
+            .risk-critical {
+                background-color: #cc0000;
+            }
+
+            .ego-cell {
+                position: relative;
+                /* 移除硬编码的背景色，让ego-cell继承对应的risk-${riskClass}类的颜色 */
+            }
+
+            .ego-cell::after {
+                content: "ego";
+                position: absolute;
+                font-size: 8px;
+                color: #333;
+                top: 1px;
+                left: 1px;
+            }
+
+            /* Middle column - Heatmap, risk values and system action */
+            .visualization-section {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .heatmap-container {
+                background-color: #f9f9f9;
+                padding: 15px;
+                border-radius: 6px;
+                border: 1px solid #ddd;
+                text-align: center;
+                width: 100%;
+            }
+
+            .heatmap-image {
+                width: 100%;
+                height: 60vh;
+                max-height: 500px;
+                min-height: 250px;
+                position: relative;
+                overflow: auto;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                margin: 0 auto;
+                background-color: #f9f9f9;
+                box-sizing: border-box;
+            }
+
+            .heatmap-image img {
+                width: 100%;
+                height: auto;
+                min-height: 100%;
+                object-fit: contain;
+                border: none;
+                border-radius: 0;
+                transition: transform 0.3s ease;
+                display: block;
+            }
+
+            .heatmap-image img:hover {
+                transform: none;
+            }
+
+            /* Image control button styles */
+            .image-controls {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
+                margin-bottom: 10px;
+                padding: 8px;
+                background-color: #f0f7ff;
+                border-radius: 4px;
+                border: 1px solid #cce0ff;
+            }
+
+            .zoom-btn {
+                padding: 6px 12px;
+                background-color: #003366;
+                color: white;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 14px;
+                transition: background-color 0.2s;
+            }
+
+            .zoom-btn:hover {
+                background-color: #004080;
+            }
+
+            .zoom-btn:active {
+                transform: scale(0.95);
+            }
+
+            .play-video {
+                background-color: #4caf50;
+            }
+
+            .play-video:hover {
+                background-color: #45a049;
+            }
+
+            .zoom-level {
+                font-size: 14px;
+                color: #003366;
+                font-weight: bold;
+                margin-left: 10px;
+            }
+
+            /* Custom scrollbar styles */
+            .heatmap-image::-webkit-scrollbar {
+                width: 8px;
+                height: 8px;
+            }
+
+            .heatmap-image::-webkit-scrollbar-track {
+                background: #f1f1f1;
+                border-radius: 4px;
+            }
+
+            .heatmap-image::-webkit-scrollbar-thumb {
+                background: #003366;
+                border-radius: 4px;
+            }
+
+            .heatmap-image::-webkit-scrollbar-thumb:hover {
+                background: #004080;
+            }
+
+            .heatmap-placeholder {
+                width: 100%;
+                height: 200px;
+                background: linear-gradient(to right, #0000ff, #ff0000);
+                border: 2px solid #ff0000;
+                border-radius: 4px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                font-weight: bold;
+                position: relative;
+            }
+
+            .focus-box {
+                position: absolute;
+                border: 2px solid #ff0000;
+                width: 60px;
+                height: 60px;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+
+            .risk-values {
+                background-color: #f0f7ff;
+                padding: 15px;
+                border-radius: 6px;
+                border: 1px solid #cce0ff;
+            }
+
+            .risk-values h3 {
+                font-size: 16px;
+                color: #003366;
+                margin-bottom: 10px;
+                text-align: center;
+            }
+
+            .risk-values-grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+
+            .risk-values-grid-3x3 {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                grid-template-rows: repeat(3, 1fr);
+                gap: 10px;
+                min-height: 120px;
+            }
+
+            .empty-cell {
+                visibility: hidden;
+            }
+
+            .ego-vehicle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: #f0f7ff;
+                border: 2px solid #003366;
+                border-radius: 4px;
+            }
+
+            .ego-car-icon {
+                font-weight: bold;
+                color: #003366;
+                font-size: 14px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: relative;
+            }
+
+            .ego-car-icon::before {
+                content: "🚗";
+                margin-right: 4px;
+                font-size: 16px;
+            }
+
+            .risk-value-item {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                padding: 8px;
+                background-color: white;
+                border-radius: 4px;
+                border: 1px solid #ddd;
+            }
+
+            .risk-direction {
+                font-weight: bold;
+                color: #003366;
+                min-width: 60px;
+            }
+
+            .risk-number {
+                font-weight: bold;
+                color: #333;
+            }
+
+            .car-icon {
+                width: 20px;
+                height: 20px;
+                background-color: #666;
+                border-radius: 3px;
+                position: relative;
+            }
+
+            .car-icon::before {
+                content: "🚗";
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                font-size: 14px;
+            }
+
+            .system-action {
+                background-color: #f9f9f9;
+                padding: 15px;
+                border-radius: 6px;
+                border: 1px solid #ddd;
+                text-align: center;
+            }
+
+            .system-action h3 {
+                font-size: 16px;
+                color: #003366;
+                margin-bottom: 10px;
+            }
+
+            .action-display {
+                font-size: 20px;
+                font-weight: bold;
+                text-transform: uppercase;
+                color: #000;
+                padding: 10px;
+                background-color: #f0f0f0;
+                border-radius: 4px;
+                display: inline-block;
+            }
+
+            .action-plus {
+                font-size: 24px;
+                color: #003366;
+                margin: 0 10px;
+            }
+
+            /* Right column - Human feedback */
+            .feedback-section {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .feedback-container {
+                background-color: #f0f7ff;
+                padding: 15px;
+                border-radius: 6px;
+                border: 1px solid #cce0ff;
+            }
+
+            .feedback-container h3 {
+                font-size: 16px;
+                color: #003366;
+                margin-bottom: 15px;
+                text-align: center;
+            }
+
+            .feedback-options {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .feedback-option {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                padding: 10px;
+                background-color: white;
+                border-radius: 4px;
+                border: 1px solid #ddd;
+                cursor: pointer;
+                transition: background-color 0.2s;
+            }
+
+            .feedback-option:hover {
+                background-color: #f0f0f0;
+            }
+
+            .feedback-option.selected {
+                background-color: #e6f7e6;
+                border-color: #4caf50;
+            }
+
+            .feedback-icon {
+                font-size: 18px;
+                color: #4caf50;
+            }
+
+            .stats-row {
+                display: flex;
+                justify-content: space-between;
+                margin-top: 10px;
+                padding-top: 10px;
+                border-top: 1px solid #ddd;
+            }
+
+            .stat-item {
+                text-align: center;
+            }
+
+            .stat-value {
+                font-size: 18px;
+                font-weight: bold;
+                color: #003366;
+            }
+
+            .stat-label {
+                font-size: 12px;
+                color: #666;
+            }
+
+            .pagination {
+                display: flex;
+                justify-content: center;
+                gap: 10px;
+                margin-top: 30px;
+            }
+
+            .pagination button {
+                padding: 8px 16px;
+                background-color: #003366;
+                color: white;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                transition: background-color 0.2s;
+            }
+
+            .pagination button:hover {
+                background-color: #004080;
+            }
+
+            .pagination button:disabled {
+                background-color: #ccc;
+                cursor: not-allowed;
+            }
+
+            .page-info {
+                display: flex;
+                align-items: center;
+                padding: 0 10px;
+            }
+
+            /* Modal styles */
+            .modal {
+                display: none;
+                position: fixed;
+                z-index: 1000;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.9);
+            }
+
+            .modal-content {
+                margin: 2% auto;
+                padding: 15px;
+                width: 95%;
+                max-width: 95vw;
+                max-height: 90vh;
+                background-color: #fff;
+                border-radius: 8px;
+                position: relative;
+                overflow-y: auto;
+                box-sizing: border-box;
+            }
+
+            .video-modal-content {
+                max-width: 95vw;
+                max-height: 90vh;
+            }
+
+            .video-modal-content video {
+                max-height: 80vh;
+            }
+
+            .close {
+                position: absolute;
+                right: 20px;
+                top: 15px;
+                color: #333;
+                font-size: 28px;
+                font-weight: bold;
+                cursor: pointer;
+            }
+
+            .close:hover {
+                color: #000;
+            }
+
+            @keyframes spin {
+                0% {
+                    transform: rotate(0deg);
+                }
+                100% {
+                    transform: rotate(360deg);
+                }
+            }
+
+            @media (max-width: 1200px) {
+                .middle-section {
+                    grid-template-columns: 1fr;
+                    gap: 15px;
+                }
+
+                .container {
+                    padding: 8px;
+                }
+            }
+
+            @media (max-width: 768px) {
+                .card-content {
+                    padding: 10px;
+                    gap: 10px;
+                }
+
+                .heatmap-container {
+                    padding: 8px;
+                }
+
+                .image-controls {
+                    flex-wrap: wrap;
+                    gap: 5px;
+                }
+
+                .zoom-btn {
+                    padding: 4px 8px;
+                    font-size: 12px;
+                }
+
+                .zoom-level {
+                    font-size: 12px;
+                    width: 100%;
+                    text-align: center;
+                    margin-top: 5px;
+                }
+
+                .modal-content {
+                    margin: 1% auto;
+                    padding: 10px;
+                    width: 98%;
+                }
+
+                .card-header {
+                    flex-direction: column;
+                    align-items: stretch;
+                    gap: 8px;
+                }
+
+                .header-left,
+                .header-center,
+                .header-right {
+                    text-align: center;
+                    min-width: auto;
+                }
+
+                .pagination-inline {
+                    justify-content: center;
+                }
+            }
+
+            @media (max-width: 480px) {
+                .container {
+                    padding: 5px;
+                }
+
+                .card-content {
+                    padding: 8px;
+                    gap: 8px;
+                }
+
+                .heatmap-container {
+                    padding: 5px;
+                }
+
+                .image-controls {
+                    gap: 3px;
+                }
+
+                .zoom-btn {
+                    padding: 3px 6px;
+                    font-size: 11px;
+                }
+
+                .risk-values-grid-3x3 {
+                    gap: 5px;
+                    min-height: 100px;
+                }
+
+                .risk-value-item {
+                    font-size: 12px;
+                }
+
+                .risk-direction {
+                    font-size: 11px;
+                }
+
+                .risk-number {
+                    font-size: 11px;
+                }
+
+                .modal-content {
+                    margin: 0;
+                    padding: 8px;
+                    width: 100%;
+                    height: 100vh;
+                    max-height: 100vh;
+                    border-radius: 0;
+                }
+
+                .video-modal-content video {
+                    max-height: 70vh;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <header>
+                <h1>RESPOND System Experiment Report on highD Dataset</h1>
+            </header>
+
+            <div
+                id="loadingIndicator"
+                style="text-align: center; padding: 50px"
+            >
+                <div
+                    style="font-size: 18px; color: #003366; margin-bottom: 20px"
+                >
+                    Please select CSV file to load experiment data
+                </div>
+                <div style="margin-bottom: 20px">
+                    <input
+                        type="file"
+                        id="csvFileInput"
+                        accept=".csv"
+                        style="
+                            padding: 10px;
+                            border: 1px solid #ccc;
+                            border-radius: 4px;
+                        "
+                    />
+                </div>
+                <div style="font-size: 14px; color: #666; margin-bottom: 20px">
+                    Or select the following options:
+                </div>
+                <div
+                    style="
+                        display: flex;
+                        justify-content: center;
+                        gap: 10px;
+                        margin-bottom: 20px;
+                    "
+                >
+                    <button
+                        onclick="loadSampleData()"
+                        style="
+                            padding: 8px 16px;
+                            background-color: #003366;
+                            color: white;
+                            border: none;
+                            border-radius: 4px;
+                            cursor: pointer;
+                        "
+                    >
+                        Load Sample Data
+                    </button>
+                    <button
+                        onclick="startLocalServer()"
+                        style="
+                            padding: 8px 16px;
+                            background-color: #4caf50;
+                            color: white;
+                            border: none;
+                            border-radius: 4px;
+                            cursor: pointer;
+                        "
+                    >
+                        Start Local Server
+                    </button>
+                </div>
+                <div id="fileInfo" style="font-size: 14px; color: #666"></div>
+            </div>
+
+            <div
+                class="experiment-grid"
+                id="experimentGrid"
+                style="display: none"
+            >
+                <!-- Experiment cards will be dynamically generated by JavaScript -->
+            </div>
+
+            <!-- Image modal -->
+            <div id="imageModal" class="modal" onclick="closeImageModal()">
+                <div class="modal-content" onclick="event.stopPropagation()">
+                    <span class="close" onclick="closeImageModal()"
+                        >&times;</span
+                    >
+                    <img id="modalImage" style="width: 100%; height: auto" />
+                </div>
+            </div>
+
+            <!-- Video modal -->
+            <div id="videoModal" class="modal" onclick="closeVideoModal()">
+                <div
+                    class="modal-content video-modal-content"
+                    onclick="event.stopPropagation()"
+                >
+                    <span class="close" onclick="closeVideoModal()"
+                        >&times;</span
+                    >
+                    <video
+                        id="modalVideo"
+                        controls
+                        autoplay
+                        style="width: 100%; height: auto"
+                    >
+                        Your browser does not support video playback.
+                    </video>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            // Experiment data
+            let experimentData = [];
+            let currentPage = 1;
+            const itemsPerPage = 1;
+            let totalPages = 0;
+
+            // CSV file path
+            const csvFilePath = "./RESPOND_highD_experiment_report.csv";
+
+            // Parse CSV data
+            function parseCSV(text) {
+                const lines = text.split("\n").filter((line) => line.trim());
+                const headers = lines[0].split(",");
+                const data = [];
+
+                for (let i = 1; i < lines.length; i++) {
+                    const values = lines[i].split(",");
+                    const entry = {};
+
+                    for (let j = 0; j < headers.length; j++) {
+                        const header = headers[j].trim();
+                        let value = values[j] ? values[j].trim() : "";
+
+                        // Convert data types
+                        if (
+                            header === "No" ||
+                            header === "id" ||
+                            header === "affectedId" ||
+                            header === "dec_frame" ||
+                            header === "dec" ||
+                            header === "llm_frame" ||
+                            header === "llm_dec" ||
+                            header === "frame_start" ||
+                            header === "frame_end" ||
+                            header === "lane_change_frame" ||
+                            header === "lane_id" ||
+                            header === "rp00" ||
+                            header === "rp01" ||
+                            header === "rp02" ||
+                            header === "rp10" ||
+                            header === "rp11" ||
+                            header === "rp12" ||
+                            header === "rp20" ||
+                            header === "rp21" ||
+                            header === "rp22" ||
+                            header === "rp30" ||
+                            header === "rp31" ||
+                            header === "rp32" ||
+                            header === "rp40" ||
+                            header === "rp41" ||
+                            header === "rp42"
+                        ) {
+                            value = parseInt(value);
+                        } else if (
+                            header === "human_dec_risk" ||
+                            header === "llm_dec_risk" ||
+                            header === "front_risk" ||
+                            header === "behind_risk" ||
+                            header === "left_risk" ||
+                            header === "right_risk"
+                        ) {
+                            value = parseFloat(value);
+                        } else if (
+                            header === "advoid" ||
+                            header === "is_safer"
+                        ) {
+                            value = value === "True";
+                        } else if (header === "comparison") {
+                            // Keep as string: "better", "equal", "not_better"
+                        }
+
+                        entry[header] = value;
+                    }
+
+                    data.push(entry);
+                }
+
+                return data;
+            }
+
+            // Handle file selection
+            function handleFileSelect(event) {
+                const file = event.target.files[0];
+                if (file && file.type === "text/csv") {
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        try {
+                            const csvText = e.target.result;
+                            experimentData = parseCSV(csvText);
+                            totalPages = Math.ceil(
+                                experimentData.length / itemsPerPage,
+                            );
+
+                            // Hide loading indicator, show data
+                            document.getElementById(
+                                "loadingIndicator",
+                            ).style.display = "none";
+                            document.getElementById(
+                                "experimentGrid",
+                            ).style.display = "grid";
+
+                            displayCurrentPage();
+                        } catch (error) {
+                            console.error("Failed to parse CSV file:", error);
+                            document.getElementById("fileInfo").innerHTML =
+                                `<div style="color: red;">Failed to parse CSV file: ${error.message}</div>`;
+                        }
+                    };
+                    reader.readAsText(file);
+                    document.getElementById("fileInfo").innerHTML =
+                        `<div style="color: green;">Loading file: ${file.name}</div>`;
+                } else {
+                    document.getElementById("fileInfo").innerHTML =
+                        `<div style="color: red;">Please select a valid CSV file</div>`;
+                }
+            }
+
+            // Show file selector interface
+            function showFileSelector() {
+                document.getElementById("loadingIndicator").innerHTML =
+                    `<div style="font-size: 18px; color: #003366; margin-bottom: 20px;">Please select CSV file to load experiment data</div>
+                 <div style="margin-bottom: 20px;">
+                    <input type="file" id="csvFileInput" accept=".csv" style="padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
+                 </div>
+                 <div id="fileInfo" style="font-size: 14px; color: #666;"></div>`;
+
+                // Immediately bind file selector event listener
+                const fileInput = document.getElementById("csvFileInput");
+                if (fileInput) {
+                    fileInput.addEventListener("change", handleFileSelect);
+                }
+            }
+
+            // Load CSV file (keep original functionality, but only works in HTTP environment)
+            async function loadCSVData() {
+                try {
+                    const response = await fetch(
+                        "./RESPOND_highD_experiment_report.csv",
+                    );
+                    if (response.ok) {
+                        const csvText = await response.text();
+                        experimentData = parseCSV(csvText);
+                        totalPages = Math.ceil(
+                            experimentData.length / itemsPerPage,
+                        );
+
+                        // Hide loading indicator, show data
+                        document.getElementById(
+                            "loadingIndicator",
+                        ).style.display = "none";
+                        document.getElementById(
+                            "experimentGrid",
+                        ).style.display = "grid";
+
+                        displayCurrentPage();
+                    } else {
+                        // If unable to load, show file selector
+                        showFileSelector();
+                    }
+                } catch (error) {
+                    console.error("Failed to load CSV file:", error);
+                    // Show file selector interface
+                    showFileSelector();
+                }
+            }
+
+            // Decision action mapping
+            const decisionMap = {
+                "-2": "Decelerate",
+                "-1": "Turn Left",
+                0: "idle",
+                1: "Turn Right",
+                2: "Accelerate",
+            };
+
+            // Generate risk pattern grid
+            function generateRiskPattern(data) {
+                // Calculate risk pattern based on CSV data
+                // 5x3 grid layout:
+
+                const riskFields = [
+                    ["rp00", "rp01", "rp02"],
+                    ["rp10", "rp11", "rp12"],
+                    ["rp20", "rp21", "rp22"], // Middle row, ego position needs special handling
+                    ["rp30", "rp31", "rp32"],
+                    ["rp40", "rp41", "rp42"],
+                ];
+
+                let html = '<div class="risk-grid">';
+                for (let i = 0; i < riskFields.length; i++) {
+                    for (let j = 0; j < riskFields[i].length; j++) {
+                        const fieldName = riskFields[i][j];
+                        const riskValue = parseFloat(data[fieldName]) || 0;
+                        const riskClass = getRiskClass(riskValue);
+                        const isEgo = i === 2 && j === 1; // ego position in the middle
+
+                        html += `<div class="risk-cell risk-${riskClass} ${isEgo ? "ego-cell" : ""}" title="${fieldName}: ${riskValue}">${riskValue}</div>`;
+                    }
+                }
+                html += "</div>";
+
+                return html;
+            }
+
+            // Determine risk level based on risk value
+            function getRiskClass(riskValue) {
+                if (riskValue == 0) {
+                    return "low";
+                } else if (riskValue == 1) {
+                    return "medium";
+                } else if (riskValue == 2) {
+                    return "high";
+                } else if (riskValue == 3) {
+                    return "critical";
+                } else {
+                    return "medium"; // Default to medium for any other values
+                }
+            }
+
+            // Generate experiment card
+            function generateExperimentCard(data) {
+                const humanDecision =
+                    decisionMap[data.dec.toString()] || "Unknown";
+                const llmDecision =
+                    decisionMap[data.llm_dec.toString()] || "Unknown";
+
+                return `
+                <div class="experiment-card">
+                    <div class="card-header">
+                        <div class="header-left">
+                            Experiment Record #${data.No} - Dataset ID: ${data.iRecord} - Ego Vehicle ${data.id}/ Affected Vehicle ${data.affectedId}
+                        </div>
+                        <div class="header-center">
+                            <div class="pagination-inline">
+                                <button class="pagination-btn" onclick="changePage(-1)" ${currentPage === 1 ? "disabled" : ""}>Previous</button>
+                                <div class="page-info-inline">
+                                    <span id="currentPage-inline">${currentPage}</span> / <span id="totalPages-inline">${totalPages}</span>
+                                </div>
+                                <button class="pagination-btn" onclick="changePage(1)" ${currentPage === totalPages ? "disabled" : ""}>Next</button>
+                            </div>
+                        </div>
+                        <div class="header-right">
+                            <span class="record-count">Total ${experimentData.length} records</span>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <!-- Top - Image display area -->
+                        <div class="image-section">
+                            <div class="heatmap-container">
+                                <h3>Scene Visualization</h3>
+                                <div class="image-controls">
+                                    <button class="zoom-btn zoom-in" onclick="zoomImage('${data.No}', 1.2)">Zoom In</button>
+                                    <button class="zoom-btn zoom-out" onclick="zoomImage('${data.No}', 0.8)">Zoom Out</button>
+                                    <button class="zoom-btn zoom-reset" onclick="resetImage('${data.No}')">Reset</button>
+                                    <button class="zoom-btn play-video" onclick="playVideo('${data.No}', '${data.Mp4}')">Play Animation</button>
+                                    <span class="zoom-level">Zoom: <span id="zoom-level-${data.No}">100%</span></span>
+                                </div>
+                                <div class="heatmap-image" id="image-container-${data.No}">
+                                    <img src="./${data.Pic}" alt="Decision Scene" id="image-${data.No}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" draggable="false">
+                                    <div class="heatmap-placeholder" style="display: none;">
+                                        Image failed to load
+                                        <div class="focus-box"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Middle area - Three column layout -->
+                        <div class="middle-section">
+                            <!-- Left column - Decision frame and risk pattern -->
+                            <div class="decision-section">
+                                <div class="decision-info">
+                                    <h3>Real Scene Captured</h3>
+                                    <p><strong>Human Driver Decision Frame:</strong> ${data.llm_frame}</p>
+                                    <p><strong>Human Driver Action:</strong> ${humanDecision}</p>
+                                    <p><strong>lane id:</strong> ${data.lane_id}</p>
+                                </div>
+                                <div class="risk-pattern">
+                                    <h3>5 × 3 Risk Pattern</h3>
+                                    ${generateRiskPattern(data)}
+                                </div>
+                            </div>
+
+                            <!-- Middle column - Risk values and system action -->
+                            <div class="visualization-section">
+                                <div class="risk-values">
+                                    <h3>Around 4 Risk Values</h3>
+                                    <div class="risk-values-grid-3x3">
+                                        <!-- First row -->
+                                        <div class="risk-value-item empty-cell"></div>
+                                        <div class="risk-value-item">
+                                            <span class="risk-direction">Left:</span>
+                                            <span class="risk-number">${data.left_risk.toFixed(3)}</span>
+                                        </div>
+                                        <div class="risk-value-item empty-cell"></div>
+                                        <!-- Second row -->
+                                        <div class="risk-value-item">
+                                            <span class="risk-direction">Behind:</span>
+                                            <span class="risk-number">${data.behind_risk.toFixed(3)}</span>
+                                        </div>
+                                        <div class="risk-value-item ego-vehicle">
+                                            <div class="ego-car-icon">ego</div>
+                                        </div>
+                                        <div class="risk-value-item">
+                                            <span class="risk-direction">Front:</span>
+                                            <span class="risk-number">${data.front_risk.toFixed(3)}</span>
+                                        </div>
+                                        <!-- Third row -->
+                                        <div class="risk-value-item empty-cell"></div>
+                                        <div class="risk-value-item">
+                                            <span class="risk-direction">Right:</span>
+                                            <span class="risk-number">${data.right_risk.toFixed(3)}</span>
+                                        </div>
+                                        <div class="risk-value-item empty-cell"></div>
+                                    </div>
+                                </div>
+                                <div class="system-action">
+                                    <h3>System Action</h3>
+                                    <p><strong>LLM Decision Frame:</strong> ${data.llm_frame}</p>
+                                    <div style="display: flex; align-items: center; justify-content: center;">
+                                        <div class="action-display">${llmDecision}</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Right column - Human feedback -->
+                            <div class="feedback-section">
+                                <div class="feedback-container">
+                                    <h3>Human Driver Feedback on RESPOND</h3>
+                                    <div class="feedback-options">
+                                        <div class="feedback-option ${data.comparison === "better" ? "selected" : ""}">
+                                            <span class="feedback-icon">${data.comparison === "better" ? "✅" : ""}</span>
+                                            <span>Better</span>
+                                        </div>
+                                        <div class="feedback-option ${data.comparison === "equal" ? "selected" : ""}">
+                                            <span class="feedback-icon">${data.comparison === "equal" ? "➖" : ""}</span>
+                                            <span>Equal</span>
+                                        </div>
+                                        <div class="feedback-option ${data.comparison === "not_better" ? "selected" : ""}">
+                                            <span class="feedback-icon">${data.comparison === "not_better" ? "❌" : ""}</span>
+                                            <span>Not Better</span>
+                                        </div>
+                                    </div>
+                                    <div class="stats-row">
+                                        <div class="stat-item">
+                                            <div class="stat-value">${data.human_dec_risk.toFixed(3)}</div>
+                                            <div class="stat-label">Human Risk</div>
+                                        </div>
+                                        <div class="stat-item">
+                                            <div class="stat-value">${data.llm_dec_risk.toFixed(3)}</div>
+                                            <div class="stat-label">LLM Reference Risk</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            }
+
+            // Display current page experiment data
+            function displayCurrentPage() {
+                const startIndex = (currentPage - 1) * itemsPerPage;
+                const endIndex = startIndex + itemsPerPage;
+                const currentData = experimentData.slice(startIndex, endIndex);
+
+                const experimentGrid =
+                    document.getElementById("experimentGrid");
+                experimentGrid.innerHTML = "";
+
+                currentData.forEach((data) => {
+                    experimentGrid.innerHTML += generateExperimentCard(data);
+                });
+
+                // Initialize image functionality
+                currentData.forEach((data) => {
+                    setupImageDrag(data.No);
+                });
+
+                // Update inline pagination info
+                const currentPageElements = document.querySelectorAll(
+                    "#currentPage-inline",
+                );
+                const totalPagesElements =
+                    document.querySelectorAll("#totalPages-inline");
+
+                currentPageElements.forEach(
+                    (el) => (el.textContent = currentPage),
+                );
+                totalPagesElements.forEach(
+                    (el) => (el.textContent = totalPages),
+                );
+            }
+
+            // Change page
+            function changePage(direction) {
+                const newPage = currentPage + direction;
+                if (newPage >= 1 && newPage <= totalPages) {
+                    currentPage = newPage;
+                    displayCurrentPage();
+                }
+            }
+
+            // Open image modal
+            function openImageModal(imageSrc) {
+                const modal = document.getElementById("imageModal");
+                const modalImg = document.getElementById("modalImage");
+                modal.style.display = "block";
+                modalImg.src = imageSrc;
+            }
+
+            // Close image modal
+            function closeImageModal() {
+                document.getElementById("imageModal").style.display = "none";
+            }
+
+            // Play video
+            function playVideo(imageId, videoFile) {
+                const modal = document.getElementById("videoModal");
+                const video = document.getElementById("modalVideo");
+
+                if (videoFile && videoFile.trim() !== "") {
+                    video.src = videoFile;
+                    video.style.display = "block";
+                    modal.style.display = "block";
+
+                    // Reset video to start position
+                    video.currentTime = 0;
+
+                    // Try to auto-play
+                    video.play().catch((error) => {
+                        console.log(
+                            "Auto-play failed, user needs to click play manually:",
+                            error,
+                        );
+                    });
+                } else {
+                    alert("This record has no corresponding video file");
+                }
+            }
+
+            // Close video modal
+            function closeVideoModal() {
+                const modal = document.getElementById("videoModal");
+                const video = document.getElementById("modalVideo");
+
+                // Pause video playback
+                video.pause();
+                video.currentTime = 0;
+
+                modal.style.display = "none";
+            }
+
+            // Image zoom and drag functionality
+            const imageStates = {};
+
+            // Initialize image state
+            function initializeImageState(imageId) {
+                if (!imageStates[imageId]) {
+                    imageStates[imageId] = {
+                        scale: 1,
+                        translateX: 0,
+                        translateY: 0,
+                        isDragging: false,
+                        startX: 0,
+                        startY: 0,
+                    };
+                }
+            }
+
+            // Image zoom functionality
+            function zoomImage(imageId, scaleFactor) {
+                initializeImageState(imageId);
+                const state = imageStates[imageId];
+                const img = document.getElementById(`image-${imageId}`);
+                const container = document.getElementById(
+                    `image-container-${imageId}`,
+                );
+                const zoomLevelDisplay = document.getElementById(
+                    `zoom-level-${imageId}`,
+                );
+
+                if (!img || !container) return;
+
+                // Update zoom scale
+                state.scale *= scaleFactor;
+                state.scale = Math.max(0.1, Math.min(5, state.scale)); // Limit zoom range
+
+                // Update display
+                updateImageTransform(imageId);
+                zoomLevelDisplay.textContent =
+                    Math.round(state.scale * 100) + "%";
+            }
+
+            // Reset image
+            function resetImage(imageId) {
+                initializeImageState(imageId);
+                const state = imageStates[imageId];
+                const zoomLevelDisplay = document.getElementById(
+                    `zoom-level-${imageId}`,
+                );
+
+                state.scale = 1;
+                state.translateX = 0;
+                state.translateY = 0;
+
+                updateImageTransform(imageId);
+                zoomLevelDisplay.textContent = "100%";
+            }
+
+            // Update image transform
+            function updateImageTransform(imageId) {
+                const state = imageStates[imageId];
+                const img = document.getElementById(`image-${imageId}`);
+
+                if (!img) return;
+
+                img.style.transform = `translate(${state.translateX}px, ${state.translateY}px) scale(${state.scale})`;
+                img.style.transformOrigin = "center center";
+            }
+
+            // Setup image drag functionality
+            function setupImageDrag(imageId) {
+                initializeImageState(imageId);
+                const state = imageStates[imageId];
+                const img = document.getElementById(`image-${imageId}`);
+                const container = document.getElementById(
+                    `image-container-${imageId}`,
+                );
+
+                if (!img || !container) return;
+
+                // Mouse down event
+                img.addEventListener("mousedown", (e) => {
+                    if (state.scale <= 1) return; // Only allow dragging when zoomed in
+
+                    state.isDragging = true;
+                    state.startX = e.clientX - state.translateX;
+                    state.startY = e.clientY - state.translateY;
+                    img.style.cursor = "grabbing";
+                    e.preventDefault();
+                });
+
+                // Mouse move event
+                document.addEventListener("mousemove", (e) => {
+                    if (!state.isDragging) return;
+
+                    state.translateX = e.clientX - state.startX;
+                    state.translateY = e.clientY - state.startY;
+                    updateImageTransform(imageId);
+                });
+
+                // Mouse up event
+                document.addEventListener("mouseup", () => {
+                    state.isDragging = false;
+                    if (img)
+                        img.style.cursor = state.scale > 1 ? "grab" : "default";
+                });
+
+                // Mouse wheel zoom
+                container.addEventListener("wheel", (e) => {
+                    e.preventDefault();
+                    const scaleFactor = e.deltaY > 0 ? 0.9 : 1.1;
+                    zoomImage(imageId, scaleFactor);
+                });
+
+                // Update mouse cursor
+                img.addEventListener("mouseenter", () => {
+                    img.style.cursor = state.scale > 1 ? "grab" : "default";
+                });
+            }
+
+            // Initialize page
+            document.addEventListener("DOMContentLoaded", function () {
+                // Try to automatically load CSV file
+                loadCSVData();
+            });
+        </script>
+    </body>
+</html>
