@@ -197,7 +197,6 @@ python third_party/dilu/run_dilu.py
 Dan Chen, *et al.*
 
 📄 *Paper link*: https://doi.org/10.26599/COMMTR.2026.9640037
-📄 *Paper link*: https://arxiv.org/abs/2512.20179
 
 If you find this work useful, please consider citing our paper.
 
